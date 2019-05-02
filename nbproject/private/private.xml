@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>web/ContactInformation.jsp</url>
+            <bookmark id="1">
+                <name/>
+                <line>14</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/UserDAO.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedInfo.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedLocation.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/MissingPersonInfo.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Demographics.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/test/login/TestLogin.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/LoginServlet.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedDistinct.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/ReportCaseServlet.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/ModelUpload.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/CaseDAO.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/DataInsertionWrapper.java</file>
+        </group>
+    </open-files>
+</project-private>
