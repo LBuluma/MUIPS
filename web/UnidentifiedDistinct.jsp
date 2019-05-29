@@ -11,77 +11,81 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Distinct Feature</title>
 
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css" id="bootstrap-css">
-        <link rel="stylesheet" href="muips.css">
-        <link rel="stylesheet" href="resources/css/mdb.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.lite.min.css">
 
-        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="resources/js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css" id="bootstrap-css">
+        <link rel="stylesheet" href="resources/muips.css">         
+
 
     </head>
-    <body class="body1" style="height: 800px">
+    <body id="page-top">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <!-- End of Sidebar -->
+            <jsp:include page="ProfSidenav.jsp"/>
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
 
-        <jsp:include page="UserHeader.jsp">
-            <jsp:param name="title" value="Dash"/>
-        </jsp:include>
+                <!-- Main Content -->
+                <div id="content">
+                    <jsp:include page="Navbar.jsp"/>
 
-        <div class="container container1 border border-light p-5" style="width: 50%;height: 700px;margin-top: 75px">
+                    <!-- End of Topbar -->
 
-            <p class="h4 mb-4 text-center"><strong>Distinct Feature Information</strong></p>
 
-            <!-- Default form report -->
-            <form  action="ReportCase" method="post" style="margin-top: 20px">             
-                <hr >
-                <!-- Distinct feature type-->
-                <div class="form-row  mb-4" style="margin-top: 20px" name="disttype">
-                    <label for="inputType">Type</label>
-                    <select id="inputType" class="form-control">
-                        <option selected disabled>select</option>
-                        <option>Tattoo</option>
-                        <option>Piercing</option>
-                        <option>Scars and marks</option>
-                        <option>Jewelry</option>
-                        <option>Amputation</option>
-                        <option>Clothing</option>
-                        <option>Eye wear</option>
-                        <option>footwear</option>
-                        <option>Accessories</option>                                              
-                        <option>Other</option>
 
-                    </select>
+                    <div class="card p-5" style="height: 550px; width: 55%">
+
+                        <p class="h4 mb-1 text-center"><strong>Distinct Feature Information</strong></p>
+
+                        <!-- Default form report -->
+                        <form  action="UnidentifiedPersonReport" method="post" >             
+                            <hr >
+                            <!-- Distinct feature type-->
+                            <div class="form-row  mb-1" name="disttype">
+                                <label for="inputType">Type</label>
+                                <select id="inputType" class="form-control">
+                                    <option selected disabled>select</option>
+                                    <option>Tattoo</option>
+                                    <option>Piercing</option>
+                                    <option>Scars and marks</option>
+                                    <option>Jewelry</option>
+                                    <option>Amputation</option>
+                                    <option>Clothing</option>
+                                    <option>Eye wear</option>
+                                    <option>footwear</option>
+                                    <option>Accessories</option>                                              
+                                    <option>Other</option>
+
+                                </select>
+                            </div>
+
+                            <!--Description of the feature-->
+                            <div class="form-row mb-1" >
+                                <label for="inputType">Description</label>
+                                <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="distd" rows="5" placeholder="Description..."></textarea>
+                            </div>
+
+                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-1"><i class=""></i> Upload photo</a>
+
+
+                            <hr>
+
+                            <!--navigation buttons-->
+                            <input type="text" hidden="true" name="action" value="distinct">
+                            <div class="form-row">
+                                <a href="MissingPersonInfo.jsp" class=" btn btn-info" >Back</a>
+                                <div class="col text-right">
+                                    <button class=" btn btn-primary" type="submit">Next</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>   
                 </div>
+                <jsp:include page="Footer.jsp"/>
+            </div>
+        </div>
 
-                <!--Description of the feature-->
-                <div class="form-row mb-4" style="margin-top: 30px">
-                    <label for="inputType">Description</label>
-                    <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="distd" rows="5" placeholder="Description..."></textarea>
-                </div>
+    </div>
 
-             
-                    <label >Upload Photo:</label>
-                    <div class="file-upload-wrapper">
-                        <input type="file" id="input-file-now" class="file-upload" accept=".png,.jpg,.jpeg"/>
-                    </div>
-                
-                <br>
-                
-                <hr>
-
-                <!--navigation buttons-->
-                <input type="text" hidden="true" name="action" value="distinct">
-                <div class="form-row">
-                <a href="MissingPersonInfo.jsp" class=" btn btn-grey" >Back</a>
-                <div class="col text-right">
-                <button class=" btn btn-blue" type="submit">Next</button>
-                </div>
-                </div>
-            </form>
-        </div>   
-        <jsp:include page="footer.jsp"/>
-
-    </body>
+</body>
 </html>

@@ -10,72 +10,94 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Case Details</title>
+        <title>Profile</title>
 
         <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.lite.min.css">
-        <link rel="stylesheet" href="muips.css">
 
-        <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="resources/js/popper.min.js"></script>
+        <link rel="stylesheet" href="resources/muips.css">
+
+
+
     </head>
-    <body class='body1' style="height: 900px">
-        <jsp:include page="UserHeader.jsp">
-            <jsp:param name="title" value="Dash"/>
-        </jsp:include>
+    <body id="page-top">
 
-        <div class="container container1 border border-dark p-5" style="width: 50%;height: 800px; margin-top: 75px">
-            <form  action="ReportCase" method="post" >
-                <p class="h4" style="margin-left: 250px"   ><strong>Profile</strong></p>
-                <hr>
-              
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">First Name</label>
-                            <input class="form-control" id="inputEmail4" value="${list['1']}" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Second Name</label>
-                            <input  class="form-control" id="inputPassword4" value="${list['2']}" readonly>
-                        </div>
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+
+            <!-- End of Sidebar -->
+            <jsp:include page="Sidebar.jsp"/>
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+                    <jsp:include page="Navbar.jsp"/>
+
+                   
+                    <div class="row " style="margin-top: 20px" >
+
+          
+
+                        <div class="  card1 p-5 col  mb-4" style="margin-left: 50px" >
+                            <p class=" h5 mb-4 text-center "><u><strong>Personal Information</strong></u></p>
+                                <div class="form-row mb-1">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">First Name:</label>
+                                        <input class="form-control" id="inputEmail4" value="${list['1']}" readonly>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Second Name:</label>
+                                        <input  class="form-control" id="inputPassword4" value="${list['2']}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-1">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputAddress">Email:</label>
+                                        <input  class="form-control" id="inputAddress" value="${list['0']}" readonly>
+                                    </div>
+                                    <div class="form-group col-md-6" >
+                                        <label for="inputAddress">Phone:</label>
+                                        <input  class="form-control" id="inputAddress" value="${list['3']}" readonly>
+                               
+                                    </div>
+                                </div>
+                                <div class="form-row mb-1">
+                                    <label for="inputAddress">Huduma ID:</label>
+                                    <input  class="form-control"  value="${list['4']}" readonly>
+                                            
+                                </div>
+                            </div>
+
+                                <div class=" card1 p-5  col mb-4" style="margin-left: 30px; margin-right: 50px" >
+                                     <p class="h5 mb-4 text-center "><u><strong>Contact Information</strong></u></p>
+                                <div class="form-row mb-1">
+                                    <label for="inputAddress">Physical Address:</label>
+                                    <input class="form-control" value="${list['5']}" readonly>
+                                </div>
+                                <div class="form-row mb-1">
+                                    <label for="inputAddress">County:</label>
+                                    <input  class="form-control" value="${list['7']}" readonly>
+                                </div>
+                                <div class="form-row mb-1">
+                                    <label for="inputAddress">Constituency:</label>
+                                    <input  class="form-control" value="${list['6']}" readonly>
+                                </div>
+                                <div class="form-row mb-1" >
+                                    <label for="inputAddress">Ward:</label>
+                                    <input  class="form-control" value="${list['8']}" readonly>
+                                </div>
+
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                             <label for="inputAddress">Email</label>
-                            <input  class="form-control" id="inputAddress" value="${list['0']}" readonly>
-                        </div>
-                        <div class="form-group col-md-6" >
-                             <label for="inputAddress">Phone</label>
-                            <input  class="form-control" id="inputAddress" value="${list['3']}" readonly>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <label for="inputAddress">National ID</label>
-                        <input  class="form-control"  value="${list['4']}" readonly>
-                    </div>
-                    <div class="form-row">
-                        <label for="inputAddress">Physical Address</label>
-                        <input class="form-control" value="${list['5']}" readonly>
-                    </div>
-                    <div class="form-row">
-                        <label for="inputAddress">County</label>
-                        <input  class="form-control" value="${list['7']}" readonly>
-                    </div>
-                    <div class="form-row">
-                        <label for="inputAddress">Constituency</label>
-                        <input  class="form-control" value="${list['6']}" readonly>
-                    </div>
-                    <div class="form-row" >
-                        <label for="inputAddress">Ward</label>
-                        <input  class="form-control" value="${list['8']}" readonly>
-                    </div>
-               
-                <hr style="margin-bottom: 30px">
-            </form>
+                </div>
+            </div>
+            <jsp:include page="Footer.jsp"/>
+
         </div>
-    </body>
-    <jsp:include page="footer.jsp"/>
+    </div>
+</div>
+
+
+</body>
+
 </html>

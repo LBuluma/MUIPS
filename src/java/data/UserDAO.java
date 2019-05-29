@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
+import user.User;
 
 /**
  *
@@ -41,11 +41,11 @@ public class UserDAO {
     }
     //save a new staff user added to the system
 
-    public static void saveStaff(String email, String id, String fname, String sname,
-            String phone, String role, String pass, String addedby, String orgid) throws SQLException {
+    public static void saveProf(String email, String id, String fname, String sname,
+            String phone, String pass, String org, String orgEmail) throws SQLException {
 
-        query = "insert into staff(email, id, fname, sname, phone,"
-                + "role, password, addedby,orgid, date  ) values(?, ?, ?, ?, ?, ?, ?, ?, ? , curdate())";
+        query = "insert into publicuser(email, id, fname, sname, phone,"
+                + "date, password, locationid, org,role, orgemail ) values(?, ?, ?, ?, ?, curdate(),?, ?, ?, ?, ? )";
 
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
@@ -54,17 +54,19 @@ public class UserDAO {
         pState.setString(3, fname);
         pState.setString(4, sname);
         pState.setString(5, phone);
-        pState.setString(6, role);
-        pState.setString(7, pass);
-        pState.setString(8, addedby);
-        pState.setString(9, orgid);
+        pState.setString(6, pass);
+        pState.setString(7, "unknown");
+        pState.setString(8, org);
+
+        pState.setString(9, "prof");
+        pState.setString(10, orgEmail);
         pState.executeUpdate();
-        System.out.println("Staff successfully inserted");
+        System.out.println("Prof successfully added");
     }
 
     //Validate user login credentials
-    public static String validateUser(String email, String password) throws SQLException {
-        String role = null;
+    public static User validateUser(String email, String password) throws SQLException {
+        User usr = new User();
         query = "select * from publicuser where email= ?  and "
                 + "password = ? ";
 
@@ -77,25 +79,20 @@ public class UserDAO {
         rSet = pState.executeQuery();
 
         while (rSet.next()) {
-            role = rSet.getString("role");
-
-            if (role == null) {
-                role = "error";
-            }
-
+            usr.setUser_fname(rSet.getString("fname"));
+            usr.setUser_sname(rSet.getString("sname"));
+            usr.setUser_role(rSet.getString("role"));
         }
-        // System.out.println(role);
+        System.out.println(usr.getUser_role());
 
-        return role;
+        return usr;
     }
 
-    public static boolean verifyExisting(String id, String action) throws SQLException {
+    public static boolean verifyExisting(String id) throws SQLException {
         boolean exists = false;
-        if (action.equals("add")) {
-            query = "select personid from staff where personid = ? ";
-        } else {
-            query = "select id from user where id = ? ";
-        }
+
+        query = "select id from publicuser where email = ? ";
+
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
         pState.setString(1, id);
@@ -110,46 +107,16 @@ public class UserDAO {
 
     }
 
-    //Add a staff user into the database
-    public static int CreateUser(String id, String fName, String sName,
-            String type, String addedby, String email, String phone) {
+    public static int changePass(String username, String newpw, String oldpwd) throws SQLException {
+        query = "update publicuser set password=? where email = ? and password = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, newpw);
+        pState.setString(2, username);
+        pState.setString(3, oldpwd);
+        return pState.executeUpdate();
+        
 
-        PreparedStatement prepstat;
-        String password = id;
-        String query = "INSERT INTO staff (personid,fname, sname, "
-                + "type,phone, password,email, date, addedby ) VALUES " + "(?,?,?,?,?,?, ?, curdate(),?)";
-        try {
-
-            //create a connection
-            prepstat = DatabaseConnection.getConnection().prepareStatement(query);
-            prepstat.setString(1, id);
-            prepstat.setString(2, fName);
-            prepstat.setString(3, sName);
-            prepstat.setString(4, type);
-            prepstat.setString(5, phone);
-            prepstat.setString(6, password);
-            prepstat.setString(7, email);
-
-            prepstat.setString(8, addedby);
-
-            return prepstat.executeUpdate();
-
-        } catch (SQLException err) {
-            return 0;
-
-        }
     }
 
-    public static String generateId(String type) {
-        String pre = null;
-
-        if ("missing".equals(type)) {
-            pre = "MP";
-        } else if ("unidentified".equals(type)) {
-            pre = "UP";
-        }
-        String gen = (UUID.randomUUID().toString()).substring(0, 6).toUpperCase();
-        String id = pre + gen;
-        return id;
-    }
 }

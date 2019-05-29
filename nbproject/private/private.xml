@@ -12,18 +12,20 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/UserDAO.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedInfo.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedLocation.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/MissingPersonInfo.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Demographics.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/test/login/TestLogin.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/LoginServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedDistinct.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/ReportCaseServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/ModelUpload.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/resources/js/AlertSuccess.js</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Sidebar.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/FileUploadServlet.java</file>
             <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/CaseDAO.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/DataInsertionWrapper.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/sidenav.js</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/UserDAO.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/ProfSidenav.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Demographics.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/MissingPersonInfo.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/ChangePasswordServlet.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Ajax.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/ChangePassword.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/resources/js/AjaxFileUpload.js</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Login.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -14,37 +14,31 @@
 
         <link rel="stylesheet" href="resources/css/mdb.min.css">
        
-   </head>
-   <body >
-        <jsp:include page="Login.jsp">
-            <jsp:param name="title" value="Dash"/>
-        </jsp:include>
+
+    </head>
+    <body >
+
         <header>
             <!--Navbar-->
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style=" width: 100%">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style=" width: 100%; height: 70px">
                 <div class="container">
-                    <a class="navbar-brand" style="position: relative; right: 530px" href="#"><strong>MUIPS</strong></a>
+                    <a class="navbar-brand" style="position: absolute; top: 15px; left:  10px" href="#"><strong>MUIPS</strong></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-                        <ul class="navbar-nav mr-auto" style="position: relative; left: 800px">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
+                        <ul class="navbar-nav mr-auto" style="position: absolute; right: 10px; top: 15px">
+
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About MUIPS</a>
+                                <a class="nav-link" href="Registerhome.jsp">Register</a>
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link" href="PersonalInformation.jsp">Register</a>
+                                <a  class="nav-link" href="Login.jsp"  >Login</a>
                             </li>
-                        
-                            <li class="nav-item">
-                            <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginForm" >Login</a>
-                        </li>
-                            </ul>
-                        
-                        
+                        </ul>
+
+
                     </div>
                 </div>
             </nav>
@@ -109,35 +103,32 @@
             </div>
             <!--/.Carousel Wrapper-->
         </header>
-            <!-- Main navigation -->
-            <!--Main Layout-->
-            <main>
-                <div class="container" style="size: 100%">
-                    <!--Grid row-->
-                    <div class="row py-5">
-                        <!--Grid column-->
-                        <div class="col-md-12 text-center">
-                            <p style="font-family: sans-serif; font-size: 20px;font-style: italic">"To be without hope is like
-                                being without goals, what are you working towards?" </p>
-                            <p><strong>Catherine Pulsife</strong></p>
-                        </div>
-                        <!--Grid column-->
+        <!-- Main navigation -->
+        <!--Main Layout-->
+        <main>
+            <div class="container" >
+                <!--Grid row-->
+                <div class="row py-5">
+                    <!--Grid column-->
+                    <div class="col-md-12 text-center">
+                        <p style="font-family: sans-serif; font-size: 20px;font-style: italic">"To be without hope is like
+                            being without goals, what are you working towards?" </p>
+                        <p><strong>Catherine Pulsife</strong></p>
                     </div>
-                    <!--Grid row-->
+                    <!--Grid column-->
                 </div>
-            </main>
-            <!--Main Layout-->
+                <!--Grid row-->
+            </div>
+        </main>
+        <!--Main Layout-->
 
 
 
     </body>
-    <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="resources/vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="resources/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="resources/js/mdb.min.js"></script>
+    <script type="text/javascript" src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
 
 
 </html>

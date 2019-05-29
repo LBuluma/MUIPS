@@ -7,6 +7,7 @@ package Servlets;
 
 import data.UserDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import user.User;
 
 /**
  *
@@ -29,14 +31,6 @@ public class LoginServlet extends HttpServlet {
         doPost(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,31 +38,53 @@ public class LoginServlet extends HttpServlet {
         try {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            String role = UserDAO.validateUser(email, password);
-            HttpSession session = request.getSession();
-            
-            if( !(role.isEmpty())){
-            session.setAttribute("role", role);
-            session.setAttribute("email", email);
-            url = "/RetrieveProfile";
-            }else{
 
-            url = "/Home.jsp";
+            User usr = UserDAO.validateUser(email, password);
+
+            String role = usr.getUser_role();
+            System.out.println(usr.getUser_fname());
+            HttpSession session = request.getSession();
+            PrintWriter out = response.getWriter();
+
+            if (null == role) {
+                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
+                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
+                out.print(" <script type='text/javascript' src='resources/js/AlertLoginFail.js'></script>");
+
+                url = "/Login.jsp";
+            } else if ( role != null) {
+
+                String user = usr.getUser_fname() + " " + usr.getUser_sname();
+               
+
+                switch (role) {
+
+                    case "publicuser":
+                        session.setAttribute("userName", user);
+                        System.out.println(user);
+                        session.setAttribute("role", role);
+                        session.setAttribute("email", email);
+                        url = "/PublicDashBoard.jsp";
+                        break;
+                    case "prof":
+                        session.setAttribute("userName", user);
+                        session.setAttribute("role", role);
+                        session.setAttribute("email", email);
+                        url = "/ProfDashBoard.jsp";
+                        break;
+
+                }
+
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
-        disp.forward(request, response);
+        disp.include(request, response);
 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

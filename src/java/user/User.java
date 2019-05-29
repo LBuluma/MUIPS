@@ -17,11 +17,12 @@ public class User {
     private String user_phone;
     private String user_id;
     private String date_added;
+    private String user_role;
 
     public User() {
     }
 
-    public User(String user_fname, String user_sname, String user_pass, String user_email, String user_phone, String user_id, String date_added) {
+    public User(String user_fname, String user_sname, String user_pass, String user_email, String user_phone, String user_id, String date_added, String user_role) {
         this.user_fname = user_fname;
         this.user_sname = user_sname;
         this.user_pass = user_pass;
@@ -29,9 +30,19 @@ public class User {
         this.user_phone = user_phone;
         this.user_id = user_id;
         this.date_added = date_added;
+        this.user_role = user_role;
     }
     
 
+    public String getUser_role() {
+        return user_role;
+    }
+
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
+    }
+
+   
     public String getDate_added() {
         return date_added;
     }

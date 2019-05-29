@@ -51,21 +51,12 @@ public class RetrieveProfileServlet extends HttpServlet {
             String url = null;
             
             switch (role) {
-                case "admin":
+                case "prof":
                     session.setAttribute("role", role);
                     session.setAttribute("email", email);
-                    url = "/AdminProfile.jsp";
+                    url = "/ProfProfile.jsp";
                     break;
-                case "officer":
-                    session.setAttribute("role", role);
-                    session.setAttribute("email", email);
-                    url = "/OfficerProfile.jsp";
-                    break;
-                case "agent":
-                    session.setAttribute("role", role);
-                    session.setAttribute("email", email);
-                    url = "/AgentProfile.jsp";
-                    break;
+               
                 case "publicuser":
                     session.setAttribute("role", role);
                     session.setAttribute("email", email);

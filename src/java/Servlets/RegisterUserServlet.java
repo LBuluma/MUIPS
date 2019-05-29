@@ -8,6 +8,7 @@ package Servlets;
 import data.DataInsertionWrapper;
 import data.UserDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,21 +43,53 @@ public class RegisterUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String regtype = request.getParameter("regtype");
-        if (regtype.equals("personal")) {
-            savePersonalInfo(request, response);
-             RequestDispatcher disp = getServletContext().getRequestDispatcher("/ContactInformation.jsp");
-        disp.forward(request, response);
-
-        } else if (regtype.equals("contact")) {
-            try {
-                saveUser(request, response);
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(RegisterUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        PrintWriter out = response.getWriter();
+        switch (regtype) {
+            case "type":
+                String userType = (String) request.getParameter("usrtype");
+                if (userType.equals("public")) {
+                    RequestDispatcher disp = getServletContext().getRequestDispatcher("/PublicPersonalInformation.jsp");
+                    disp.forward(request, response);
+                } else {
+                    RequestDispatcher disp = getServletContext().getRequestDispatcher("/ProfPersonalInformation.jsp");
+                    disp.forward(request, response);
+                }
+                break;
+            case "personal": {
+                savePersonalInfo(request, response);
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/PublicContactInformation.jsp");
+                disp.forward(request, response);
+                break;
             }
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/Home.jsp");
-        disp.forward(request, response);
+            case "contact": {
+                try {
+                    saveUser(request, response);
 
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegisterUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
+                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
+                out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/Login.jsp");
+                disp.include(request, response);
+                break;
+            }
+            case "prof": {
+                try {
+                    saveProf(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegisterUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
+                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
+                out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/Login.jsp");
+                disp.include(request, response);
+                break;
+            }
+
+           
         }
     }
 
@@ -91,6 +124,21 @@ public class RegisterUserServlet extends HttpServlet {
 
         DataInsertionWrapper.addLocation(locationId, address, county, constituency, ward, village);
         UserDAO.saveUser(fname, sname, id, pass, email, phone, locationId);
+    }
+
+    public void saveProf(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
+        String fname = request.getParameter("fname");
+        String sname = request.getParameter("sname");
+        String id = request.getParameter("id");
+        String password = request.getParameter("password");
+        String address = request.getParameter("address");
+        String org = request.getParameter("org");
+        String orgEmail = request.getParameter("orgEmail");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        UserDAO.saveProf(email, id, fname, sname, phone, password, org, orgEmail);
+
     }
 
     //get the first two characters of the string

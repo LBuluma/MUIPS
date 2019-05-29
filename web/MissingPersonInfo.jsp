@@ -9,114 +9,133 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title> Person Information</title>
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="resources/muips.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css" id="bootstrap-css">
-        <link rel="stylesheet" href="muips.css">         
-        <link rel="stylesheet" href="resources/css/mdb.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.lite.min.css"
-        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="resources/js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
     </head>
+    <body id="page-top">
 
-    <body  class="body1" style="height: 950px">
-        <jsp:include page="UserHeader.jsp">
-            <jsp:param name="title" value="Dash"/>
-        </jsp:include>
-
-        <div class="container container1 border border-light p-5" style="width: 55%;height: 850px;margin-top: 75px">
-            <!-- Default form register -->
-            <form  action="ReportCase" method="post">
-
-                <p class="h4 mb-4 text-center"><strong>Missing Person Information</strong></p>
-                <hr>
-                <!-- E-mail -->
-                <label>Huduma Number:</label>
-                <input type="text" name="pid" id="defaultRegisterFormEmail" class="form-control mb-4" required>
-
-                <label>Date of last contact:</label>
-
-                <input type="date" name="lastContact" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Date of Last Contact" required>
-
-                
+        <!-- Page Wrapper -->
+        <div id="wrapper">
 
 
+            <!-- End of Sidebar -->
+            <jsp:include page="Sidebar.jsp"/>
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column"  style="background-color: white">
 
-                <div class="form-row mb-4" style="margin-top: 10px">
+                <!-- Main Content -->
+                <div id="content">
+                    <jsp:include page="Navbar.jsp"/>
 
-                    <div class="form-group col-md-6">
 
-                        <select id="inputState" class="form-control" name="pcolor">
-                            <option selected disabled="true">Color</option>
-                            <option>Nilotic</option>
-                            <option>Cushitic</option>
-                            <option>European</option>
-                            <option>Asian</option>
-                            <option>Other</option>
+                    <!-- End of Topbar -->
 
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
+                    <!-- Begin Page Content -->
+                    <div class="card p-5" style="height: 750px" >
 
-                        <select id="inputState" class="form-control" name="hcolor">
-                            <option selected disabled="true"> Hair Color</option>
-                            <option >Nilotic</option>
-                            <option>Cushitic</option>
-                            <option>European</option>
-                            <option>Asian</option>
-                            <option>Other</option>
 
-                        </select>
-                    </div>
+
+                        <form  action="ReportCase" method="post">
+
+                            <p class="h4 mb-1 text-center"><strong>Missing Person Information</strong></p>
+                            <hr>
+                            <!-- E-mail -->
+                            <label>Huduma Number:</label>
+                            <input type="text" name="pid" id="defaultRegisterFormEmail" class="form-control mb-1" required>
+
+                            <label>Date of last contact:</label>
+
+                            <input type="date" name="lastContact" id="defaultRegisterFormEmail" class="form-control mb-1" placeholder="Date of Last Contact" required>
+
+                            <div class="form-row mb-1" style="margin-top: 10px">
+
+                                <div class="form-group col-md-6">
+                                    <label>Color:</label>
+                                    <select id="inputState" class="form-control" name="pcolor">
+
+                                        <option>white</option>
+                                        <option>Latino</option>
+                                        <option>Black</option>
+                                        <option>Indian</option>
+                                        <option>Chocolate</option>
+                                        <option>Asian</option>
+                                        <option>Other</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Hair color:</label>
+                                    <select id="inputState" class="form-control" name="hcolor">
+
+                                        <option >Brown</option>
+                                        <option>Black</option>
+                                        <option>Sandy</option>
+                                        <option>Gray/partially gray</option>
+                                        <option>Red/Auburn</option>
+                                        <option>Blue</option>
+                                        <option>Green</option>
+                                        <option>Orange</option>
+                                        <option>Purple</option>
+                                        <option>Pink</option>
+                                        <option>Completely bald</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-1">
+                                <label>Eye color:</label>
+                                <select id="inputState" class="form-control" name="ecolor">
+
+                                    <option >Black</option>
+                                    <option>Blue</option>
+                                    <option>Brown</option>
+                                    <option>Green</option>
+                                    <option>Hazel</option>
+                                    <option>Pink</option>
+                                    <option>Maroon</option>
+                                    <option>Missing</option>
+
+                                </select>
+                            </div>
+                            <label>Description:</label>
+                            <div class="form-group  mb-1">
+
+                                <textarea type="text" class="form-control " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
+                            </div>
+                          
+
+
+
+
+                            <hr>
+                            <div class="form-row mb-1">
+                                <a href="Demographics.jsp" class=" btn btn-info"  >Back</a>
+
+                                <div class="col text-right ">
+                                    <button class=" btn btn-primary" type="submit" >Next</button>
+                                </div>
+                                <input type="text" hidden="true" name="action" value="info">
+                            </div>
+
+
+                        </form>
+                          <form id="form" action="FileUpload" method="post" enctype="multipart/form-data">
+
+                                <input id="uploadImage" type="file" accept="image/*" name="image" />
+                                <input  type="text"  name="type" value="missing" hidden />
+                                <input class="btn btn-success" type="submit" value="Upload" id="btn">
+                            </form>
+
+
+                    </div>    
+                    <jsp:include page="Footer.jsp"/>
                 </div>
-                 <div class="form-group mb-4">
+            </div>
+        </div>
+        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
 
-                        <select id="inputState" class="form-control" name="ecolor">
-                            <option selected disabled="true"> Eye Color</option>
-                            <option>Nilotic</option>
-                            <option>Cushitic</option>
-                            <option>European</option>
-                            <option>Asian</option>
-                            <option>Other</option>
-
-                        </select>
-                    </div>
-
-                <div class="form-group  mb-4">
-
-                    <textarea type="text" class="form-control " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
-                </div>
-                 <div class="container mb-4 ">
-                     
-                    <label >Upload Photo of person:</label>
-                    <div class="file-upload-wrapper" >
-                
-                        <input type="file" id="input-file-now" class="file-upload" accept=".png,.jpg,.jpeg"/>
-                        
-                       
-                    </div>
-                    
-                </div>
-
-
-
-
-                <hr style="margin-top: 30px">
-                <input type="text" hidden="true" name="action" value="info">
-                <div class="form-row mb-4">
-                <a href="Demographics.jsp" class=" btn btn-grey form-inline"  >Back</a>
-                
-                <div class="col text-right ">
-                <button class=" btn btn-blue form-inline text-right" type="submit" >Next</button>
-                </div>
-                </div>
-
-
-            </form>
-        </div>    
-        <jsp:include page="footer.jsp"/>
     </body>
 </html>

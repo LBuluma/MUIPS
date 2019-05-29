@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>Login.jsp</welcome-file>
+    </welcome-file-list>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>Filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Servlets.LoginServlet</servlet-class>
@@ -14,7 +25,7 @@
     </servlet>
     <servlet>
         <servlet-name>ReportCaseServlet</servlet-name>
-        <servlet-class>Servlets.ReportCaseServlet</servlet-class>
+        <servlet-class>Servlets.MissingPersonReportServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>showUsers</servlet-name>
@@ -27,6 +38,42 @@
     <servlet>
         <servlet-name>AddNewUserServlet</servlet-name>
         <servlet-class>Servlets.AddNewUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UnidentifiedPersonReportServlet</servlet-name>
+        <servlet-class>Servlets.UnidentifiedPersonReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetriveConstituencyServlet</servlet-name>
+        <servlet-class>Servlets.RetriveConstituencyServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveCasesServlet</servlet-name>
+        <servlet-class>Servlets.RetrieveCasesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveMyPostServlet</servlet-name>
+        <servlet-class>Servlets.RetrieveMyPostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostDetailServlet</servlet-name>
+        <servlet-class>Servlets.PostDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AJaxTrialServlet</servlet-name>
+        <servlet-class>Servlets.AJaxTrialServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>Servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveDataServlet</servlet-name>
+        <servlet-class>Servlets.RetrieveDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>Servlets.ChangePasswordServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -55,6 +102,42 @@
     <servlet-mapping>
         <servlet-name>AddNewUserServlet</servlet-name>
         <url-pattern>/AddNewUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UnidentifiedPersonReportServlet</servlet-name>
+        <url-pattern>/UnidentifiedPersonReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetriveConstituencyServlet</servlet-name>
+        <url-pattern>/RetriveConstituency</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveCasesServlet</servlet-name>
+        <url-pattern>/RetrieveCases</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveMyPostServlet</servlet-name>
+        <url-pattern>/RetrieveMyPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostDetailServlet</servlet-name>
+        <url-pattern>/PostDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AJaxTrialServlet</servlet-name>
+        <url-pattern>/AJaxTrialServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveDataServlet</servlet-name>
+        <url-pattern>/RetrieveData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

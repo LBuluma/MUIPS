@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import data.CaseDAO;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -55,22 +56,25 @@ public class FileUploadServlet extends HttpServlet {
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, FileUploadException, SQLException {
         String applicationPath = getServletContext().getRealPath("");
        
-        String uploadPath = applicationPath + File.separator + UPLOAD_DIR;
+        String uploadPath = applicationPath + UPLOAD_DIR;
        
-        Part filePart = request.getPart("file");
-        String filen = filePart.getSubmittedFileName();
-        System.out.println(filen);
+        Part filePart = request.getPart("image");
+       String filen = filePart.getSubmittedFileName();
+       System.out.println(filen);
         System.out.println("working");
         File fileUploadDirectory = new File(uploadPath);
         if (!fileUploadDirectory.exists()) {
             fileUploadDirectory.mkdirs();
         }
+          String path = null;
+        HttpSession session = request.getSession();
         String type = request.getParameter("type");
-        String id = request.getParameter("caseid");
-      
+        String id = (String) session.getAttribute("personId");
+        path = uploadPath + File.separator + filen; 
+         CaseDAO.saveImage(type, id, path);
 
         String fileName="";
-         String path = null;
+       
         ModelUpload details = new ModelUpload();
         List<ModelUpload> fileList = new ArrayList<>();
 
@@ -87,34 +91,19 @@ public class FileUploadServlet extends HttpServlet {
             } catch (IOException ioObj) {
                 details.setUploadStatus("Failure : " + ioObj.getMessage());
             }
-          fileName=details.getFileName();
-        System.out.println(fileName);  
+          
               
-         System.out.println(path);   
+           
         }
         
-          path = uploadPath + File.separator + filen; 
-        HttpSession session = request.getSession();
-
-
         
-        
-         String uploadedby = (String) session.getAttribute("name");
+         //System.out.println(path); 
        
         
-      
-
+         
         
 
        
-
-       // DatabaseWrapper.saveFile(caseid, type, path, uploadedby);
-
-        String message = "file uploaded successfully";
-        request.setAttribute("m", message);
-        request.setAttribute("caseid", id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveOfficerAllocation?action=view");
-        dispatcher.forward(request, response);
 
     }
 

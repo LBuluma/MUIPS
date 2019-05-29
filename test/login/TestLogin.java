@@ -5,11 +5,16 @@
  */
 package login;
 
-import data.DataInsertionWrapper;
+import Case.Description;
+import Case.MissingPerson;
+import Case.Transportation;
+import Case.UnidentifiedPerson;
+import Location.Location;
+import data.CaseDAO;
 import data.DataRetrievalWrapper;
+import data.UserDAO;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.UUID;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,16 +23,9 @@ import java.util.UUID;
 public class TestLogin {
 
     public static void main(String[] args) throws SQLException {
-     int profile = Calendar.getInstance().get(Calendar.YEAR);
-        System.out.println(profile); 
-        System.out.println(profile - 2000);
+        CaseDAO.saveImage("missing",  "MP-FBB4E3-19", "/home/justus/NetBeansProjects/MUIPS/build/web/uploads/Screenshot from 2019-04-16 16-19-52.png");
         
-        String hey = UUID.randomUUID().toString();
-            System.out.println(hey);
-        String h = hey.substring(0, 5);
-         System.out.println(h.toUpperCase());
+    
     }
 
-   
 }
-

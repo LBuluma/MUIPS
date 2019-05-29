@@ -63,12 +63,18 @@ public final class LocationInfo_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\n");
       out.write("    </head>\n");
       out.write("\n");
-      out.write("    <body class=\"body1\" style=\"height: 900px\">\n");
+      out.write("    <body class=\"body1\" style=\"height: 100%\">\n");
+      out.write("        <div class=\"wrapper\">\n");
+      out.write("\n");
       out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "UserHeader.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("title", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("Dash", request.getCharacterEncoding()), out, false);
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Sidenav.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("title", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("Dash", request.getCharacterEncoding()), out, false);
+      out.write("\n");
+      out.write("            <div class=\"content\" style=\"width: 100%\">\n");
+      out.write("                ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Sidebar.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("title", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("Dash", request.getCharacterEncoding()), out, false);
       out.write("\n");
       out.write("\n");
-      out.write("        <div class=\"container container1 border border-dark p-5\" style=\"width: 50%;height: 825px; margin-top: 75px\">\n");
+      out.write("        <div class=\"container container1  p-5\" style=\"width: 60%;height: 800px; margin-top:30px\">\n");
       out.write("            <!-- Default form register -->\n");
       out.write("            <form  action=\"ReportCase\" method=\"post\">\n");
       out.write("                <p class=\"h4 mb-4 text-center\"><strong>Last Known Location</strong></p>\n");
@@ -118,12 +124,7 @@ public final class LocationInfo_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("                <div class=\"container mb-4 \"> \n");
-      out.write("                    <label >Upload Photo of person:</label>\n");
-      out.write("                    <div class=\"file-upload-wrapper\" >\n");
-      out.write("                        <input type=\"file\" id=\"input-file-now\" class=\"file-upload\" accept=\".png,.jpg,.jpeg\"/>\n");
-      out.write("                    </div>\n");
-      out.write("                </div>\n");
+      out.write("               \n");
       out.write("                <!-- Distinct Feature-->\n");
       out.write("                <div class=\"custom-control custom-checkbox custom-control-inline mb-4\" style=\"margin-top: 20px; margin-right: 150px\">\n");
       out.write("                    <input type=\"checkbox\" name=\"distinct\" value=\"dist\" class=\"custom-control-input\" id=\"defaultInline1\">\n");
@@ -142,7 +143,7 @@ public final class LocationInfo_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                 \n");
       out.write("                <a href=\"PersonalInformation.jsp\" class=\" btn btn-grey\"  >Back</a>\n");
       out.write("                <div class=\"col text-right\">\n");
-      out.write("                <button class=\" btn btn-blue\" type=\"submit\" >Finish</button>\n");
+      out.write("                <button class=\" btn btn-info\" type=\"submit\" >Finish</button>\n");
       out.write("                </div>\n");
       out.write("                </div>\n");
       out.write("            </form>\n");
@@ -150,6 +151,8 @@ public final class LocationInfo_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "footer.jsp", out, false);
       out.write("\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

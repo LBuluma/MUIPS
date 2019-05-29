@@ -55,9 +55,7 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("       \n");
       out.write("   </head>\n");
       out.write("   <body >\n");
-      out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Login.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("title", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("Dash", request.getCharacterEncoding()), out, false);
-      out.write("\n");
+      out.write("       \n");
       out.write("        <header>\n");
       out.write("            <!--Navbar-->\n");
       out.write("            <nav class=\"navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar\" style=\" width: 100%\">\n");
@@ -75,11 +73,11 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <a class=\"nav-link\" href=\"#\">About MUIPS</a>\n");
       out.write("                            </li>\n");
       out.write("                            <li class=\"nav-item\">\n");
-      out.write("                                <a class=\"nav-link\" href=\"PersonalInformation.jsp\">Register</a>\n");
+      out.write("                                <a class=\"nav-link\" href=\"Registerhome.jsp\">Register</a>\n");
       out.write("                            </li>\n");
       out.write("                        \n");
       out.write("                            <li class=\"nav-item\">\n");
-      out.write("                            <a href=\"\" class=\"nav-link\" data-toggle=\"modal\" data-target=\"#modalLoginForm\" >Login</a>\n");
+      out.write("                            <a  class=\"nav-link\" href=\"Login.jsp\"  >Login</a>\n");
       out.write("                        </li>\n");
       out.write("                            </ul>\n");
       out.write("                        \n");
@@ -151,7 +149,7 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <!-- Main navigation -->\n");
       out.write("            <!--Main Layout-->\n");
       out.write("            <main>\n");
-      out.write("                <div class=\"container\" style=\"size: 100%\">\n");
+      out.write("                <div class=\"container\" >\n");
       out.write("                    <!--Grid row-->\n");
       out.write("                    <div class=\"row py-5\">\n");
       out.write("                        <!--Grid column-->\n");
