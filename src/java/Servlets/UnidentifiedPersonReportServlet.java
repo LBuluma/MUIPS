@@ -100,8 +100,8 @@ public class UnidentifiedPersonReportServlet extends HttpServlet {
         session.setAttribute("height", height);
         personId = CaseDAO.generateId("unidentified");
         session.setAttribute("personId", personId);
-        UnidentifiedPersonDAO.saveUnidentifiedPerson(fname, sname, personId, ethnic, gender,
-                dateFound, language);
+        UnidentifiedPersonDAO.saveUnidentifiedPerson(fname.toUpperCase(), sname.toUpperCase(), personId, ethnic.toUpperCase(), gender.toUpperCase(),
+                dateFound, language.toUpperCase());
 
         String url = "/UnidentifiedDescription.jsp";
         RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
@@ -118,8 +118,8 @@ public class UnidentifiedPersonReportServlet extends HttpServlet {
         weight = (String) session.getAttribute("weight");
         height = (String) session.getAttribute("height");
         personId = (String) session.getAttribute("personId");
-        DataInsertionWrapper.saveDescription(personId, weight, height, description, ecolor,
-                pcolor, hcolor, age);
+        DataInsertionWrapper.saveDescription(personId, weight, height, description.toUpperCase(), ecolor.toUpperCase(),
+                pcolor.toUpperCase(), hcolor.toUpperCase(), age);
         String url = "/UnidentifiedLocation.jsp";
         RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
         disp.forward(request, response);
@@ -153,11 +153,11 @@ public class UnidentifiedPersonReportServlet extends HttpServlet {
         String village = (String) request.getParameter("village");
         String distinct = (String) request.getParameter("distinct");
         System.out.println(distinct);
-        String org = (String) request.getParameter("org");
+        String org = (String) session.getAttribute("myOrg");
         personId = (String) session.getAttribute("personId");
         String reporter = (String) session.getAttribute("email");
-        DataInsertionWrapper.addLocation(personId, "none", county, constituency, ward, village);
-        CaseDAO.saveCase("Unidentified", "Open", personId, reporter, org);
+        DataInsertionWrapper.addLocation(personId, "NONE", county.toUpperCase(), constituency.toUpperCase(), ward.toUpperCase(), village.toUpperCase());
+        CaseDAO.saveCase("Unidentified", "Open", personId, reporter.toUpperCase(), org);
 
         if (distinct == null) {
             out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");

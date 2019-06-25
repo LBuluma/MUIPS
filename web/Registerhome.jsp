@@ -25,9 +25,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav mr-auto" style=" position: absolute; right: 10px; top: 20px">
-                        <li class="nav-item active"   >
-                            <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
-                        </li>
+                        
                                               
                         <li class="nav-item"  >
                             <a href="Login.jsp" class="nav-link"  >Login</a>
@@ -37,7 +35,7 @@
             </div>
         </nav>
         <div class="container border border-light " style="border-radius:  1.5em; height: 650px; 
-             width: 60%; margin-top: 100px; background-color: white">
+             width: 50%; margin-top: 100px; background-color: white">
             <div class="h2-responsive text-center " style="margin-top: 20px"><strong> User Registration</strong></div>
             <hr>
             <div style="margin-left: 30px; margin-top: 30px">

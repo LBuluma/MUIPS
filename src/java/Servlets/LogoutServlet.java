@@ -30,11 +30,11 @@ public class LogoutServlet extends HttpServlet {
                                 throws ServletException, IOException {  
            
               
-            request.getRequestDispatcher("/Login.jsp").include(request, response);  
+            
               
             HttpSession session=request.getSession();  
             session.invalidate();  
-              
+              request.getRequestDispatcher("/Login.jsp").include(request, response);  
              
               
            

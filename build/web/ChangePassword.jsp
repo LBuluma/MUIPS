@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,9 +16,6 @@
         <link rel="stylesheet" href="resources/muips.css">
 
 
-
-
-
     </head>
     <body id="page-top">
 
@@ -25,9 +23,21 @@
         <div id="wrapper">
 
 
-            <!-- End of Sidebar -->
-            <jsp:include page="Sidebar.jsp"/>
-            <!-- Content Wrapper -->
+            <c:if test="${sessionScope.role =='prof'}">
+                <!-- End of Sidebar -->
+                <jsp:include page="ProfSidenav.jsp"/>
+                <!-- Content Wrapper -->
+            </c:if>
+            <c:if test="${sessionScope.role == 'publicuser'}">
+                <!-- End of Sidebar -->
+                <jsp:include page="Sidebar.jsp"/>
+                <!-- Content Wrapper -->
+            </c:if>
+            <c:if test="${sessionScope.role == 'admin'}">
+                <!-- End of Sidebar -->
+                <jsp:include page="AdminSidenav.jsp"/>
+                <!-- Content Wrapper -->
+            </c:if>
             <div id="content-wrapper" class="d-flex flex-column">
 
                 <!-- Main Content -->
@@ -36,13 +46,13 @@
 
                     <form action='ChangePassword' method="post">
 
-                        <div class="card1  border p-5" style="margin: auto; width: 600px" >
-                            <div class="form-row mb-4">
+                        <div class="card1  border p-5" style="margin: auto; width: 40%; height: 430px" >
+                            <div class="form-row mb-1">
                                 <label for="inputEmail4">Old password:</label>
                                 <input type="password" name="oldPass" class="form-control" id="inputFname"  required>
                             </div>
 
-                            <div class="form-row mb-4">
+                            <div class="form-row mb-1">
                                 <label for="inputPassword4">New password:</label>
                                 <input type="password" name="newPass" id="defaultRegisterFormPassword1" class="form-control mb-1" pattern="(?=.*\d)(?=.*[a-z]).{8,}" aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
                                 <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-1"  style="color: blue">
@@ -56,11 +66,15 @@
                                 <label for="inputAddress">Confirm password:</label>
                                 <input type="password" name="confPass" class="form-control" id="inputAddress" required>
                             </div>
-                            <button class="btn btn-primary form-control" type="submit">change</button>
+                            <div class="form-row mb-4">
+                                <button class="btn btn-primary form-control" type="submit">change</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+
 
 
     </body>

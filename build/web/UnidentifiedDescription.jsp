@@ -31,86 +31,92 @@
 
 
 
-                    <div class="card p-5" style="height: 650px; width: 55%">
-                        <!-- Default form register -->
-                        <form  action="UnidentifiedPersonReport" method="post">
-
+                    <div class="card shadow" style="height: 650px; width: 60%">
+                        <div class="card-header py-3" >
                             <p class="h4 text-center mb-1 "><strong>Unidentified Person Information</strong></p>
-                            <hr>
-                            <div class="form-row mb-1">
+                        </div>
+                        <div class="container" style="width: 70%; margin-top: 30px">
+                            <!-- Default form register -->
+                            <form  action="UnidentifiedPersonReport" method="post">
 
-                                <div class="form-group col-md-6">
-                                    <label>Color:</label>
-                                    <select id="inputState" class="form-control" name="pcolor">
-                                       
-                                        <option>white</option>
-                                        <option>Latino</option>
-                                        <option>Black</option>
-                                        <option>Indian</option>
-                                        <option>Chocolate</option>
-                                        <option>Asian</option>
-                                        <option>Other</option>
 
-                                    </select>
+                                <div class="form-row mb-1">
+
+                                    <div class="form-group col-md-6">
+                                        <label>Color:</label>
+                                        <select id="inputState" class="form-control" name="pcolor">
+
+                                            <option>white</option>
+                                            <option>Latino</option>
+                                            <option>Black</option>
+                                            <option>Indian</option>
+                                            <option>Chocolate</option>
+                                            <option>Asian</option>
+                                            <option>Other</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Hair color:</label>
+                                        <select id="inputState" class="form-control" name="hcolor">
+                                            <option selected > Black</option>
+                                            <option >Brown</option>
+
+                                            <option>Sandy</option>
+                                            <option>Gray</option>
+                                            <option>Red</option>
+                                            <option>Blue</option>
+                                            <option>Green</option>
+                                            <option>Orange</option>
+                                            <option>Purple</option>
+                                            <option>Pink</option>
+                                            <option>Bald</option>
+
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label>Hair color:</label>
-                                    <select id="inputState" class="form-control" name="hcolor">
-                                        <option selected > Black</option>
-                                        <option >Brown</option>
-
-                                        <option>Sandy</option>
-                                        <option>Gray</option>
-                                        <option>Red</option>
+                                <div class="form-group mb-1">
+                                    <label>Eye color:</label>
+                                    <select id="inputState" class="form-control" name="ecolor">
+                                        <option selected > Blue</option>
+                                        <option >Black</option>
                                         <option>Blue</option>
+                                        <option>Brown</option>
                                         <option>Green</option>
-                                        <option>Orange</option>
-                                        <option>Purple</option>
+                                        <option>Hazel</option>
                                         <option>Pink</option>
-                                        <option>Bald</option>
+                                        <option>Maroon</option>
+                                        <option>Missing</option>
+
 
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group mb-1">
-                                <label>Eye color:</label>
-                                <select id="inputState" class="form-control" name="ecolor">
-                                    <option selected > Blue</option>
-                                    <option >Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Hazel</option>
-                                    <option>Pink</option>
-                                    <option>Maroon</option>
-                                    <option>Missing</option>
 
-
-                                </select>
-                            </div>
-
-                            <div class="form-group  mb-1">
-                                <label> Physical description:</label>
-                                <textarea type="text" class="form-control mb-4 " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
-                            </div>
-
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-1"><i class=""></i> Upload photo</a>
-
-                            <hr >
-                            <input type="text" hidden="true" name="action" value="info">
-                            <div class="form-row mb-1">
-                                <a href="UnidentifiedPersonDemographics.jsp" class=" btn btn-info"  >Back</a>
-
-                                <div class="col text-right ">
-                                    <button class=" btn btn-primary " type="submit" >Next</button>
+                                <div class="form-group  mb-1">
+                                    <label> Physical description:</label>
+                                    <textarea type="text" class="form-control mb-4 " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
                                 </div>
-                            </div>
-                        </form>
-                    </div>    
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                                    upload photo
+                                </button>
+                                <hr >
+                                <input type="text" hidden="true" name="action" value="info">
+                                <div class="form-row mb-1">
+                                    <a href="UnidentifiedPersonDemographics.jsp" class=" btn btn-info"  >Back</a>
+
+                                    <div class="col text-right ">
+                                        <button class=" btn btn-primary " type="submit" >Next</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
                     <jsp:include page="Footer.jsp"/>
                 </div>
             </div>
         </div>
-
+        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
     </body>
 </html>

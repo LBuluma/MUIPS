@@ -25,7 +25,7 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-            
+
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -50,20 +50,20 @@
                     </div>
                 </li>
 
-             
+
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
+                <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-600 " style="color: blue; font-size: 16px"><u>${sessionScope.userName}</u></span>
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
-                        
-                       
+
+
                         <a class="dropdown-item" href="Logout" >
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
@@ -74,21 +74,36 @@
             </ul>
 
         </nav>
-         <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                        <h5 class="modal-title" id="exampleModalLongTitle">File upload</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="Login.jsp">Logout</a>
+                    <form id="form" action="FileUpload" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            
+                                <input id="uploadImage" type="file" accept="image/*" name="image" />
+                                <input  type="text"  name="type" value="missing" hidden />
+                             
+                           
+
+                        </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"  >Upload</button>
+                    </div>
+                    </form>
+                
                 </div>
             </div>
         </div>

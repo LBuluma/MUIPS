@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import user.User;
 
 public class DataRetrievalWrapper {
 
@@ -24,38 +25,27 @@ public class DataRetrievalWrapper {
     static Connection conn;
     static ArrayList list;
 
-    public static ArrayList getProfile(String email) throws SQLException {
+    public static User getProfile(String email) throws SQLException {
         list = new ArrayList();
         String locationId = null;
         query = "select * from publicuser where email= ? ";
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
-
+        User usr = null;
         pState.setString(1, email);
         rSet = pState.executeQuery();
         while (rSet.next()) {
-            list.add(rSet.getString("email"));
-            list.add(rSet.getString("fname"));
-            list.add(rSet.getString("sname"));
-            list.add(rSet.getString("phone"));
-            list.add(rSet.getString("id"));
-            locationId = rSet.getString("locationId");
+            usr = new User();
+            usr.setUser_email(rSet.getString("email"));
+            usr.setUser_fname(rSet.getString("fname"));
+            usr.setUser_sname(rSet.getString("sname"));
+            usr.setUser_phone(rSet.getString("phone"));
+            usr.setUser_id(rSet.getString("id"));
+
         }
         System.out.println("Profile Gotten");
 
-        query = "select * from location where id= ? ";
-        pState = conn.prepareStatement(query);
-        pState.setString(1, locationId);
-        rSet = pState.executeQuery();
-
-        while (rSet.next()) {
-            list.add(rSet.getString("address"));
-            list.add(rSet.getString("constituency"));
-            list.add(rSet.getString("county"));
-            list.add(rSet.getString("ward"));
-        }
-        System.out.println("Location Gotten");
-        return list;
+        return usr;
     }
 
     public static ArrayList fetchUsers() throws SQLException {
@@ -88,13 +78,13 @@ public class DataRetrievalWrapper {
         pState.setString(1, personid);
         rSet = pState.executeQuery();
         while (rSet.next()) {
-            description.setWeight(rSet.getString("weight"));
-            description.setHeight(rSet.getString("height"));
+            description.setWeight(rSet.getInt("weight"));
+            description.setHeight(rSet.getInt("height"));
             description.setEye_color(rSet.getString("eyecolor"));
             description.setColor(rSet.getString("color"));
             description.setAge_range(rSet.getString("age"));
             description.setHair_color(rSet.getString("haircolor"));
-            description.setDescriptionId(rSet.getString("description"));
+            description.setPerson_desc(rSet.getString("description"));
         }
         return description;
     }
@@ -112,6 +102,7 @@ public class DataRetrievalWrapper {
         rSet = pState.executeQuery();
         while (rSet.next()) {
             transportation.setTrans_type(rSet.getString("type"));
+            //transportation.setMake(rSet.getString("make"));
             transportation.setDescription(rSet.getString("description"));
             transportation.setModel(rSet.getString("model"));
             transportation.setColor(rSet.getString("color"));
@@ -185,7 +176,7 @@ public class DataRetrievalWrapper {
 
     public static UnidentifiedPerson getUPerson(String personid) throws SQLException {
 
-        query = "select fname, sname, ethnicity, datefound,"
+        query = "select fname, sname, ethicity, datefound,"
                 + "langauge , gender from unidentifiedperson where personid = ? ";
 
         UnidentifiedPerson uPerson = new UnidentifiedPerson();
@@ -195,7 +186,7 @@ public class DataRetrievalWrapper {
         pState.setString(1, personid);
         rSet = pState.executeQuery();
         while (rSet.next()) {
-            uPerson.setEthnicity(rSet.getString("ethnicity"));
+            uPerson.setEthnicity(rSet.getString("ethicity"));
             uPerson.setGender(rSet.getString("gender"));
 
             uPerson.setLanguage(rSet.getString("langauge"));
@@ -211,7 +202,7 @@ public class DataRetrievalWrapper {
         String constituency;
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
-      
+
         rSet = pState.executeQuery();
         list = new ArrayList();
         while (rSet.next()) {
@@ -219,6 +210,76 @@ public class DataRetrievalWrapper {
             list.add(constituency);
         }
         return list;
+    }
+
+    public static String getPath(String id) throws SQLException {
+        query = "select path from file where personid = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        String path = null;
+        pState.setString(1, id);
+        rSet = pState.executeQuery();
+
+        while (rSet.next()) {
+            path = rSet.getString("path");
+
+        }
+        System.out.println(path);
+        return path;
+    }
+
+    public static Organization fetchOrg(int id) throws SQLException {
+        Organization org = new Organization();
+
+        query = "select * from station where id = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setInt(1, id);
+        rSet = pState.executeQuery();
+        while (rSet.next()) {
+            org.setAddress(rSet.getString("address"));
+            org.setConstituency(rSet.getString("constituency"));
+            org.setCounty(rSet.getString("county"));
+            org.setEmail(rSet.getString("email"));
+            org.setName(rSet.getString("name"));
+            org.setTelephone(rSet.getString("phone"));
+            org.setWard(rSet.getString("ward"));
+
+        }
+        return org;
+    }
+
+    public static ArrayList getOrgs() throws SQLException {
+
+        Organization org;
+        query = "select * from station ";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        list = new ArrayList();
+        rSet = pState.executeQuery();
+        while (rSet.next()) {
+            org = new Organization();
+            org.setId(rSet.getInt("id"));
+            org.setName(rSet.getString("name"));
+            list.add(org);
+        }
+        return list;
+    }
+
+    public static int getOrgId(String caseid) throws SQLException {
+
+      
+        query = "select org from cases where personid = ? ";
+
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, caseid);
+        int id = 0;
+        rSet = pState.executeQuery();
+        while (rSet.next()) {
+           id = rSet.getInt("org");
+        }
+        return id ;
     }
 
 }

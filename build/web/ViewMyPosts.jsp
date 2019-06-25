@@ -53,9 +53,9 @@
 
                 <!-- Main Content -->
                 <div id="content">
-                      <jsp:include page="Navbar.jsp"/>
+                    <jsp:include page="Navbar.jsp"/>
 
-                 
+
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
@@ -74,10 +74,13 @@
 
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th class="th-sm">Case ID</th>
-                                                <th class="th-sm">Status</th>
+
+                                               
                                                 <th class="th-sm">Date</th>
+                                                <th class="th-sm">Status</th>
+                                               
                                                 <th class="th-sm">Investigating agency</th>
                                             </tr>
 
@@ -87,11 +90,13 @@
                                             <c:forEach items="${list}" var="comp" >
 
                                                 <tr>
-                                                  
+
                                                     <td>${comp.case_id}</td> 
-                                                    <td>${comp.case_status}</td>
+                                                   
                                                     <td>${comp.dateadded}</td>
-                                                    <td>${comp.invest_agency}</td>
+                                                    <td>${comp.case_status}</td>
+                                                  
+                                                    <td>${comp.invest_agency} Police Station</td>
 
 
 
@@ -114,8 +119,8 @@
                 <!-- End of Main Content -->
 
                 <!-- Footer -->
-                 <jsp:include page="Footer.jsp"/>
-                
+                <jsp:include page="Footer.jsp"/>
+
                 <!-- End of Footer -->
 
             </div>
@@ -129,12 +134,12 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-       
 
-        
-      
 
-       
+
+
+
+
 
         <!-- Page level plugins -->
         <script src="resources/vendor/datatables/jquery.dataTables.min.js"></script>

@@ -44,9 +44,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav mr-auto" style=" position: absolute; right: 10px; top: 20px">
-                        <li class="nav-item active"   >
-                            <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
-                        </li>
+                       
                                               
                         <li class="nav-item"  >
                             <a href="Login.jsp" class="nav-link"  >Login</a>
@@ -87,16 +85,21 @@
                 <!-- Phone number -->
                 <label>Phone number:</label>
                 <input type="text"   name="phone" id="defaultRegisterPhonePassword" class="form-control mb-1"  maxlength="10" minlength="10" required>
+                
+                      <label>Organization:</label>
+                   <div class="form-row mb-1" >
+                                <select id="inputCon" class="form-control" name="org" required>
 
-                <!-- Address -->
-                <label>Organization:</label>
-                <input type="text" name="org" id="defaultRegisterFormEmail" class="form-control mb-1" required>
-
-
-
-                <!-- First name -->
-                <label>Organization email:</label>
-                <input type="text" name="orgEmail" style="padding:15px 20px;" id="defaultRegisterFormFirstName" class="form-control mb-1" required >
+                                    <option selected>Kasarani</option>
+                                    <option>Bahati</option>
+                                    <option>Rhoda</option>
+                                    <option>Baraka</option>
+                                    <option>Lanet</option>
+                                    <option>Central police</option>
+                                    <option>Bondeni</option>
+                                    <option>CID HQ</option>
+                                </select>
+                            </div>
 
 
                 <label>Password:</label>

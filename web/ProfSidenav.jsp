@@ -69,10 +69,11 @@
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        
+
                         <a class="collapse-item" href="UnidentifiedPersonDemograhics.jsp">New post</a>
                         <a class="collapse-item" href="RetrieveMyPost">My posts</a>
-                    
+                         <a class="collapse-item" href="RetrieveMyPost">Station posts</a>
+
                     </div>
                 </div>
             </li>
@@ -82,7 +83,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                
+
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -93,19 +94,24 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        
+
                         <a class="collapse-item" href="RetrieveCases?type=missing">Missing persons</a>
                         <a class="collapse-item" href="RetrieveCases?type=unidentified">Unidentified persons</a>
-                       
-                        
-                </div>
+
+
+                    </div>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="RetrieveData?type=missing">
+                <a class="nav-link" href="RetrieveStatistics?action=all">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Statistics</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="Search.jsp">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Search</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

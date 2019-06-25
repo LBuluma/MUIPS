@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import user.User;
 
 /**
  *
@@ -37,14 +38,14 @@ public class RetrieveProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            ArrayList list;
+     
             HttpSession session = request.getSession();
             String role = (String) session.getAttribute("role");
             String email = (String) session.getAttribute("email");
         try {
-           list = DataRetrievalWrapper.getProfile(email);
-           System.out.print(list);
-           request.setAttribute("list", list);
+           User usr  = DataRetrievalWrapper.getProfile(email);
+           System.out.print(usr);
+           request.setAttribute("usrDetails", usr);
         } catch (SQLException ex) {
             Logger.getLogger(RetrieveProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

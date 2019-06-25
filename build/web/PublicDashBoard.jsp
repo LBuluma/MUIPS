@@ -41,14 +41,14 @@
                         <!-- Content Row -->
                         <div class="row">
 
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a href="Demographics.jsp"> New post</a></div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                                <div class="font-weight-bold text-primary text-uppercase mb-1"><a href="Demographics.jsp"> New post</a></div>
+                                                <p class=" text-gray-800"> Create a new unidentified person post
+                                                    using by clicking on the link above.</p>
                                             </div>
 
                                         </div>
@@ -62,8 +62,8 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a href="RetrieveCases?type=missing">missing persons posts</a></div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                                <div class=" font-weight-bold text-success text-uppercase mb-1"><a href="RetrieveCases?type=missing">missing persons posts</a></div>
+                                                <p class=" text-gray-800"> View missing person post available in the system by clicking the link above.</p>
                                             </div>
 
                                         </div>
@@ -71,27 +71,7 @@
                                 </div>
                             </div>
 
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Statistics</div>
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-
-                                                    </div>
-                                                    <div class="col">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                             <!-- Pending Requests Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
@@ -99,7 +79,8 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><a href="RetrieveCases?type=unidentified">unidentified persons posts</a></div>
+                                                <div class=" font-weight-bold text-warning text-uppercase mb-1"><a href="RetrieveCases?type=unidentified">unidentified persons posts</a></div>
+                                                <p class=" text-gray-800"> View unidentified person post available in the system by clicking the link above.</p>
 
 
                                             </div>
@@ -107,42 +88,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="font-weight-bold text-primary text-uppercase mb-1"><a href="Search.jsp"> Search</a></div>
+                                                <p class=" text-gray-800"> Search a post
+                                                    using by clicking on the link above.</p>
+                                            </div>
 
-                            <!-- Content Row -->
-
-                            <!-- Color System -->
-                            <div class="row">
-
-
-                                <div class="col-lg-6 mb-4">
-
-                                    <!-- Illustrations -->
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            
-                                            <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                                            <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-6 mb-4">
-                                    <!-- Approach -->
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                                            <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
+
 
                         </div>
                         <!-- /.container-fluid -->

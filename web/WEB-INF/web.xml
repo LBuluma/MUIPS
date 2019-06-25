@@ -60,20 +60,36 @@
         <servlet-class>Servlets.PostDetailServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AJaxTrialServlet</servlet-name>
-        <servlet-class>Servlets.AJaxTrialServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>Servlets.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RetrieveDataServlet</servlet-name>
-        <servlet-class>Servlets.RetrieveDataServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <servlet-class>Servlets.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveStatisticsServlet</servlet-name>
+        <servlet-class>Servlets.RetrieveStatisticsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdvanceSearchServlet</servlet-name>
+        <servlet-class>Servlets.AdvanceSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveUsersSevlet</servlet-name>
+        <servlet-class>Servlets.RetrieveUsersSevlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessUserServlet</servlet-name>
+        <servlet-class>Servlets.ProcessUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResolveCasesServlet</servlet-name>
+        <servlet-class>Servlets.ResolveCasesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetriveCaseDetailsServlet</servlet-name>
+        <servlet-class>Servlets.RetriveCaseDetailsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -124,20 +140,36 @@
         <url-pattern>/PostDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AJaxTrialServlet</servlet-name>
-        <url-pattern>/AJaxTrialServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RetrieveDataServlet</servlet-name>
-        <url-pattern>/RetrieveData</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveStatisticsServlet</servlet-name>
+        <url-pattern>/RetrieveStatistics</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdvanceSearchServlet</servlet-name>
+        <url-pattern>/AdvanceSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveUsersSevlet</servlet-name>
+        <url-pattern>/RetrieveUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessUserServlet</servlet-name>
+        <url-pattern>/ProcessUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResolveCasesServlet</servlet-name>
+        <url-pattern>/ResolveCases</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetriveCaseDetailsServlet</servlet-name>
+        <url-pattern>/RetriveCaseDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

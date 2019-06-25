@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import user.User;
 
 /**
@@ -23,9 +24,9 @@ public class UserDAO {
     static Connection conn;
 
     //Save new public user to the database
-    public static void saveUser(String fname, String sname, String id, String pass, String email, String phone, String locationId) throws SQLException {
+    public static void saveUser(String fname, String sname, String id, String pass, String email, String phone) throws SQLException {
         query = "insert into publicuser(email, id, fname, sname, phone,"
-                + "date, password, locationId, role) values(?, ?, ?, ?, ?, curdate(), ?, ?, ?)";
+                + "date, password, org, role) values(?, ?, ?, ?, ?, curdate(), ?, ?)";
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
         pState.setString(1, email);
@@ -34,7 +35,7 @@ public class UserDAO {
         pState.setString(4, sname);
         pState.setString(5, phone);
         pState.setString(6, pass);
-        pState.setString(7, locationId);
+        pState.setString(7, "blank");
         pState.setString(8, "publicuser");
         pState.executeUpdate();
         System.out.println("User successfully inserted");
@@ -42,10 +43,10 @@ public class UserDAO {
     //save a new staff user added to the system
 
     public static void saveProf(String email, String id, String fname, String sname,
-            String phone, String pass, String org, String orgEmail) throws SQLException {
+            String phone, String pass, String org) throws SQLException {
 
         query = "insert into publicuser(email, id, fname, sname, phone,"
-                + "date, password, locationid, org,role, orgemail ) values(?, ?, ?, ?, ?, curdate(),?, ?, ?, ?, ? )";
+                + "date, password, org,role ) values(?, ?, ?, ?, ?, curdate(),?, ?, ?)";
 
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
@@ -55,11 +56,11 @@ public class UserDAO {
         pState.setString(4, sname);
         pState.setString(5, phone);
         pState.setString(6, pass);
-        pState.setString(7, "unknown");
-        pState.setString(8, org);
 
-        pState.setString(9, "prof");
-        pState.setString(10, orgEmail);
+        pState.setString(7, org);
+
+        pState.setString(8, "prof");
+
         pState.executeUpdate();
         System.out.println("Prof successfully added");
     }
@@ -79,13 +80,22 @@ public class UserDAO {
         rSet = pState.executeQuery();
 
         while (rSet.next()) {
-            usr.setUser_fname(rSet.getString("fname"));
-            usr.setUser_sname(rSet.getString("sname"));
-            usr.setUser_role(rSet.getString("role"));
-        }
-        System.out.println(usr.getUser_role());
+            usr.setUser_email(rSet.getString("email"));
+            usr.setUser_pass(rSet.getString("password"));
 
+            if (usr.getUser_email().equals(email) && (usr.getUser_pass().equals(password))) {
+                usr.setUser_fname(rSet.getString("fname"));
+                usr.setUser_sname(rSet.getString("sname"));
+                usr.setUser_role(rSet.getString("role"));
+                usr.setUser_org(rSet.getString("org"));
+
+            } else {
+                usr = new User();
+            }
+
+        }
         return usr;
+
     }
 
     public static boolean verifyExisting(String id) throws SQLException {
@@ -115,8 +125,59 @@ public class UserDAO {
         pState.setString(2, username);
         pState.setString(3, oldpwd);
         return pState.executeUpdate();
-        
 
     }
 
+    public static ArrayList viewUsers() throws SQLException {
+        query = "select * from publicuser where role = ? and status = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, "prof");
+        pState.setString(2, "approved");
+        rSet = pState.executeQuery();
+        ArrayList list = new ArrayList();
+        User usr = new User();
+        while (rSet.next()) {
+            usr.setUser_sname(rSet.getString("sname"));
+            usr.setUser_fname(rSet.getString("fname"));
+            usr.setUser_org(rSet.getString("org"));
+            usr.setUser_phone(rSet.getString("phone"));
+            usr.setDate_added(rSet.getString("date"));
+            usr.setUser_email(rSet.getString("email"));
+            list.add(usr);
+        }
+
+        return list;
+    }
+
+    public static ArrayList unapprovedUsers(String status) throws SQLException {
+        query = "select * from publicuser where role = ? and status = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, "prof");
+        pState.setString(2, status);
+        rSet = pState.executeQuery();
+        ArrayList list = new ArrayList();
+        User usr = new User();
+        while (rSet.next()) {
+            usr.setUser_sname(rSet.getString("sname"));
+            usr.setUser_fname(rSet.getString("fname"));
+            usr.setUser_org(rSet.getString("org"));
+            usr.setUser_phone(rSet.getString("phone"));
+            usr.setDate_added(rSet.getString("date"));
+            usr.setUser_email(rSet.getString("email"));
+            list.add(usr);
+        }
+
+        return list;
+    }
+
+    public static void changeUserStatus(String email, String status) throws SQLException{
+        query = "update publicuser set status=? where email=?";
+        pState = conn.prepareStatement(query);
+        pState.setString(1, status);
+        pState.setString(2, email);
+        pState.executeUpdate();
+        System.out.println("Status changed");
+    }
 }

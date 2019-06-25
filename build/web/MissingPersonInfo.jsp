@@ -33,14 +33,20 @@
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
-                    <div class="card p-5" style="height: 750px" >
+                    <div class="card shadow" style="width: 60%;  ">
+                         <div class="card-header py-3" >
+                             <p class="h4 mb-1 text-center"><strong>Missing Person Information</strong></p>
+                        </div>
+                       
+                    
+                          
 
-
+                        <div class="container" style="width: 75%; height: 600px; margin-top: 30px">
 
                         <form  action="ReportCase" method="post">
 
-                            <p class="h4 mb-1 text-center"><strong>Missing Person Information</strong></p>
-                            <hr>
+                        
+                           
                             <!-- E-mail -->
                             <label>Huduma Number:</label>
                             <input type="text" name="pid" id="defaultRegisterFormEmail" class="form-control mb-1" required>
@@ -105,7 +111,9 @@
                                 <textarea type="text" class="form-control " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
                             </div>
                           
-
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                                upload photo
+                            </button>
 
 
 
@@ -121,19 +129,16 @@
 
 
                         </form>
-                          <form id="form" action="FileUpload" method="post" enctype="multipart/form-data">
-
-                                <input id="uploadImage" type="file" accept="image/*" name="image" />
-                                <input  type="text"  name="type" value="missing" hidden />
-                                <input class="btn btn-success" type="submit" value="Upload" id="btn">
-                            </form>
+                         
 
 
-                    </div>    
+                    </div>
+                    </div>
                     <jsp:include page="Footer.jsp"/>
                 </div>
             </div>
         </div>
+        
         <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
 

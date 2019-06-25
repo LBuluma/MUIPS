@@ -33,59 +33,68 @@
 
 
 
-                    <div class="card p-5" style="height: 550px; width: 55%">
-
-                        <p class="h4 mb-1 text-center"><strong>Distinct Feature Information</strong></p>
-
-                        <!-- Default form report -->
-                        <form  action="UnidentifiedPersonReport" method="post" >             
-                            <hr >
-                            <!-- Distinct feature type-->
-                            <div class="form-row  mb-1" name="disttype">
-                                <label for="inputType">Type</label>
-                                <select id="inputType" class="form-control">
-                                    <option selected disabled>select</option>
-                                    <option>Tattoo</option>
-                                    <option>Piercing</option>
-                                    <option>Scars and marks</option>
-                                    <option>Jewelry</option>
-                                    <option>Amputation</option>
-                                    <option>Clothing</option>
-                                    <option>Eye wear</option>
-                                    <option>footwear</option>
-                                    <option>Accessories</option>                                              
-                                    <option>Other</option>
-
-                                </select>
-                            </div>
-
-                            <!--Description of the feature-->
-                            <div class="form-row mb-1" >
-                                <label for="inputType">Description</label>
-                                <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="distd" rows="5" placeholder="Description..."></textarea>
-                            </div>
-
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-1"><i class=""></i> Upload photo</a>
+                    <div class="card shadow" style="height: 550px; width: 60%">
+                        <div class="card-header py-3" >
+                            <p class="h4 mb-1 text-center"><strong>Distinct Feature Information</strong></p>
+                        </div>
+                        <div class="container" style="width: 70%; margin-top: 30px">
 
 
-                            <hr>
+                            <!-- Default form report -->
+                            <form  action="UnidentifiedPersonReport" method="post" >             
 
-                            <!--navigation buttons-->
-                            <input type="text" hidden="true" name="action" value="distinct">
-                            <div class="form-row">
-                                <a href="MissingPersonInfo.jsp" class=" btn btn-info" >Back</a>
-                                <div class="col text-right">
-                                    <button class=" btn btn-primary" type="submit">Next</button>
+                                <!-- Distinct feature type-->
+                                <div class="form-row  mb-1" name="disttype">
+                                    <label for="inputType">Type</label>
+                                    <select id="inputType" class="form-control">
+                                        <option selected disabled>select</option>
+                                        <option>Tattoo</option>
+                                        <option>Piercing</option>
+                                        <option>Scars and marks</option>
+                                        <option>Jewelry</option>
+                                        <option>Amputation</option>
+                                        <option>Clothing</option>
+                                        <option>Eye wear</option>
+                                        <option>footwear</option>
+                                        <option>Accessories</option>                                              
+                                        <option>Other</option>
+
+                                    </select>
                                 </div>
-                            </div>
-                        </form>
-                    </div>   
+
+                                <!--Description of the feature-->
+                                <div class="form-row mb-1" >
+                                    <label for="inputType">Description</label>
+                                    <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="distd" rows="5" placeholder="Description..."></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                                    upload photo
+                                </button>
+
+                                <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                                     upload photo
+                                 </button>-->
+
+                                <hr>
+
+                                <!--navigation buttons-->
+                                <input type="text" hidden="true" name="action" value="distinct">
+                                <div class="form-row">
+                                    <a href="MissingPersonInfo.jsp" class=" btn btn-info" >Back</a>
+                                    <div class="col text-right">
+                                        <button class=" btn btn-primary" type="submit">Next</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>   
+                    </div>
+                    <jsp:include page="Footer.jsp"/>
                 </div>
-                <jsp:include page="Footer.jsp"/>
             </div>
+
         </div>
 
-    </div>
-
-</body>
+        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
+    </body>
 </html>

@@ -36,14 +36,18 @@
 
 
                     <!-- End of Topbar -->
-                    <div class="container-fluid " >
 
-                        <div class="card  border p-5" >
 
+                    <div class="card shadow" style="width: 60%;  ">
+                         <div class="card-header py-3" >
+                              <p class="h4  text-center"><strong>Missing Person Details</strong></p>
+                        </div>
+                       
+                        <div class="container-fluid " style="width: 75%; margin-top: 30px">
                             <!--Make post form-->
                             <form   action="ReportCase" method="get" >
-                                <p class="h4 mb-1 text-center"><strong>Missing Person Details</strong></p>
-                                <hr>
+
+
                                 <div class="form-row mb-1">
                                     <label for="inputEmail4">First Name:</label>
                                     <input type="text" name="fname" class="form-control" id="inputFname"  >
@@ -116,7 +120,7 @@
 
                                 <div class="text-right mb-1">
                                     <input type="text" name="action" value="demo" hidden="true">
-                                    <button  class="btn btn-primary btn-block" type="submit" >Next</button>
+                                    <button  class="btn btn-primary" type="submit" >Next</button>
                                 </div>
 
                             </form>

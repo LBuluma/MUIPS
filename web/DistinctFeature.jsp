@@ -29,62 +29,68 @@
 
                     <!-- End of Topbar -->
 
-                    
 
-                        <div class="card p-5" style="height: 600px">
 
-                            <p class="h4 mb-5 text-center"><strong>Distinct Feature Information</strong></p>
+                    <div class="card shadow" style="height: 550px; width: 60%">
+                        <div class="card-header py-3" >
+                                   <p class="h4 mb-1 text-center"><strong>Distinct Feature Information</strong></p>
+                            </div>
+                     
+                        <div class="container" style="width: 75%">
+                        
+               
+                        <!-- Default form report -->
+                        <form  action="ReportCase" method="post" >             
 
-                            <!-- Default form report -->
-                            <form  action="ReportCase" method="post" >             
+                            <!-- Distinct feature type-->
+                            <div class="form-row  mb-1" style="margin-top: 30px" >
+                                <label for="inputType">Type:</label>
+                                <select id="inputType" class="form-control" name="disttype"> 
+                                    <option selected disabled>...</option>
+                                    <option selected>Tattoo</option>
+                                    <option>Piercing</option>
+                                    <option>Scars and marks</option>
+                                    <option>Jewelry</option>
+                                    <option>Amputation</option>
+                                    <option>Clothing</option>
+                                    <option>Eye wear</option>
+                                    <option>footwear</option>
+                                    <option>Accessories</option>                                              
+                                    <option>Other</option>
 
-                                <!-- Distinct feature type-->
-                                <div class="form-row  mb-1"  name="disttype">
-                                    <label for="inputType">Type:</label>
-                                    <select id="inputType" class="form-control">
-                                        <option selected disabled>...</option>
-                                        <option selected>Tattoo</option>
-                                        <option>Piercing</option>
-                                        <option>Scars and marks</option>
-                                        <option>Jewelry</option>
-                                        <option>Amputation</option>
-                                        <option>Clothing</option>
-                                        <option>Eye wear</option>
-                                        <option>footwear</option>
-                                        <option>Accessories</option>                                              
-                                        <option>Other</option>
+                                </select>
+                            </div>
 
-                                    </select>
+                            <!--Description of the feature-->
+                            <div class="form-row mb-1" >
+                                <label for="inputType">Description:</label>
+                                <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="distd" rows="5" placeholder="Description..."></textarea>
+                            </div>
+                            <!--navigation buttons-->
+                            <input type="text" hidden="true" name="action" value="distinct">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                                upload photo
+                            </button>
+
+                            <hr>
+                            <div class="form-row " style="margin-top: 30px">
+                                <a href="LocationInfo.jsp" class=" btn btn-info" >Back</a>
+                                <div class="col text-right">
+                                    <button class=" btn btn-primary" type="submit">Next</button>
                                 </div>
+                            </div>
+                        </form>
 
-                                <!--Description of the feature-->
-                                <div class="form-row mb-1" >
-                                    <label for="inputType">Description:</label>
-                                    <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="distd" rows="5" placeholder="Description..."></textarea>
-                                </div>
-                                <label >Upload Photo:</label>
-                                <div class="file-upload-wrapper">
-                                    <input type="file" id="input-file-now" class="file-upload mb-1" accept=".png,.jpg,.jpeg"/>
-                                </div>
 
-                                <br>
-                                <!--navigation buttons-->
-                                <input type="text" hidden="true" name="action" value="distinct">
-                                <div class="form-row mb-1">
-                                    <a href="MissingPersonInfo.jsp" class=" btn btn-info" >Back</a>
-                                    <div class="col text-right">
-                                        <button class=" btn btn-primary" type="submit">Next</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>   
+                    </div>   
 
-                    </div>
-                    <jsp:include page="Footer.jsp"/>
                 </div>
+                <jsp:include page="Footer.jsp"/>
             </div>
         </div>
 
+        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
 
     </body>
 </html>

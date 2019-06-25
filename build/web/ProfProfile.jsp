@@ -44,27 +44,27 @@
                         <div class="form-row mb-1">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">First Name:</label>
-                                <input class="form-control" id="inputEmail4" value="${list['1']}" readonly>
+                                <input class="form-control" id="inputEmail4" value="${usrDetails.user_fname}" readonly>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Second Name:</label>
-                                <input  class="form-control" id="inputPassword4" value="${list['2']}" readonly>
+                                <input  class="form-control" id="inputPassword4" value="${usrDetails.user_sname}" readonly>
                             </div>
                         </div>
                         <div class="form-row mb-1">
                             <div class="form-group col-md-6">
                                 <label for="inputAddress">Email:</label>
-                                <input  class="form-control" id="inputAddress" value="${list['0']}" readonly>
+                                <input  class="form-control" id="inputAddress" value="${usrDetails.user_fname}" readonly>
                             </div>
                             <div class="form-group col-md-6" >
                                 <label for="inputAddress">Phone:</label>
-                                <input  class="form-control" id="inputAddress" value="${list['3']}" readonly>
+                                <input  class="form-control" id="inputAddress" value="${usrDetails.user_phone}" readonly>
 
                             </div>
                         </div>
                         <div class="form-row mb-1">
                             <label for="inputAddress">Employee ID:</label>
-                            <input  class="form-control"  value="${list['4']}" readonly>
+                            <input  class="form-control"  value="${usrDetails.user_id}" readonly>
 
                         </div>
                     </div>

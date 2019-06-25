@@ -44,9 +44,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav mr-auto" style=" position: absolute; right: 10px; top: 20px">
-                        <li class="nav-item active"   >
-                            <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
-                        </li>
+                      
                                               
                         <li class="nav-item"  >
                             <a href="Login.jsp" class="nav-link"  >Login</a>
@@ -57,7 +55,7 @@
         </nav>
 
 
-        <div class="card p-5" style="margin-top: 100px; height: 600px; width: 55%">
+        <div class="card p-5" style="margin-top: 100px; height: 700px; width: 55%">
             <!-- Default form register -->
             <form  action="RegisterUser" method="post">
 
@@ -77,8 +75,14 @@
                         <input type="text" name="sname" id="defaultRegisterFormLastName" class="form-control"  required>
                     </div>
                 </div>
+                <label>Email:</label>
+                <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-1" required>
+                <div  class="text-danger" id="output" ></div>
+                <!-- Phone number -->
+                <label>Phone number:</label>
+                <input type="text"   name="phone" maxlength="10" minlength="10" class="form-control mb-1"  style="margin-bottom:  20px" required>
                 <!-- E-mail -->
-                <label>Huduma number:</label>
+                <label>ID number:</label>
                 <input type="text" name="id" id="defaultRegisterFormEmail" class="form-control mb-1" required>
                 <!-- Password -->
                 <label>Password</label>
@@ -92,7 +96,7 @@
                 <hr >
                 <!-- Sign up button -->
                 <div class="form-row text-right">
-                    <button class=" btn btn-primary " type="submit">Next</button>
+                    <button class=" btn btn-primary " type="submit">Sign up</button>
                     <input type="text" hidden="true" name="regtype" value="personal" >
                 </div>
             </form>

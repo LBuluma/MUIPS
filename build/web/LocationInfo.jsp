@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,83 +34,99 @@
                 <div id="content">
                     <jsp:include page="Navbar.jsp"/>
 
-
-                    <div class="card  p-5"style="height: 600px; width: 60%" >
-                        <!-- Default form register -->
-                        <form  action="ReportCase" method="post">
+                    <div class="card shadow" style="width: 60%;;height: 650px  ">
+                        <div class="card-header py-3" >
                             <p class="h4 mb-1 text-center"><strong>Last Known Location</strong></p>
-                            <hr>   
+                        </div>
 
-                            <div class="form-row mb-1" style="margin-top: 30px">
-                                <label>County:</label>
-                                <select id="inputType" class="form-control" name="county" required="">
-                                  
-                                    <option>Nakuru</option>
 
-                                </select>
-                            </div>
+                        <div class="container" style="width: 80%; margin-top: 30px">
+                            <!-- Default form register -->
+                            <form  action="ReportCase" method="post">
 
-                            <label>Constituency:</label>
-                            <div class="form-row mb-1" >
-                                <select id="inputCon" class="form-control" required>
 
-                                    <option selected>Nakuru Town West</option>
-                                    <option>Subukia</option>
-                                    <option>Nakuru Town</option>
-                                    <option>Nakuru Town East</option>
-                                    <option>Kuresoi North</option>
-                                    <option>Kuresoi South</option>
-                                    <option>Rongai</option>
-                                    <option>Molo</option>
-                                </select>
-                            </div>
+                                <label>Police station of report:</label>
+                                <div class="form-row mb-1" >
+                                    <select name="org" class="form-control" >
+                                        <c:forEach items="${list}" var="org" >
 
-                            <div class="form-row mb-1">
+                                            <option value="${org.id}">${org.name}</option>
 
-                                <div class="col-6 ">
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+                                <div class="form-row mb-1" >
+
+                                    <label>County:</label>
+                                    <select id="inputType" class="form-control" name="county" required="">
+
+                                        <option>Nakuru</option>
+
+                                    </select>
+                                </div>
+
+                                <label>Constituency:</label>
+                                <div class="form-row mb-1" >
+                                    <select id="inputCon" class="form-control" name="constituency" required>
+
+                                        <option selected>Nakuru Town West</option>
+                                        <option>Subukia</option>
+                                        <option>Nakuru Town</option>
+                                        <option>Nakuru Town East</option>
+                                        <option>Kuresoi North</option>
+                                        <option>Kuresoi South</option>
+                                        <option>Rongai</option>
+                                        <option>Molo</option>
+                                    </select>
+                                </div>
+
+
+
+                                <div class="form-row ">
                                     <label>Ward:</label>  
                                     <!-- First name -->
                                     <input type="text" name="ward" style="padding:15px 20px;" id="defaultRegisterFormFirstName" class="form-control"required >
                                 </div>
 
-                                <div class="col-6 ">
+                                <div class="form-row ">
                                     <label>Village:</label>
                                     <!-- Last name -->
                                     <input type="text" name="village" id="defaultRegisterFormLastName" class="form-control mb-1"    required>
                                 </div>
 
-                            </div> 
-                            <label>Investigation agency:</label>
-                            <input type="text" name="org" style="padding:15px 20px;" id="defaultRegisterFormFirstName" class="form-control mb-1" required >
 
 
 
 
-                            <!-- Distinct Feature-->
-                            <div class="custom-control custom-checkbox custom-control-inline mb-1" style="margin-top: 20px; margin-right: 150px">
-                                <input type="checkbox" name="distinct" value="dist" class="custom-control-input" id="defaultInline1">
-                                <label class="custom-control-label" for="defaultInline1">Had distinct feature e.g tattoo</label>
-                            </div>
 
-                            <!-- Default inline 2-->
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                <input type="checkbox" name="transp" value="trans" class="custom-control-input" id="defaultInline2">
-                                <label class="custom-control-label" for="defaultInline2">Had transportation e.g bike</label>
-                            </div>
-                            <hr>
-
-                            <input type="text" hidden="true" name="action" value="location">
-                            <div class="form-row">
-
-                                <a href="MissingPersonInfo.jsp" class=" btn btn-info"  >Back</a>
-                                <div class="col text-right">
-                                    <button class=" btn btn-primary" type="submit" >Next</button>
+                                <!-- Distinct Feature-->
+                                <div class="custom-control custom-checkbox custom-control-inline mb-1" style="margin-top: 20px;">
+                                    <input type="checkbox" name="distinct" value="dist" class="custom-control-input" id="defaultInline1">
+                                    <label class="custom-control-label" for="defaultInline1">Had distinct feature e.g tattoo</label>
                                 </div>
-                            </div>
-                        </form>
-                    </div>   
-                    <jsp:include page="Footer.jsp"/>
+
+                                <!-- Default inline 2-->
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" name="transp" value="trans" class="custom-control-input" id="defaultInline2">
+                                    <label class="custom-control-label" for="defaultInline2">Had transportation e.g bike</label>
+                                </div>
+                                <hr>
+
+                                <input type="text" hidden="true" name="action" value="location">
+                                <div class="form-row">
+
+                                    <a href="MissingPersonInfo.jsp" class=" btn btn-info"  >Back</a>
+                                    <div class="col text-right">
+                                        <button class=" btn btn-primary" type="submit" >Next</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
                 </div>
+                <jsp:include page="Footer.jsp"/>
+
             </div>
     </body>
 </html>

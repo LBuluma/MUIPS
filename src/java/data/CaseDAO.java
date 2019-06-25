@@ -6,6 +6,11 @@
 package data;
 
 import Case.Case;
+import Case.Description;
+import Case.MissingPerson;
+import Case.Transportation;
+import Case.UnidentifiedPerson;
+import Location.Location;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -67,7 +72,7 @@ public class CaseDAO {
         if (role.equals("publicuser")) {
             query = "select personid from cases where reporter = ? and type = ? ";
             type = "missing";
-        } else if (role.equals("staff")) {
+        } else if (role.equals("prof")) {
             query = "select personid from cases where reporter = ? and type = ? ";
             type = "unidentified";
         }
@@ -89,28 +94,49 @@ public class CaseDAO {
         query = "update cases set status = ? where personid = ? ";
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
-        pState.setString(1, "closed");
+        pState.setString(1, "Resolved");
         pState.setString(2, personid);
         pState.executeUpdate();
         System.out.println("Case closed successfully");
     }
 
-    public static ArrayList retrieveCases(String type) throws SQLException {
-        query = "select status, personid,date, org from cases where type = ? ";
+    public static ArrayList<Case> retrieveCases(String type) throws SQLException {
+        String contact = null;
+        String number = null;
+        if ("missing".equals(type)) {
+            query = "SELECT status, cases.personid,org, fname, sname, lastcontact, gender, idnumber FROM cases"
+                    + " INNER JOIN missingperson ON cases.personid = missingperson.personid ";
+            contact = "lastcontact";
+
+        } else if ("unidentified".equals(type)) {
+            query = "SELECT status, cases.personid,org, fname, sname, datefound, gender FROM cases"
+                    + " INNER JOIN  unidentifiedperson ON cases.personid = unidentifiedperson.personid ";
+            contact = "datefound";
+            ;
+        }
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
-        pState.setString(1, type);
 
         rSet = pState.executeQuery();
-        list = new ArrayList();
+        ArrayList<Case> list = new ArrayList();
         Case c;
+
         while (rSet.next()) {
             c = new Case();
+
             c.setCase_id(rSet.getString("personid"));
             c.setCase_status(rSet.getString("status"));
-            c.setDateadded(rSet.getString("date"));
+            c.setDateadded(rSet.getString(contact));
             c.setInvest_agency(rSet.getString("org"));
+            if (type.equals("missing")) {
+                c.setCase_reporter(rSet.getString("idnumber"));
+            }
+            c.setGender(rSet.getString("gender"));
+            c.setDateadded(rSet.getString(contact));
+            c.setPerson_fname(rSet.getString("fname"));
+            c.setPerson_sname(rSet.getString("sname"));
             list.add(c);
+
         }
         System.out.println("cases gotten successfully");
         return list;
@@ -141,7 +167,9 @@ public class CaseDAO {
             c.setCase_id(rSet.getString("personid"));
             c.setCase_status(rSet.getString("status"));
             c.setDateadded(rSet.getString("date"));
-            c.setInvest_agency(rSet.getString("org"));
+            int id =  rSet.getInt("org");
+            Organization org = DataRetrievalWrapper.fetchOrg(id);
+            c.setInvest_agency(org.getName());
             list.add(c);
         }
         System.out.println("case gotten successfully");
@@ -173,5 +201,167 @@ public class CaseDAO {
         pState.executeUpdate();
 
         System.out.println("Path successfully updated");
+    }
+
+    public static int countCaseType(String type, String status) throws SQLException {
+        query = "select count(*) from cases where type = ? and status = ?";
+        int x = 0;
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, type);
+        pState.setString(2, status);
+        rSet = pState.executeQuery();
+
+        while (rSet.next()) {
+            x = rSet.getInt(1);
+        }
+        return x;
+    }
+
+    public static int conCases(String constituency, String type, String status) throws SQLException {
+        query = "SELECT count(*) FROM cases"
+                + ",location where cases.personid = location.id and location.constituency = ? and cases.type = ? and cases.status=?";
+
+        int x = 0;
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, constituency);
+        pState.setString(2, type);
+        pState.setString(3, status);
+        rSet = pState.executeQuery();
+
+        while (rSet.next()) {
+            x = rSet.getInt(1);
+        }
+        return x;
+    }
+
+    public static ArrayList searchMCase(Location loc, MissingPerson person,
+            Description desc, int minAge, int maxAge, int maxH, int minH, int minW, int maxW) throws SQLException {
+        //Location information
+        String con = loc.getConstituency();
+        //Description information
+        String color = desc.getColor();
+        String feature = desc.getDistinctive_feature();
+        //Missingperson information
+        String ethnic = person.getEthnicity();
+        String gender = person.getGender();
+        String fname = person.getPerson_fname();
+        String sname = person.getPerson_sname();
+        
+        query = "SELECT  cases.personid, cases.status, cases.org, missingperson.fname, missingperson.sname, missingperson.lastcontact, missingperson.gender, missingperson.idnumber FROM "
+                + "  feature,description, cases INNER JOIN missingperson ON cases.personid = missingperson.personid"
+                + " INNER JOIN location on location.id = cases.personid where location.constituency = ?  and"
+                + "  description.color=? and "
+                + "missingperson.fname=? and  missingperson.sname=? and  missingperson.gender=? and missingperson.ethnicity =?"
+                + "and feature.type= ? "
+                + "and description.height  > ? and description.height < ? and description.weight  > ? and description.weight < ? and"
+                + " description.age > ? and description.age <  ? and cases.type=? GROUP BY   cases.personid, cases.status, cases.org, missingperson.fname, missingperson.sname, missingperson.lastcontact, missingperson.gender, missingperson.idnumber ";
+
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, con);
+
+        pState.setString(2, color);
+
+        pState.setString(3, fname);
+        pState.setString(4, sname);
+
+        pState.setString(5, gender);
+        pState.setString(6, ethnic);
+        pState.setString(7, feature);
+        pState.setInt(8, minH);
+        pState.setInt(9, maxH);
+        pState.setInt(10, minW);
+        pState.setInt(11, maxW);
+        pState.setInt(12, minAge);
+        pState.setInt(13, maxAge);
+        pState.setString(14, "missing");
+        rSet = pState.executeQuery();
+        list = new ArrayList();
+        Case c;
+        while (rSet.next()) {
+            c = new Case();
+            System.out.println("class" + c.getCase_id());
+            c.setCase_id(rSet.getString("personid"));
+            c.setCase_status(rSet.getString("status"));
+            c.setInvest_agency(rSet.getString("org"));
+            c.setCase_reporter(rSet.getString("idnumber"));
+            c.setGender(rSet.getString("gender"));
+            c.setDateadded(rSet.getString("lastContact"));
+            c.setPerson_fname(rSet.getString("fname"));
+            c.setPerson_sname(rSet.getString("sname"));
+            System.out.println("class" + c.getCase_id());
+            list.add(c);
+
+        }
+
+        return list;
+
+    }
+
+    public static ArrayList searchUCase(Location loc,
+            UnidentifiedPerson person, Description desc, int minAge, int maxAge, int maxH, int minH, int minW, int maxW) throws SQLException {
+        //Location information
+        String con = loc.getConstituency();
+
+        //Description information
+        String color = desc.getColor();
+
+        String feature = desc.getDistinctive_feature();
+
+        //unidentifiedperson information
+        String ethnic = person.getEthnicity();
+        String gender = person.getGender();
+        String lang = person.getLanguage();
+        String fname = person.getPerson_fname();
+        String sname = person.getPerson_sname();
+        query = "SELECT  cases.personid, cases.status, cases.org, unidentifiedperson.fname, unidentifiedperson.sname, unidentifiedperson.datefound, unidentifiedperson.gender FROM "
+                + "  feature,description, cases INNER JOIN unidentifiedperson ON cases.personid = unidentifiedperson.personid"
+                + " INNER JOIN location on location.id = cases.personid where location.constituency = ?  and"
+                + "  description.color=? and "
+                + "unidentifiedperson.fname=? and  unidentifiedperson.sname=? and  unidentifiedperson.gender=? and unidentifiedperson.ethicity =?"
+                + "and feature.type= ? "
+                + "and description.height  > ? and description.height < ? and description.weight  > ? and description.weight < ? and"
+                + " description.age > ? and description.age <  ? and cases.type=? GROUP BY   cases.personid, cases.status, cases.org, unidentifiedperson.fname, unidentifiedperson.sname,"
+                + " unidentifiedperson.datefound, unidentifiedperson.gender";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, con);
+        pState.setString(2, color);
+
+        pState.setString(3, fname);
+        pState.setString(4, sname);
+
+        pState.setString(5, gender);
+        pState.setString(6, ethnic);
+        pState.setString(7, feature);
+        pState.setInt(8, minH);
+        pState.setInt(9, maxH);
+        pState.setInt(10, minW);
+        pState.setInt(11, maxW);
+        pState.setInt(12, minAge);
+        pState.setInt(13, maxAge);
+        pState.setString(14, "unidentified");
+        rSet = pState.executeQuery();
+        list = new ArrayList();
+        Case c;
+        while (rSet.next()) {
+            c = new Case();
+
+            c.setCase_id(rSet.getString("personid"));
+            c.setCase_status(rSet.getString("status"));
+            c.setInvest_agency(rSet.getString("org"));
+            
+            c.setGender(rSet.getString("gender"));
+            c.setDateadded(rSet.getString("datefound"));
+            c.setPerson_fname(rSet.getString("fname"));
+            c.setPerson_sname(rSet.getString("sname"));
+            list.add(c);
+
+        }
+
+        return list;
+
     }
 }

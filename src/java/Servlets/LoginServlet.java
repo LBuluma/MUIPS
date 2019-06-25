@@ -42,6 +42,7 @@ public class LoginServlet extends HttpServlet {
             User usr = UserDAO.validateUser(email, password);
 
             String role = usr.getUser_role();
+            String org = usr.getUser_org();
             System.out.println(usr.getUser_fname());
             HttpSession session = request.getSession();
             PrintWriter out = response.getWriter();
@@ -52,10 +53,9 @@ public class LoginServlet extends HttpServlet {
                 out.print(" <script type='text/javascript' src='resources/js/AlertLoginFail.js'></script>");
 
                 url = "/Login.jsp";
-            } else if ( role != null) {
+            } else if (role != null) {
 
                 String user = usr.getUser_fname() + " " + usr.getUser_sname();
-               
 
                 switch (role) {
 
@@ -64,13 +64,20 @@ public class LoginServlet extends HttpServlet {
                         System.out.println(user);
                         session.setAttribute("role", role);
                         session.setAttribute("email", email);
+                        session.setAttribute("org", org);
                         url = "/PublicDashBoard.jsp";
                         break;
                     case "prof":
+                        session.setAttribute("myOrg", org);
                         session.setAttribute("userName", user);
                         session.setAttribute("role", role);
                         session.setAttribute("email", email);
                         url = "/ProfDashBoard.jsp";
+                        break;
+                    case "admin":
+                        session.setAttribute("userName", user);
+                        session.setAttribute("role", role);
+                        url = "/AdminDashBoard.jsp";
                         break;
 
                 }

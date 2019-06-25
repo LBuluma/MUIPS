@@ -35,9 +35,10 @@ public class RetrieveCasesServlet extends HttpServlet {
         try {
             String type = (String) request.getParameter("type");
             ArrayList list = CaseDAO.retrieveCases(type);
-
+            request.setAttribute("type", type);
+            System.out.println("type" + type);
             request.setAttribute("caseList", list);
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(RetrieveCasesServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

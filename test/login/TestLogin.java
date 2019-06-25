@@ -5,16 +5,15 @@
  */
 package login;
 
-import Case.Description;
-import Case.MissingPerson;
-import Case.Transportation;
-import Case.UnidentifiedPerson;
-import Location.Location;
+import Case.Case;
 import data.CaseDAO;
 import data.DataRetrievalWrapper;
 import data.UserDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import user.User;
 
 /**
  *
@@ -23,9 +22,9 @@ import java.util.ArrayList;
 public class TestLogin {
 
     public static void main(String[] args) throws SQLException {
-        CaseDAO.saveImage("missing",  "MP-FBB4E3-19", "/home/justus/NetBeansProjects/MUIPS/build/web/uploads/Screenshot from 2019-04-16 16-19-52.png");
-        
-    
+        int list  = DataRetrievalWrapper.getOrgId("MP-C9930A-19");
+        System.out.println(list);
+
     }
 
 }

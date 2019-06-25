@@ -7,8 +7,8 @@ package Case;
 
 public class Description {
 
-    private String weight;
-    private String height;
+    private int weight;
+    private int height;
     private String eye_color;
     private String distinctive_feature;
     private String description_feature;
@@ -21,9 +21,7 @@ public class Description {
 
     //Constructor
 
-    public Description(String weight, String height, String eye_color, String distinctive_feature,
-            String description_feature, String hair_color, String age_range, String descriptionId, 
-            String personId, String person_desc, String color) {
+    public Description(int weight, int height, String eye_color, String distinctive_feature, String description_feature, String hair_color, String age_range, String descriptionId, String personId, String person_desc, String color) {
         this.weight = weight;
         this.height = height;
         this.eye_color = eye_color;
@@ -36,6 +34,8 @@ public class Description {
         this.person_desc = person_desc;
         this.color = color;
     }
+  
+ 
    
 
     //Empty constructor
@@ -68,19 +68,19 @@ public class Description {
         this.personId = personId;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 

@@ -31,11 +31,15 @@
 
 
 
-                    <div class="card p-5" style="height: 600px; width: 60% ">
+                    <div class="card shadow" style="height: 550px; width: 60% ">
+                        <div class="card-header py-3" >
+                             <p class="h4 mb-1 text-center"><strong>Location found</strong></p>
+                        </div>
+                        <div class="container" style="width: 70%;">
                         <!-- Default form register -->
                         <form  action="UnidentifiedPersonReport" method="post">
-                            <p class="h4 mb-1 text-center"><strong>Location found</strong></p>
-                            <hr>   
+                          
+                          
 
                             <div class="form-row mb-1" style="margin-top: 30px">
                                 <label>County:</label>
@@ -48,7 +52,7 @@
 
                             <label>Constituency:</label>
                             <div class="form-row mb-1" >
-                                <select id="inputCon" class="form-control" required>
+                                <select id="inputCon" class="form-control" name="constituency" n required>
 
                                     <option selected>Nakuru Town West</option>
                                     <option>Subukia</option>
@@ -61,24 +65,22 @@
                                 </select>
                             </div>
 
-                            <div class="form-row mb-1">
+                         
 
-                                <div class="col-6 ">
+                                <div class="form-row ">
                                     <label>Ward:</label>  
                                     <!-- First name -->
                                     <input type="text" name="ward" style="padding:15px 20px;" id="defaultRegisterFormFirstName" class="form-control"required >
                                 </div>
 
-                                <div class="col-6 ">
+                                <div class="form-row">
                                     <label>Village:</label>
                                     <!-- Last name -->
                                     <input type="text" name="village" id="defaultRegisterFormLastName" class="form-control"  required>
                                 </div>
 
-                            </div> 
-                            <label>Investigation agency:</label>
-                            <input type="text" name="org" style="padding:15px 20px;" id="defaultRegisterFormFirstName" class="form-control mb-1" required >
-
+                           
+                           
 
 
 
@@ -104,6 +106,7 @@
                 </div>
                 <jsp:include page="Footer.jsp"/>
             </div>
+        </div>
         </div>
 
 

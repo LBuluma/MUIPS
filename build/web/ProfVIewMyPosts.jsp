@@ -53,9 +53,9 @@
 
                 <!-- Main Content -->
                 <div id="content">
-                      <jsp:include page="Navbar.jsp"/>
+                    <jsp:include page="Navbar.jsp"/>
 
-                 
+
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
@@ -74,11 +74,12 @@
 
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th class="th-sm">Case ID</th>
-                                                <th class="th-sm">Status</th>
                                                 <th class="th-sm">Date</th>
+                                                <th class="th-sm">Status</th>
                                                 <th class="th-sm">Investigating agency</th>
+                                                 <th class="th-sm"> </th>
                                             </tr>
 
                                         </thead>
@@ -87,12 +88,19 @@
                                             <c:forEach items="${list}" var="comp" >
 
                                                 <tr>
-                                                  
                                                     <td>${comp.case_id}</td> 
-                                                    <td>${comp.case_status}</td>
                                                     <td>${comp.dateadded}</td>
+                                                    <td>${comp.case_status}</td>
                                                     <td>${comp.invest_agency}</td>
-
+                                                    <td> 
+                                                       
+                                                        <form method="post" action="ResolveCases">
+                                                            <input  type="text" name="action" value="myPost" hidden>
+                                                            <input  type="text" name="postId" value="${comp.case_id}" hidden>
+                                                            <input class="btn btn-primary btn-sm" type="submit" value="Resolve">
+                                                        </form>
+                                                       
+                                                    </td>
 
 
 
@@ -114,8 +122,8 @@
                 <!-- End of Main Content -->
 
                 <!-- Footer -->
-                 <jsp:include page="Footer.jsp"/>
-                
+                <jsp:include page="Footer.jsp"/>
+
                 <!-- End of Footer -->
 
             </div>
@@ -129,12 +137,12 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-       
 
-        
-      
 
-       
+
+
+
+
 
         <!-- Page level plugins -->
         <script src="resources/vendor/datatables/jquery.dataTables.min.js"></script>

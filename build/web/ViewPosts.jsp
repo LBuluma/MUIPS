@@ -67,10 +67,14 @@
 
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th class="th-sm">Case ID</th>
-                                                <th class="th-sm">Status</th>
+
+                                                <th class="th-sm">First name</th>
+                                                <th class="th-sm">Second name</th>
                                                 <th class="th-sm">Date</th>
+                                                <th class="th-sm">Status</th>
+                                                <th class="th-sm">Gender</th>
                                                 <th class="th-sm">Investigating agency</th>
                                             </tr>
 
@@ -80,10 +84,18 @@
                                             <c:forEach items="${caseList}" var="comp" >
 
                                                 <tr>
-                                                  
-                                                    <td>${comp.case_id}</td> 
-                                                    <td>${comp.case_status}</td>
+
+                                                    <c:if test="${requestScope.type == 'unidentified'}">
+                                                    <td><a href="RetriveCaseDetails?postId=${comp.case_id}&type=unidentified">${comp.case_id}</a></td>
+                                                    </c:if>
+                                                     <c:if test="${requestScope.type == 'missing'}">
+                                                    <td><a href="RetriveCaseDetails?postId=${comp.case_id}&type=missing">${comp.case_id}</a></td>
+                                                    </c:if>
+                                                    <td>${comp.person_fname}</td>
+                                                    <td>${comp.person_sname}</td>
                                                     <td>${comp.dateadded}</td>
+                                                    <td>${comp.case_status}</td>
+                                                    <td>${comp.gender}</td>
                                                     <td>${comp.invest_agency}</td>
 
 
