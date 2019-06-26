@@ -42,22 +42,13 @@ public class RetrieveStatisticsServlet extends HttpServlet {
 
         } else if (action.equals("all")) {
             try {
-                int openU = CaseDAO.countCaseType("unidentified", "open");
-                int resolvedU = CaseDAO.countCaseType("unidentified", "resolved");
-                int resolvedM = CaseDAO.countCaseType("missing", "resolved");
-                int openM = CaseDAO.countCaseType("missing", "open");
-                request.setAttribute("openM", openM);
-                request.setAttribute("openU", openU);
-                request.setAttribute("resolvedU", resolvedU);
-                request.setAttribute("resolvedM", resolvedM);
+                serveCounty(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(RetrieveStatisticsServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
 
-        RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewStat.jsp");
-        disp.forward(request, response);
     }
 
     @Override
@@ -65,16 +56,40 @@ public class RetrieveStatisticsServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void serveCons(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    private void serveCons(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String constituency = request.getParameter("constituency");
-        int openU = CaseDAO.conCases(constituency, "unidentified", "open");
-        int resolvedU = CaseDAO.conCases(constituency, "unidentified", "resolved");
-        int resolvedM = CaseDAO.conCases(constituency, "missing", "resolved");
-        int openM = CaseDAO.conCases(constituency, "missing", "open");
+        if(constituency.equals("Whole county")){
+            serveCounty(request, response);
+        }else{
+        String start = request.getParameter("startDate");
+        String stop = request.getParameter("stopDate");
+        int openU = CaseDAO.conCases(constituency, "unidentified", "open", start, stop);
+        int resolvedU = CaseDAO.conCases(constituency, "unidentified", "resolved", start, stop);
+        int resolvedM = CaseDAO.conCases(constituency, "missing", "resolved", start, stop);
+        int openM = CaseDAO.conCases(constituency, "missing", "open", start, stop);
         request.setAttribute("openM", openM);
         request.setAttribute("openU", openU);
         request.setAttribute("resolvedU", resolvedU);
         request.setAttribute("resolvedM", resolvedM);
+        RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewStat.jsp");
+
+        disp.forward(request, response);
+        }
+    }
+
+    private void serveCounty(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String start = request.getParameter("startDate");
+        String stop = request.getParameter("stopDate");
+        int openU = CaseDAO.countCaseType("unidentified", "open", start, stop);
+        int resolvedU = CaseDAO.countCaseType("unidentified", "resolved",start, stop);
+        int resolvedM = CaseDAO.countCaseType("missing", "resolved",start, stop);
+        int openM = CaseDAO.countCaseType("missing", "open",start, stop);
+        request.setAttribute("openM", openM);
+        request.setAttribute("openU", openU);
+        request.setAttribute("resolvedU", resolvedU);
+        request.setAttribute("resolvedM", resolvedM);
+        RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewStat.jsp");
+        disp.forward(request, response);
     }
 
 }

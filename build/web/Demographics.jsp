@@ -45,7 +45,7 @@
                        
                         <div class="container-fluid " style="width: 75%; margin-top: 30px">
                             <!--Make post form-->
-                            <form   action="ReportCase" method="get" >
+                            <form   action="ReportCase" method="post" >
 
 
                                 <div class="form-row mb-1">

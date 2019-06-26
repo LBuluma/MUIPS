@@ -106,15 +106,11 @@
                     <i class="fas fa-fw fa-search"></i>
                     <span>Search</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="RetrieveStatistics?action=all">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Statistics</span></a>
-            </li>
+           
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="PublicHelp.jsp">
                     <i class="fas fa-fw fa-circle"></i>
                     <span>Help</span></a>
             </li>

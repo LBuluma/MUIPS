@@ -52,10 +52,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link " id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">More Information</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Distinct Feature</a>
-                                </li>
-                                <c:if test="${requestScope.type == 'missing'}">
+                                <c:if test="${requestScope.trans.trans_type != null}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Distinct Feature</a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${requestScope.trans.trans_type != null}">
                                     <li class="nav-item">
                                         <a class="nav-link" id="trans-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="trans" aria-selected="false">Transportation</a>
                                     </li>
@@ -77,7 +79,7 @@
                                             <div class="container col-md-5" >
                                                 <div class="card-body">
                                                     <div class="text-center">
-                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; margin-right: 30px" src="images/mi2.jpg" alt="">
+                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; margin-right: 30px" src="${requestScope.path}" alt="">
                                                     </div>
                                                     <div style="margin-left: 20px">
                                                         <Label><strong>First name:</strong></label><p>${person.person_fname}</p>
@@ -160,27 +162,28 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary"></h6>
-                                        </div>
-                                        <div class="container" style="width: 40%; margin-right:  675px">
-                                            <div class="card-body">
-                                                <div class="text-center">
-                                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; margin-right: 30px" src="images/hellsGate-780x585.jpg" alt="">
-                                                </div>
-                                                <div style="margin-left: 25px">
-                                                    <Label><strong>Type:</strong></label><p>${feature.distinctive_feature}</p>
-                                                    <label><strong>Description:</strong></label><p>${feature.description_feature}</p>
+                                <c:if test="${requestScope.feature.description_feature != null}">
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary"></h6>
+                                            </div>
+                                            <div class="container" style="width: 40%; margin-right:  675px">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; margin-right: 30px" src="images/hellsGate-780x585.jpg" alt="">
+                                                    </div>
+                                                    <div style="margin-left: 25px">
+                                                        <Label><strong>Type:</strong></label><p>${feature.distinctive_feature}</p>
+                                                        <label><strong>Description:</strong></label><p>${feature.description_feature}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </c:if>
 
-                                <c:if test="${requestScope.type == 'missing'}">
+                                <c:if test="${requestScope.trans.trans_type != null}">
                                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="trans-tab">
 
                                         <div class="card shadow mb-4">
@@ -219,6 +222,7 @@
                                     </div>
                                 </c:if>
 
+
                                 <div class="tab-pane fade" id="org" role="tabpanel" aria-labelledby="org-tab">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
@@ -249,7 +253,7 @@
                                                 <p>${org.ward}</p>
                                                 <label><strong>Address:</strong></label><p>${org.address}</p>
 
-                                                    <label> <strong>Telephone:</strong></label>
+                                                <label> <strong>Telephone:</strong></label>
                                                 <p>${org.telephone}</p>
 
                                                 <label> <strong>Email:</strong></label>
@@ -269,7 +273,6 @@
 
 
 
-        <script src="resources/js/jquery-3.3.1.min.js"></script>
         <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

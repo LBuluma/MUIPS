@@ -26,7 +26,7 @@
 
 
             <!-- End of Sidebar -->
-            <jsp:include page="Sidebar.jsp"/>
+            <jsp:include page="ProfSidenav.jsp"/>
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
 

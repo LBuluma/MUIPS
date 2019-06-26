@@ -22,8 +22,9 @@ import user.User;
 public class TestLogin {
 
     public static void main(String[] args) throws SQLException {
-        int list  = DataRetrievalWrapper.getOrgId("MP-C9930A-19");
-        System.out.println(list);
+       String name = UserDAO.usrStation("lawrencebuluma@gmail.com");
+       System.out.println(name);
+       
 
     }
 

@@ -34,113 +34,144 @@
 
                     <!-- Begin Page Content -->
                     <div class="card shadow" style="width: 60%;  ">
-                         <div class="card-header py-3" >
-                             <p class="h4 mb-1 text-center"><strong>Missing Person Information</strong></p>
+                        <div class="card-header py-3" >
+                            <p class="h4 mb-1 text-center"><strong>Missing Person Information</strong></p>
                         </div>
-                       
-                    
-                          
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Person Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Upload photo</a>
+                            </li>
 
-                        <div class="container" style="width: 75%; height: 600px; margin-top: 30px">
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                        <form  action="ReportCase" method="post">
+                                <div class="container" style="width: 80%; height: 600px; margin-top: 30px">
 
-                        
-                           
-                            <!-- E-mail -->
-                            <label>Huduma Number:</label>
-                            <input type="text" name="pid" id="defaultRegisterFormEmail" class="form-control mb-1" required>
+                                    <form  action="ReportCase" method="post">
 
-                            <label>Date of last contact:</label>
 
-                            <input type="date" name="lastContact" id="defaultRegisterFormEmail" class="form-control mb-1" placeholder="Date of Last Contact" required>
 
-                            <div class="form-row mb-1" style="margin-top: 10px">
+                                        <!-- E-mail -->
+                                        <label>Huduma Number:</label>
+                                        <input type="text" name="pid" id="defaultRegisterFormEmail" class="form-control mb-1" required>
 
-                                <div class="form-group col-md-6">
-                                    <label>Color:</label>
-                                    <select id="inputState" class="form-control" name="pcolor">
+                                        <label>Date of last contact:</label>
 
-                                        <option>white</option>
-                                        <option>Latino</option>
-                                        <option>Black</option>
-                                        <option>Indian</option>
-                                        <option>Chocolate</option>
-                                        <option>Asian</option>
-                                        <option>Other</option>
+                                        <input type="date" name="lastContact" id="defaultRegisterFormEmail" class="form-control mb-1" placeholder="Date of Last Contact" required>
 
-                                    </select>
+                                        <div class="form-row mb-1" style="margin-top: 10px">
+
+                                            <div class="form-group col-md-6">
+                                                <label>Color:</label>
+                                                <select id="inputState" class="form-control" name="pcolor">
+
+                                                    <option>white</option>
+                                                    <option>Latino</option>
+                                                    <option>Black</option>
+                                                    <option>Indian</option>
+                                                    <option>Chocolate</option>
+                                                    <option>Asian</option>
+                                                    <option>Other</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Hair color:</label>
+                                                <select id="inputState" class="form-control" name="hcolor">
+
+                                                    <option >Brown</option>
+                                                    <option>Black</option>
+                                                    <option>Sandy</option>
+                                                    <option>Gray/partially gray</option>
+                                                    <option>Red/Auburn</option>
+                                                    <option>Blue</option>
+                                                    <option>Green</option>
+                                                    <option>Orange</option>
+                                                    <option>Purple</option>
+                                                    <option>Pink</option>
+                                                    <option>Completely bald</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <label>Eye color:</label>
+                                            <select id="inputState" class="form-control" name="ecolor">
+
+                                                <option >Black</option>
+                                                <option>Blue</option>
+                                                <option>Brown</option>
+                                                <option>Green</option>
+                                                <option>Hazel</option>
+                                                <option>Pink</option>
+                                                <option>Maroon</option>
+                                                <option>Missing</option>
+
+                                            </select>
+                                        </div>
+                                        <label>Description:</label>
+                                        <div class="form-group  mb-1">
+
+                                            <textarea type="text" class="form-control " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
+                                        </div>
+
+                                      
+
+
+
+                                        <hr>
+                                        <div class="form-row mb-1">
+                                            <a href="Demographics.jsp" class=" btn btn-info"  >Back</a>
+
+                                            <div class="col text-right ">
+                                                <button class=" btn btn-primary" type="submit" >Next</button>
+                                            </div>
+                                            <input type="text" hidden="true" name="action" value="info">
+                                        </div>
+
+
+                                    </form>
+
+
+
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label>Hair color:</label>
-                                    <select id="inputState" class="form-control" name="hcolor">
-
-                                        <option >Brown</option>
-                                        <option>Black</option>
-                                        <option>Sandy</option>
-                                        <option>Gray/partially gray</option>
-                                        <option>Red/Auburn</option>
-                                        <option>Blue</option>
-                                        <option>Green</option>
-                                        <option>Orange</option>
-                                        <option>Purple</option>
-                                        <option>Pink</option>
-                                        <option>Completely bald</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group mb-1">
-                                <label>Eye color:</label>
-                                <select id="inputState" class="form-control" name="ecolor">
-
-                                    <option >Black</option>
-                                    <option>Blue</option>
-                                    <option>Brown</option>
-                                    <option>Green</option>
-                                    <option>Hazel</option>
-                                    <option>Pink</option>
-                                    <option>Maroon</option>
-                                    <option>Missing</option>
-
-                                </select>
-                            </div>
-                            <label>Description:</label>
-                            <div class="form-group  mb-1">
-
-                                <textarea type="text" class="form-control " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
-                            </div>
-                          
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-                                upload photo
-                            </button>
-
-
-
-                            <hr>
-                            <div class="form-row mb-1">
-                                <a href="Demographics.jsp" class=" btn btn-info"  >Back</a>
-
-                                <div class="col text-right ">
-                                    <button class=" btn btn-primary" type="submit" >Next</button>
-                                </div>
-                                <input type="text" hidden="true" name="action" value="info">
                             </div>
 
-
-                        </form>
-                         
-
-
+                            <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                <form id="form" action="FileUpload" method="post" enctype="multipart/form-data">
+                                    <div class="row" style=" margin-top: 30px; margin-left: 30px">
+                                        <div class="col-4">
+                                            <input id="uploadImage" type="file" accept="image/*" name="image" />
+                                            <input  type="text"  name="type" value="missing" hidden />
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary" >
+                                                upload photo
+                                            </button>
+                                        </div>
+                                
+                            </div>
+                                    </form>
+                        </div>
                     </div>
-                    </div>
-                    <jsp:include page="Footer.jsp"/>
+
+
+
+
                 </div>
+                <jsp:include page="Footer.jsp"/>
             </div>
         </div>
-        
-        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
+    </div>
 
-    </body>
+    <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+
+    <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
+
+</body>
 </html>

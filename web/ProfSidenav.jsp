@@ -21,7 +21,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" >
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -60,6 +60,11 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="UnidentifiedPersonDemograhics.jsp">
+                    <i class="fas fa-fw fa-folder-plus"></i>
+                    <span>New post</span></a>
+            </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -70,9 +75,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="UnidentifiedPersonDemograhics.jsp">New post</a>
                         <a class="collapse-item" href="RetrieveMyPost">My posts</a>
-                         <a class="collapse-item" href="RetrieveMyPost">Station posts</a>
+                         <a class="collapse-item" href="RetrieveStationPost">Station missing posts</a>
 
                     </div>
                 </div>
@@ -85,6 +89,7 @@
             <div class="sidebar-heading">
 
             </div>
+            
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -116,7 +121,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="ProfHelp.jsp">
                     <i class="fas fa-fw fa-circle"></i>
                     <span>Help</span></a>
             </li>

@@ -19,11 +19,12 @@ public class User {
     private String date_added;
     private String user_role;
     private String user_org;
+    private String user_status;
 
     public User() {
     }
 
-    public User(String user_fname, String user_sname, String user_pass, String user_email, String user_phone, String user_id, String date_added, String user_role, String user_org) {
+    public User(String user_fname, String user_sname, String user_pass, String user_email, String user_phone, String user_id, String date_added, String user_role, String user_org, String user_status) {
         this.user_fname = user_fname;
         this.user_sname = user_sname;
         this.user_pass = user_pass;
@@ -33,7 +34,21 @@ public class User {
         this.date_added = date_added;
         this.user_role = user_role;
         this.user_org = user_org;
+        this.user_status = user_status;
     }
+
+    
+    
+    public String getUser_status() {
+        return user_status;
+    }
+
+    public void setUser_status(String user_status) {
+        this.user_status = user_status;
+    }
+
+ 
+    
 
     public String getUser_org() {
         return user_org;

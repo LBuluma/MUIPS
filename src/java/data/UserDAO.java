@@ -46,7 +46,7 @@ public class UserDAO {
             String phone, String pass, String org) throws SQLException {
 
         query = "insert into publicuser(email, id, fname, sname, phone,"
-                + "date, password, org,role ) values(?, ?, ?, ?, ?, curdate(),?, ?, ?)";
+                + "date, password, org,role, status ) values(?, ?, ?, ?, ?, curdate(),?, ?, ?, ?)";
 
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
@@ -56,11 +56,9 @@ public class UserDAO {
         pState.setString(4, sname);
         pState.setString(5, phone);
         pState.setString(6, pass);
-
         pState.setString(7, org);
-
         pState.setString(8, "prof");
-
+        pState.setString(9, "pending");
         pState.executeUpdate();
         System.out.println("Prof successfully added");
     }
@@ -88,6 +86,7 @@ public class UserDAO {
                 usr.setUser_sname(rSet.getString("sname"));
                 usr.setUser_role(rSet.getString("role"));
                 usr.setUser_org(rSet.getString("org"));
+                usr.setUser_status(rSet.getString("status"));
 
             } else {
                 usr = new User();
@@ -172,12 +171,29 @@ public class UserDAO {
         return list;
     }
 
-    public static void changeUserStatus(String email, String status) throws SQLException{
+    public static void changeUserStatus(String email, String status) throws SQLException {
         query = "update publicuser set status=? where email=?";
+        conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
         pState.setString(1, status);
         pState.setString(2, email);
         pState.executeUpdate();
         System.out.println("Status changed");
+    }
+
+    public static String usrStation(String usrId) throws SQLException {
+        query = "select org from publicuser where email = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, usrId);
+
+        rSet = pState.executeQuery();
+        String station = null;
+        while (rSet.next()) {
+            station = rSet.getString("org");
+        }
+
+        System.out.println("Station gotten");
+        return station;
     }
 }

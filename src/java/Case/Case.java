@@ -10,26 +10,38 @@ public class Case extends Person {
     private String case_id;
     private String case_type;
     private String case_status;
-
+    private int case_stat;
     private String case_reporter;
     private String dateadded;
     private String OB;
     private String invest_agency;
 
-    public Case(String case_id, String case_type, String case_status, String case_reporter, String dateadded, String OB, String invest_agency, String person_fname, String person_sname, String personId, String ethnicity, String gender, String added_by, String language) {
+    public Case(String case_id, String case_type, String case_status, int case_stat, String case_reporter, String dateadded, String OB, String invest_agency, String person_fname, String person_sname, String personId, String ethnicity, String gender, String added_by, String language) {
         super(person_fname, person_sname, personId, ethnicity, gender, added_by, language);
         this.case_id = case_id;
         this.case_type = case_type;
         this.case_status = case_status;
+        this.case_stat = case_stat;
         this.case_reporter = case_reporter;
         this.dateadded = dateadded;
         this.OB = OB;
         this.invest_agency = invest_agency;
     }
 
+  
+
 
     public Case() {
     }
+
+    public int getCase_stat() {
+        return case_stat;
+    }
+
+    public void setCase_stat(int case_stat) {
+        this.case_stat = case_stat;
+    }
+    
 
     public String getInvest_agency() {
         return invest_agency;

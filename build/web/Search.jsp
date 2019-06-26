@@ -58,7 +58,7 @@
 
 
                         <!-- DataTales Example -->
-                        <div class="card shadow " style="height: 750px; ">
+                        <div class="card shadow " style="height: 650px; width: 70%; margin:auto ">
                             <div class="card-header py-3" >
                                 <p class="h4 mb-1 text-center"><strong>Advanced Search</strong></p>
                             </div>

@@ -102,7 +102,7 @@ public class CaseDAO {
 
     public static ArrayList<Case> retrieveCases(String type) throws SQLException {
         String contact = null;
-        String number = null;
+
         if ("missing".equals(type)) {
             query = "SELECT status, cases.personid,org, fname, sname, lastcontact, gender, idnumber FROM cases"
                     + " INNER JOIN missingperson ON cases.personid = missingperson.personid ";
@@ -125,9 +125,9 @@ public class CaseDAO {
             c = new Case();
 
             c.setCase_id(rSet.getString("personid"));
-            c.setCase_status(rSet.getString("status"));
+            c.setCase_status(rSet.getString("status").toUpperCase());
             c.setDateadded(rSet.getString(contact));
-            c.setInvest_agency(rSet.getString("org"));
+
             if (type.equals("missing")) {
                 c.setCase_reporter(rSet.getString("idnumber"));
             }
@@ -135,6 +135,7 @@ public class CaseDAO {
             c.setDateadded(rSet.getString(contact));
             c.setPerson_fname(rSet.getString("fname"));
             c.setPerson_sname(rSet.getString("sname"));
+            c.setInvest_agency(rSet.getString("org").toUpperCase());
             list.add(c);
 
         }
@@ -167,9 +168,7 @@ public class CaseDAO {
             c.setCase_id(rSet.getString("personid"));
             c.setCase_status(rSet.getString("status"));
             c.setDateadded(rSet.getString("date"));
-            int id =  rSet.getInt("org");
-            Organization org = DataRetrievalWrapper.fetchOrg(id);
-            c.setInvest_agency(org.getName());
+            c.setInvest_agency(rSet.getString("org"));
             list.add(c);
         }
         System.out.println("case gotten successfully");
@@ -203,13 +202,15 @@ public class CaseDAO {
         System.out.println("Path successfully updated");
     }
 
-    public static int countCaseType(String type, String status) throws SQLException {
-        query = "select count(*) from cases where type = ? and status = ?";
+    public static int countCaseType(String type, String status, String start, String stop) throws SQLException {
+        query = "select count(*) from cases where type = ? and status = ? and date between ? and ?";
         int x = 0;
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
         pState.setString(1, type);
         pState.setString(2, status);
+        pState.setString(3, start);
+        pState.setString(4, stop);
         rSet = pState.executeQuery();
 
         while (rSet.next()) {
@@ -218,9 +219,10 @@ public class CaseDAO {
         return x;
     }
 
-    public static int conCases(String constituency, String type, String status) throws SQLException {
+    public static int conCases(String constituency, String type, String status, String start, String stop) throws SQLException {
         query = "SELECT count(*) FROM cases"
-                + ",location where cases.personid = location.id and location.constituency = ? and cases.type = ? and cases.status=?";
+                + ",location where cases.personid = location.id and location.constituency = ? "
+                + "and cases.type = ? and cases.status=? and date between ? and ?";
 
         int x = 0;
         conn = DatabaseConnection.getConnection();
@@ -228,6 +230,8 @@ public class CaseDAO {
         pState.setString(1, constituency);
         pState.setString(2, type);
         pState.setString(3, status);
+        pState.setString(4, start);
+        pState.setString(5, stop);
         rSet = pState.executeQuery();
 
         while (rSet.next()) {
@@ -248,7 +252,7 @@ public class CaseDAO {
         String gender = person.getGender();
         String fname = person.getPerson_fname();
         String sname = person.getPerson_sname();
-        
+
         query = "SELECT  cases.personid, cases.status, cases.org, missingperson.fname, missingperson.sname, missingperson.lastcontact, missingperson.gender, missingperson.idnumber FROM "
                 + "  feature,description, cases INNER JOIN missingperson ON cases.personid = missingperson.personid"
                 + " INNER JOIN location on location.id = cases.personid where location.constituency = ?  and"
@@ -352,7 +356,7 @@ public class CaseDAO {
             c.setCase_id(rSet.getString("personid"));
             c.setCase_status(rSet.getString("status"));
             c.setInvest_agency(rSet.getString("org"));
-            
+
             c.setGender(rSet.getString("gender"));
             c.setDateadded(rSet.getString("datefound"));
             c.setPerson_fname(rSet.getString("fname"));
@@ -364,4 +368,60 @@ public class CaseDAO {
         return list;
 
     }
+
+    public static ArrayList generateSummary(String type2, String status2, String start, String end) throws SQLException {
+
+        String cons[] = {"Subukia", "Nakuru Town West", "Nakuru Town", "Nakuru Town East", "Kuresoi North", "Kuresoi South", "Rongai", " Molo"};
+        String type[] = {type2};
+        String status[] = {status2};
+        int x;
+        list = new ArrayList();
+        Case c;
+        for (String con : cons) {
+            for (String type1 : type) {
+                for (String status1 : status) {
+                    c = new Case();
+                    x = CaseDAO.conCases(con, type1, status1, start, end);
+                    c.setCase_reporter(con);
+                    c.setCase_type(type1);
+                    c.setCase_status(status1);
+                    c.setCase_stat(x);
+                    list.add(c);
+                }
+            }
+        }
+        return list;
+
+    }
+
+    public static ArrayList getStationPosts(String station) throws SQLException {
+
+        query = "SELECT status, cases.personid,org, fname, sname, lastcontact, gender, idnumber FROM cases"
+                + " INNER JOIN missingperson ON cases.personid = missingperson.personid  where cases.org = ? and cases.type= ? ";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, station);
+        pState.setString(2, "missing");
+        rSet = pState.executeQuery();
+        System.out.println(rSet);
+        list = new ArrayList();
+        Case c;
+
+        while (rSet.next()) {
+            c = new Case();
+
+            c.setCase_id(rSet.getString("personid"));
+            c.setCase_status(rSet.getString("status").toUpperCase());
+            c.setDateadded(rSet.getString("lastcontact"));
+            c.setCase_reporter(rSet.getString("idnumber"));
+            c.setGender(rSet.getString("gender"));
+            c.setPerson_fname(rSet.getString("fname"));
+            c.setPerson_sname(rSet.getString("sname"));
+            c.setInvest_agency(rSet.getString("org").toUpperCase());
+            list.add(c);
+        }
+        System.out.println("case gotten successfully");
+        return list;
+    }
+
 }

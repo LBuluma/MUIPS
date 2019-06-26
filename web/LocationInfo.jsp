@@ -50,7 +50,7 @@
                                     <select name="org" class="form-control" >
                                         <c:forEach items="${list}" var="org" >
 
-                                            <option value="${org.id}">${org.name}</option>
+                                            <option value="${org.name}">${org.name}</option>
 
                                         </c:forEach>
                                     </select>

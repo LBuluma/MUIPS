@@ -5,11 +5,12 @@
  */
 package Servlets;
 
-import data.DataInsertionWrapper;
+import data.DataRetrievalWrapper;
 import data.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -17,7 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,14 +31,6 @@ public class RegisterUserServlet extends HttpServlet {
         doPost(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,11 +43,19 @@ public class RegisterUserServlet extends HttpServlet {
                     RequestDispatcher disp = getServletContext().getRequestDispatcher("/PublicPersonalInformation.jsp");
                     disp.forward(request, response);
                 } else {
+                    ArrayList list;
+                    try {
+                        list = DataRetrievalWrapper.getOrgs();
+                        request.setAttribute("list", list);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RegisterUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     RequestDispatcher disp = getServletContext().getRequestDispatcher("/ProfPersonalInformation.jsp");
                     disp.forward(request, response);
                 }
                 break;
-          
+
             case "personal": {
                 try {
                     savePersonalInfo(request, response);
@@ -88,7 +88,7 @@ public class RegisterUserServlet extends HttpServlet {
     }
 
     public void savePersonalInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        
+
         String fname = request.getParameter("fname");
 
         String sname = request.getParameter("sname");
@@ -96,12 +96,10 @@ public class RegisterUserServlet extends HttpServlet {
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        
+
         String password = request.getParameter("password");
         UserDAO.saveUser(fname, sname, id, password, email, phone);
     }
-
-   
 
     public void saveProf(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
@@ -109,7 +107,7 @@ public class RegisterUserServlet extends HttpServlet {
         String sname = request.getParameter("sname");
         String id = request.getParameter("id");
         String password = request.getParameter("password");
-        String address = request.getParameter("address");
+
         String org = request.getParameter("org");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");

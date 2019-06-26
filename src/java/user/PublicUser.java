@@ -13,9 +13,11 @@ public class PublicUser extends User {
     
     private String locationId;
 
-    public PublicUser(String user_fname, String user_sname, String user_pass, String user_email, String user_phone, String user_id, String date_added, String user_role, String user_org) {
-        super(user_fname, user_sname, user_pass, user_email, user_phone, user_id, date_added, user_role, user_org);
+    public PublicUser(String user_fname, String user_sname, String user_pass, String user_email, String user_phone, String user_id, String date_added, String user_role, String user_org, String user_status) {
+        super(user_fname, user_sname, user_pass, user_email, user_phone, user_id, date_added, user_role, user_org, user_status);
     }
+
+ 
 
    
    

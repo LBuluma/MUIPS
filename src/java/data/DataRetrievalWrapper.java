@@ -228,13 +228,13 @@ public class DataRetrievalWrapper {
         return path;
     }
 
-    public static Organization fetchOrg(int id) throws SQLException {
+    public static Organization fetchOrg(String name) throws SQLException {
         Organization org = new Organization();
 
-        query = "select * from station where id = ?";
+        query = "select * from station where name = ?";
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
-        pState.setInt(1, id);
+        pState.setString(1, name);
         rSet = pState.executeQuery();
         while (rSet.next()) {
             org.setAddress(rSet.getString("address"));
@@ -259,14 +259,14 @@ public class DataRetrievalWrapper {
         rSet = pState.executeQuery();
         while (rSet.next()) {
             org = new Organization();
-            org.setId(rSet.getInt("id"));
+           
             org.setName(rSet.getString("name"));
             list.add(org);
         }
         return list;
     }
 
-    public static int getOrgId(String caseid) throws SQLException {
+    public static String getOrgId(String caseid) throws SQLException {
 
       
         query = "select org from cases where personid = ? ";
@@ -274,10 +274,10 @@ public class DataRetrievalWrapper {
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
         pState.setString(1, caseid);
-        int id = 0;
+        String id = null;
         rSet = pState.executeQuery();
         while (rSet.next()) {
-           id = rSet.getInt("org");
+           id = rSet.getString("org");
         }
         return id ;
     }

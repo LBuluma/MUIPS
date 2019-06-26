@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,10 +14,10 @@
         <title>Registration</title>
 
         <link rel="stylesheet" href="resources/css/bootstrap.min.css" id="bootstrap-css">
-      
+
         <link href="resources/muips.css" rel="stylesheet" >
         <link rel="stylesheet" href="resources/css/mdb.min.css">
-      
+
         <script type="text/javascript" src="resources/vendor/jquery/jquery.min.js"></script>
 
         <script type="text/javascript">
@@ -44,8 +46,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav mr-auto" style=" position: absolute; right: 10px; top: 20px">
-                       
-                                              
+
+
                         <li class="nav-item"  >
                             <a href="Login.jsp" class="nav-link"  >Login</a>
                         </li>
@@ -85,22 +87,18 @@
                 <!-- Phone number -->
                 <label>Phone number:</label>
                 <input type="text"   name="phone" id="defaultRegisterPhonePassword" class="form-control mb-1"  maxlength="10" minlength="10" required>
-                
-                      <label>Organization:</label>
-                   <div class="form-row mb-1" >
-                                <select id="inputCon" class="form-control" name="org" required>
 
-                                    <option selected>Kasarani</option>
-                                    <option>Bahati</option>
-                                    <option>Rhoda</option>
-                                    <option>Baraka</option>
-                                    <option>Lanet</option>
-                                    <option>Central police</option>
-                                    <option>Bondeni</option>
-                                    <option>CID HQ</option>
-                                </select>
-                            </div>
 
+                <div class="form-row mb-1" >
+                    <label>Organization:</label>
+                    <select name="org" class="form-control" >
+                        <c:forEach items="${list}" var="org" >
+
+                            <option value="${org.name}">${org.name}</option>
+
+                        </c:forEach>
+                    </select>
+                </div>
 
                 <label>Password:</label>
                 <input type="password" name="password" id="defaultRegisterFormPassword1" class="form-control mb-1" pattern="(?=.*\d)(?=.*[a-z]).{8,}" required>
@@ -119,7 +117,7 @@
             </form>
         </div>
 
-       
+
 
 
 

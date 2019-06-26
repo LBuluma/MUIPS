@@ -46,10 +46,10 @@ public class RetriveCaseDetailsServlet extends HttpServlet {
         Description desc2 = null;
         Transportation trans;
         Organization org = null;
-        int id;
+        String name = null;
         try {
-            id = DataRetrievalWrapper.getOrgId(postId);
-            org = DataRetrievalWrapper.fetchOrg(id);
+            name = DataRetrievalWrapper.getOrgId(postId);
+            org = DataRetrievalWrapper.fetchOrg(name);
             path = DataRetrievalWrapper.getPath(postId);
         } catch (SQLException ex) {
             Logger.getLogger(RetriveCaseDetailsServlet.class.getName()).log(Level.SEVERE, null, ex);

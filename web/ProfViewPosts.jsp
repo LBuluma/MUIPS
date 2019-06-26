@@ -74,9 +74,15 @@
                                                 <th class="th-sm">Second name</th>
                                                 <th class="th-sm">Gender</th>
                                                 <th class="th-sm">Status</th>
-                                                <th class="th-sm">ID</th>
+                                                    <c:if test="${requestScope.type == 'missing'}">
+                                                    <th class="th-sm">ID</th>
+                                                    </c:if>
+
                                                 <th class="th-sm">Date</th>
                                                 <th class="th-sm">Investigating agency</th>
+                                                    <c:if test="${requestScope.source == 'station'}">
+                                                    <th class="th-sm"></th>
+                                                    </c:if>
                                             </tr>
 
                                         </thead>
@@ -85,20 +91,32 @@
 
                                                 <tr>
                                                     <c:if test="${requestScope.type == 'unidentified'}">
-                                                    <td><a href="RetriveCaseDetails?postId=${comp.case_id}&type=unidentified">${comp.case_id}</a></td>
-                                                    </c:if>
-                                                     <c:if test="${requestScope.type == 'missing'}">
-                                                    <td><a href="RetriveCaseDetails?postId=${comp.case_id}&type=missing">${comp.case_id}</a></td>
-                                                    </c:if>
+                                                        <td><a href="RetriveCaseDetails?postId=${comp.case_id}&type=unidentified">${comp.case_id}</a></td>
+                                                        </c:if>
+                                                        <c:if test="${requestScope.type == 'missing'}">
+                                                        <td><a href="RetriveCaseDetails?postId=${comp.case_id}&type=missing">${comp.case_id}</a></td>
+                                                        </c:if>
 
                                                     <td>${comp.person_fname}</td>
                                                     <td>${comp.person_sname}</td>
                                                     <td>${comp.gender}</td>
                                                     <td>${comp.case_status}</td>
-                                                    <td>${comp.case_reporter}</td>
+                                                    <c:if test="${requestScope.type == 'missing'}">
+                                                        <td>${comp.case_reporter}</td>
+                                                    </c:if>
+
                                                     <td>${comp.dateadded}</td>
                                                     <td>${comp.invest_agency}</td>
 
+                                                    <c:if test="${requestScope.source == 'station'}">
+                                                        <td>
+                                                            <form method="post" action="ResolveCases">
+                                                            <input  type="text" name="action" value="myPost" hidden>
+                                                            <input  type="text" name="postId" value="${comp.case_id}" hidden>
+                                                            <input class="btn btn-primary btn-sm" type="submit" value="Resolve">
+                                                        </form>
+                                                            </td>
+                                                        </c:if>
 
 
 

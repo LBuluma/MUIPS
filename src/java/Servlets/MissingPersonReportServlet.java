@@ -101,7 +101,7 @@ public class MissingPersonReportServlet extends HttpServlet {
         session.setAttribute("sname", sname);
         language = (String) request.getParameter("language").toUpperCase();
         session.setAttribute("language", language);
-        gender = (String) request.getParameter("gender".toUpperCase());
+        gender = (String) request.getParameter("gender").toUpperCase();
         session.setAttribute("gender", gender);
         ethnic = (String) request.getParameter("ethnic").toUpperCase();
         session.setAttribute("ethnic", ethnic);

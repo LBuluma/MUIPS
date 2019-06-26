@@ -51,10 +51,12 @@
                                 <label for="inputPassword4">Second Name:</label>
                                 <input type="text" name="sname" class="form-control" id="inputSname" required >
                             </div>
+                            <div class="form-row mb-1">
                             <label>Date found:</label>
 
                             <input type="date" name="dateFound" id="defaultRegisterFormEmail" class="form-control "  required>
                             <!--OB-->
+                            </div>
                             <div class="form-row mb-1">
                                 <label for="inputAddress">Police OB number:</label>
                                 <input type="text" name="ob" class="form-control" id="inputAddress" required>

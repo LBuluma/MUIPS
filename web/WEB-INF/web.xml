@@ -91,6 +91,14 @@
         <servlet-name>RetriveCaseDetailsServlet</servlet-name>
         <servlet-class>Servlets.RetriveCaseDetailsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrintReportServlet</servlet-name>
+        <servlet-class>Servlets.PrintReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveStationPostServlet</servlet-name>
+        <servlet-class>Servlets.RetrieveStationPostServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -170,6 +178,14 @@
     <servlet-mapping>
         <servlet-name>RetriveCaseDetailsServlet</servlet-name>
         <url-pattern>/RetriveCaseDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintReportServlet</servlet-name>
+        <url-pattern>/PrintReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveStationPostServlet</servlet-name>
+        <url-pattern>/RetrieveStationPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

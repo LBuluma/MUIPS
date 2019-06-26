@@ -82,7 +82,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="RetrieveUsers?action=approve">
                     <i class="fas fa-fw fa-user-plus"></i>
-                    <span>Approve users</span></a>
+                    <span>Pending users</span></a>
             </li> 
              <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -100,7 +100,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="AdminHelp.jsp">
                     <i class="fas fa-fw fa-circle"></i>
                     <span>Help</span></a>
             </li>

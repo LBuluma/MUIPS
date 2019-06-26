@@ -62,21 +62,26 @@ public class LoginServlet extends HttpServlet {
                     case "publicuser":
                         session.setAttribute("userName", user);
                         System.out.println(user);
-                        session.setAttribute("role", role);
+                        session.setAttribute("role", "publicuser");
                         session.setAttribute("email", email);
                         session.setAttribute("org", org);
                         url = "/PublicDashBoard.jsp";
                         break;
                     case "prof":
-                        session.setAttribute("myOrg", org);
-                        session.setAttribute("userName", user);
-                        session.setAttribute("role", role);
-                        session.setAttribute("email", email);
-                        url = "/ProfDashBoard.jsp";
+                        if (usr.getUser_status().equals("approved")) {
+                            session.setAttribute("myOrg", org);
+                            session.setAttribute("userName", user);
+                            session.setAttribute("role", "prof");
+                            session.setAttribute("email", email);
+                            url = "/ProfDashBoard.jsp";
+                        } else {
+                            url = "/Login.jsp";
+                        }
+
                         break;
                     case "admin":
                         session.setAttribute("userName", user);
-                        session.setAttribute("role", role);
+                        session.setAttribute("role", "admin");
                         url = "/AdminDashBoard.jsp";
                         break;
 
