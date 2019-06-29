@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="resources/css/mdb.min.css">
 
         <script type="text/javascript" src="resources/vendor/jquery/jquery.min.js"></script>
+         <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -62,18 +63,26 @@
 
                 <p class="h4 text-center  mb-1"><strong> Registration</strong></p>
                 <hr>
+                   <c:if test="${requestScope.usrMsg != null}">
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 300px">
+                        <strong>${requestScope.usrMsg}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </c:if>
 
                 <div class="form-row mb-1">
 
                     <div class="col ">
                         <!-- First name -->
                         <label>First name:</label>
-                        <input type="text" name="fname" style="padding:15px 20px;" id="defaultRegisterFormFirstName" class="form-control" required >
+                        <input type="text" name="fname" style="padding:15px 20px;" pattern="^[A-Za-z]+$" class="form-control" required >
                     </div>
                     <div class="col">
                         <!-- Last name -->
                         <label>Last name:</label>
-                        <input type="text" name="sname" id="defaultRegisterFormLastName" class="form-control"  required>
+                        <input type="text" name="sname" id="defaultRegisterFormLastName"  pattern="^[A-Za-z]+$" class="form-control"  required>
                     </div>
                 </div>
                 <!-- E-mail -->
@@ -82,17 +91,17 @@
                 <!-- Password -->
                 <!-- E-mail -->
                 <label>Email:</label>
-                <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-1" required>
+                <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-1"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                 <div  class="text-danger" id="output" ></div>
                 <!-- Phone number -->
                 <label>Phone number:</label>
-                <input type="text"   name="phone" id="defaultRegisterPhonePassword" class="form-control mb-1"  maxlength="10" minlength="10" required>
+                <input type="text"   name="phone" id="defaultRegisterPhonePassword" pattern="^07\d{8}$" class="form-control mb-1"  maxlength="10" minlength="10" required>
 
 
                 <div class="form-row mb-1" >
                     <label>Organization:</label>
                     <select name="org" class="form-control" >
-                        <c:forEach items="${list}" var="org" >
+                        <c:forEach items="${sessionScope.list}" var="org" >
 
                             <option value="${org.name}">${org.name}</option>
 

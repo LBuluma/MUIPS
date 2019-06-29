@@ -39,10 +39,10 @@
                                         </h2>
                                     </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                                         <div class="card-body">
 
-                                            <p>1. Click on "post" in the side navigation </p>
+                                            <p>1. Click on "posts" in the side navigation </p>
                                               <p>1. Select  " New post" in the options that drop down </p>
                                             <p>2. Fill in the missing person information and click "Next"</p>
                                             <p> 3. Fill the form for describing the missing person and click "Next"</p>

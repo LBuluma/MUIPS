@@ -12,28 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/DataRetrievalWrapper.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/LocationInfo.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/user/User.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/user/PublicUser.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/ProfProfile.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/ProcessUserServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/ProfPersonalInformation.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/RegisterUserServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/CaseDAO.java</file>
             <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedDescription.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/UserDAO.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/MissingPersonReportServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/RetrieveStationPostServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/ProfViewPosts.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/RetrieveMyPostServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Demographics.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/MissingPersonInfo.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/test/login/TestLogin.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedDistinct.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/Transportation.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/LocationInfo.jsp</file>
             <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/LoginServlet.java</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/ChangePassword.jsp</file>
-            <file>file:/home/justus/NetBeansProjects/MUIPS/web/ProfVIewMyPosts.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/web/UnidentifiedDistinct.jsp</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/Servlets/RetriveCaseDetailsServlet.java</file>
+            <file>file:/home/justus/NetBeansProjects/MUIPS/src/java/data/CaseDAO.java</file>
             <file>file:/home/justus/NetBeansProjects/MUIPS/web/DistinctFeature.jsp</file>
         </group>
     </open-files>

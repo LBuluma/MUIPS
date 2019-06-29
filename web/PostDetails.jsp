@@ -78,15 +78,27 @@
                                         <div class="form-row">
                                             <div class="container col-md-5" >
                                                 <div class="card-body">
-                                                    <div class="text-center">
-                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; margin-right: 30px" src="${requestScope.path}" alt="">
-                                                    </div>
+
+
                                                     <div style="margin-left: 20px">
                                                         <Label><strong>First name:</strong></label><p>${person.person_fname}</p>
                                                         <label><strong>Second name:</strong></label><p>${person.person_sname}</p>
                                                         <Label><strong>Language:</strong></label><p>${person.language}</p>
+                                                            <c:if test="${requestScope.path2 != null}">
 
+                                                            <form action="File" >
+                                                                <input type="text" value="${requestScope.path2}" name="path" hidden >
+                                                                <button class=" btn btn-primary " type="submit">View image</button> 
+                                                            </form>
+                                                        </c:if>
+                                                        <c:if test="${requestScope.path3 != null}">
+                                                            <input type="text" value="${requestScope.path3}" name="path" hidden >
+                                                            <form action="File" >
+                                                                <button class=" btn btn-primary " type="submit">View image</button> 
+                                                            </form>
+                                                        </c:if>
                                                     </div>
+
                                                 </div>
                                             </div>
                                             <div class="container  col-md-5" style="margin-top: 25px" >
@@ -162,7 +174,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <c:if test="${requestScope.feature.description_feature != null}">
+                                <c:if test="${requestScope.feature != null}">
                                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -170,12 +182,17 @@
                                             </div>
                                             <div class="container" style="width: 40%; margin-right:  675px">
                                                 <div class="card-body">
-                                                    <div class="text-center">
-                                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; margin-right: 30px" src="images/hellsGate-780x585.jpg" alt="">
-                                                    </div>
+
                                                     <div style="margin-left: 25px">
                                                         <Label><strong>Type:</strong></label><p>${feature.distinctive_feature}</p>
                                                         <label><strong>Description:</strong></label><p>${feature.description_feature}</p>
+                                                        <c:if test="${requestScope.path != null}">
+
+                                                            <form action="File" >
+                                                                <input type="text" value="${requestScope.path}" name="path" hidden >
+                                                                <button class=" btn btn-primary " type="submit">View image</button> 
+                                                            </form>
+                                                        </c:if>
                                                     </div>
                                                 </div>
                                             </div>

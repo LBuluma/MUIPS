@@ -86,8 +86,8 @@
                             <div class="form-row mb-4">
                                 <div class="col-2 " >
                                     <label>Select constituency:</label>
-                                    <select id="inputState" class="form-control" name="constituency">
-                                        <option selected>Nakuru Town West</option>
+                                    <select id="inputState" class="form-control" name="constituency" required>
+                                        <option>Nakuru Town West</option>
                                         <option>Subukia</option>
                                         <option>Nakuru Town</option>
                                         <option>Nakuru Town East</option>
@@ -102,11 +102,11 @@
                                 <div class="row" style="margin-left: 40px">
                                     <div class="col" >
                                         <label>Date from:</label>
-                                        <input type="text" id="datepicker"  name="startDate" class="form-Inline" >
+                                        <input type="text" id="datepicker"  name="startDate" class="form-Inline" required >
                                     </div>
                                     <div class="col" style="margin-top: 30px">
                                         <label>To:</label>
-                                        <input type="text" id="datepicker1" name="stopDate" class="form-Inline">
+                                        <input type="text" id="datepicker1" name="stopDate" class="form-Inline" required>
                                     </div>
                                 </div>
                                 <div class="col-2  " style="margin-top: 30px" >
@@ -117,7 +117,7 @@
                             <input type="text" name="action" value="cons" hidden>
                         </form>
                         <form action="PrintReport" method="post">
-                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  id="btn1"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" disabled  id="btn1"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
 
                             <input type="text" id="date1" name="startDate" hidden>
                             <input type="text" id="date2" name="stopDate" hidden>
@@ -197,16 +197,23 @@
 
     <script type="text/javascript">
         $(function () {
-            $("#datepicker").datepicker({minDate: -20, maxDate: "D", dateFormat: "dd-mm-yy"});
-            $("#datepicker1").datepicker({minDate: -20, maxDate: "D", dateFormat: "dd-mm-yy"});
+            $("#datepicker").datepicker({maxDate: "D", dateFormat: "dd-mm-yy"});
+            $("#datepicker1").datepicker({maxDate: "D", dateFormat: "dd-mm-yy"});
         });
     </script>
     <script type="text/javascript">
-       $("#btn1").click(function(){
+        $("#datepicker1").change(function () {
+            $("#btn1").prop("disabled", false);
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#btn1").click(function () {
             var x = $("#datepicker").val();
             var y = $("#datepicker1").val();
-            $("#date1").val(x);
-            $("#date2").val(y);
+                    $("#date1").val(x) ;
+                    $("#date2").val(y) ;
+
         });
     </script>
 

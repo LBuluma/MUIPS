@@ -45,12 +45,13 @@ public class LoginServlet extends HttpServlet {
             String org = usr.getUser_org();
             System.out.println(usr.getUser_fname());
             HttpSession session = request.getSession();
-            PrintWriter out = response.getWriter();
+            //PrintWriter out = response.getWriter();
 
             if (null == role) {
-                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
+                /* out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
                 out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
-                out.print(" <script type='text/javascript' src='resources/js/AlertLoginFail.js'></script>");
+                out.print(" <script type='text/javascript' src='resources/js/AlertLoginFail.js'></script>");*/
+                request.setAttribute("logmsg", "Invalid credentials");
 
                 url = "/Login.jsp";
             } else if (role != null) {
@@ -80,7 +81,8 @@ public class LoginServlet extends HttpServlet {
 
                         break;
                     case "admin":
-                        session.setAttribute("userName", user);
+                        session.setAttribute("email", email);
+                        session.setAttribute("userName", "Administrator");
                         session.setAttribute("role", "admin");
                         url = "/AdminDashBoard.jsp";
                         break;

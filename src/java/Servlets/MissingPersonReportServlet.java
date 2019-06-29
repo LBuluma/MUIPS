@@ -95,28 +95,40 @@ public class MissingPersonReportServlet extends HttpServlet {
 
     public void serveDemo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         HttpSession session = request.getSession();
-        fname = (String) request.getParameter("fname").toUpperCase();
-        session.setAttribute("fname", fname);
-        sname = (String) request.getParameter("sname").toUpperCase();
-        session.setAttribute("sname", sname);
-        language = (String) request.getParameter("language").toUpperCase();
-        session.setAttribute("language", language);
-        gender = (String) request.getParameter("gender").toUpperCase();
-        session.setAttribute("gender", gender);
-        ethnic = (String) request.getParameter("ethnic").toUpperCase();
-        session.setAttribute("ethnic", ethnic);
-        // tribe = (String) request.getParameter("tribe").toUpperCase();
-        //session.setAttribute("tribe", tribe);
-        weight = (String) request.getParameter("weight");
-        session.setAttribute("weight", weight);
-        height = (String) request.getParameter("height");
-        session.setAttribute("height", height);
-        String age = (String) request.getParameter("age");
-        session.setAttribute("age", age);
-        personId = CaseDAO.generateId("missing");
-        session.setAttribute("personId", personId);
+        String id = (String) request.getParameter("ob");
+        boolean y = CaseDAO.verifyOb(id);
+        boolean x = CaseDAO.verifyObExist(id);
+        String url = null;
+        if (y == true && x == false) {
+            fname = (String) request.getParameter("fname").toUpperCase();
+            session.setAttribute("fname", fname);
+            sname = (String) request.getParameter("sname").toUpperCase();
+            session.setAttribute("sname", sname);
+            language = (String) request.getParameter("language").toUpperCase();
+            session.setAttribute("language", language);
+            gender = (String) request.getParameter("gender").toUpperCase();
+            session.setAttribute("gender", gender);
+            ethnic = (String) request.getParameter("ethnic").toUpperCase();
+            session.setAttribute("ethnic", ethnic);
+            session.setAttribute("id", id);
+            weight = (String) request.getParameter("weight");
+            session.setAttribute("weight", weight);
+            height = (String) request.getParameter("height");
+            session.setAttribute("height", height);
+            String age = (String) request.getParameter("age");
+            session.setAttribute("age", age);
+            personId = CaseDAO.generateId("missing");
+            session.setAttribute("personId", personId);
 
-        String url = "/MissingPersonInfo.jsp";
+            url = "/MissingPersonInfo.jsp";
+
+        } else if (y == false) {
+            request.setAttribute("errOb", "Invalid case");
+            url = "/Demographics.jsp";
+        } else if (y == true && x == true) {
+            request.setAttribute("errOb", "Case already posted");
+            url = "/Demographics.jsp";
+        }
         RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
         disp.forward(request, response);
     }
@@ -125,7 +137,7 @@ public class MissingPersonReportServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String pcolor = (String) request.getParameter("pcolor").toUpperCase();
         String ecolor = (String) request.getParameter("ecolor").toUpperCase();
-        String id_number = (String) request.getParameter("pid").toUpperCase();
+
         String hcolor = (String) request.getParameter("hcolor").toUpperCase();
         String pdesc = (String) request.getParameter("pdesc").toUpperCase();
         String last_contact = (String) request.getParameter("lastContact");
@@ -142,7 +154,7 @@ public class MissingPersonReportServlet extends HttpServlet {
         ArrayList list = DataRetrievalWrapper.getOrgs();
         request.setAttribute("list", list);
 
-        DataInsertionWrapper.saveMissingPerson(fname, sname, personId, ethnic, gender, last_contact, id_number, language);
+        DataInsertionWrapper.saveMissingPerson(fname, sname, personId, ethnic, gender, last_contact, "none", language);
         DataInsertionWrapper.saveDescription(personId, weight, weight, pdesc, ecolor, pcolor, hcolor, age);
 
         String url = "/LocationInfo.jsp";
@@ -164,25 +176,27 @@ public class MissingPersonReportServlet extends HttpServlet {
         out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
         out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
         out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
+
         RequestDispatcher disp = getServletContext().getRequestDispatcher("/PublicDashBoard.jsp");
         disp.include(request, response);
     }
 
     public void serveDist(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String url;
+        String url = null;
         HttpSession session = request.getSession();
-        String disttype = (String) request.getParameter("disttype").toUpperCase();
+        String disttype = (String) request.getParameter("disttype");
         String distd = (String) request.getParameter("distd");
         personId = (String) session.getAttribute("personId");
         DataInsertionWrapper.saveFeature(personId, disttype, distd);
         String trans = (String) session.getAttribute("trans");
-        if (trans.equals("trans")) {
+        if (trans != null) {
             url = "/Transportation.jsp";
-        } else {
+        } else if (trans == null) {
             out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
             out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
-            out.print(" <script type='text/javascript' src='resources/js/AlertPostSuc.js'></script>");
+            out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
+
             url = "/PublicDashBoard.jsp";
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
@@ -203,11 +217,12 @@ public class MissingPersonReportServlet extends HttpServlet {
         String trans = (String) request.getParameter("transp");
         System.out.println(trans);
         session.setAttribute("trans", trans);
+        String id = (String) session.getAttribute("id");
         String org = (String) request.getParameter("org");
         personId = (String) session.getAttribute("personId");
         String reporter = (String) session.getAttribute("email");
         DataInsertionWrapper.addLocation(personId, "none", county, constituency, ward, village);
-        CaseDAO.saveCase("Missing", "Open", personId, reporter, org);
+        CaseDAO.saveCase("Missing", "Open", personId, reporter, org, id);
 
         if (distinct == null && null == trans) {
             out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
@@ -215,10 +230,10 @@ public class MissingPersonReportServlet extends HttpServlet {
             out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
             url = "/PublicDashBoard.jsp";
 
-        } else if (distinct.equals("dist") && distinct != null) {
+        } else if (distinct != null && (trans != null || trans == null)) {
             url = "/DistinctFeature.jsp";
 
-        } else if (distinct == null && (trans.equals("trans"))) {
+        } else if (distinct == null && null != trans) {
             url = "/Transportation.jsp";
         }
 

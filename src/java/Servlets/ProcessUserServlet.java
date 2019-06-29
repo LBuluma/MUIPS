@@ -37,20 +37,23 @@ public class ProcessUserServlet extends HttpServlet {
             throws ServletException, IOException {
      String action = request.getParameter("action");
      String email = request.getParameter("email");
+     String url = null;
      if(action.equals("approve")){
          try {
              UserDAO.changeUserStatus(email, "approved");
+             url ="/RetrieveUsers?action=approve";
          } catch (SQLException ex) {
              Logger.getLogger(ProcessUserServlet.class.getName()).log(Level.SEVERE, null, ex);
          }
      }else if(action.equals("revoke")){
          try {
              UserDAO.changeUserStatus(email, "revoked");
+             url ="/RetrieveUsers?action=revoked";
          } catch (SQLException ex) {
              Logger.getLogger(ProcessUserServlet.class.getName()).log(Level.SEVERE, null, ex);
          }
      }
-     RequestDispatcher disp = getServletContext().getRequestDispatcher("/RetrieveUsers?action=approve");
+     RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
      disp.forward(request, response);
     }
 

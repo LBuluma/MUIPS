@@ -138,7 +138,7 @@ public final class DistinctFeature_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"tab-pane fade\" id=\"info\" role=\"tabpanel\" aria-labelledby=\"info-tab\">\n");
-      out.write("                                <form id=\"form\" action=\"FileUpload\" method=\"post\" enctype=\"multipart/form-data\">\n");
+      out.write("                                <form id=\"form1\" action=\"FileUpload\" method=\"post\" enctype=\"multipart/form-data\">\n");
       out.write("                                    <div class=\"row\" style=\" margin-top: 30px; margin-left: 30px\">\n");
       out.write("                                        <div class=\"col-4\">\n");
       out.write("                                            <input id=\"uploadImage\" type=\"file\" accept=\"image/*\" name=\"image\" />\n");
@@ -163,7 +163,7 @@ public final class DistinctFeature_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("\n");
-      out.write("            <script type=\"text/javascript\" src=\"resources/js/jquery-3.3.1.min.js\"></script>\n");
+      out.write("            \n");
       out.write("            <script type=\"text/javascript\" src=\"resources/js/AjaxFileUpload.js\"></script>\n");
       out.write("\n");
       out.write("    </body>\n");

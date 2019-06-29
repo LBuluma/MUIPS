@@ -85,6 +85,7 @@ public class AdvanceSearchServlet extends HttpServlet {
         ArrayList <Case>caseList = CaseDAO.searchMCase(loc,  person, desc, minAge, maxAge, maxH, minH, minW, maxW);
         System.out.println("missing person gotten");
         request.setAttribute("caseList", caseList);
+        request.setAttribute("type", "missing");
         RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewPosts.jsp");
         disp.include(request, response);
 
@@ -112,8 +113,9 @@ public class AdvanceSearchServlet extends HttpServlet {
         int minW = Integer.parseInt(request.getParameter("minW"));
 
         ArrayList <Case>caseList = CaseDAO.searchUCase(loc,  person,  desc, minAge, maxAge, maxH, minH, minW, maxW);
-                System.out.println("missing person gotten");
+                System.out.println("Unidentified person gotten");
          request.setAttribute("caseList", caseList);
+         request.setAttribute("type", "unidentified");
         RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewPosts.jsp");
         disp.include(request, response);
 

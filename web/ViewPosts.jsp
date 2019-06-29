@@ -37,11 +37,17 @@
 
         <!-- Page Wrapper -->
         <div id="wrapper">
-
-
-            <!-- End of Sidebar -->
-            <jsp:include page="Sidebar.jsp"/>
-            <!-- Content Wrapper -->
+            <c:if test="${sessionScope.role == 'prof'}">
+                <!-- End of Sidebar -->
+                <jsp:include page="ProfSidenav.jsp"/>
+                <!-- Content Wrapper -->
+            </c:if>
+            <c:if test="${sessionScope.role == 'publicuser'}">
+                <!-- End of Sidebar -->
+                <jsp:include page="Sidebar.jsp"/>
+                <!-- Content Wrapper -->
+            </c:if>
+            
             <div id="content-wrapper" class="d-flex flex-column">
 
                 <!-- Main Content -->

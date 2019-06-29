@@ -39,23 +39,29 @@ public class RetriveCaseDetailsServlet extends HttpServlet {
             throws ServletException, IOException {
         String type = request.getParameter("type");
         String postId = request.getParameter("postId");
+        String path2 = null;
 
         String path = null;
         Location loc = null;
         Description desc = null;
         Description desc2 = null;
+        Description desc3;
+        String path3 = null;
         Transportation trans;
         Organization org = null;
         String name = null;
         try {
             name = DataRetrievalWrapper.getOrgId(postId);
             org = DataRetrievalWrapper.fetchOrg(name);
-            path = DataRetrievalWrapper.getPath(postId);
+            path = DataRetrievalWrapper.getPath(postId, "distinct");
+
         } catch (SQLException ex) {
             Logger.getLogger(RetriveCaseDetailsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (type.equals("missing")) {
             try {
+                desc2 = DataRetrievalWrapper.getFeature(postId);
+                path2 = DataRetrievalWrapper.getPath(postId, "missing");
                 MissingPerson person;
                 person = DataRetrievalWrapper.getMPerson(postId);
                 loc = DataRetrievalWrapper.getLocation(postId);
@@ -70,21 +76,30 @@ public class RetriveCaseDetailsServlet extends HttpServlet {
                 Logger.getLogger(RetriveCaseDetailsServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (type.equals("unidentified")) {
+
             try {
+                path3 = DataRetrievalWrapper.getPath(postId, "uniden");
+               
                 UnidentifiedPerson person;
                 person = DataRetrievalWrapper.getUPerson(postId);
                 loc = DataRetrievalWrapper.getLocation(postId);
                 desc = DataRetrievalWrapper.getDescription(postId);
                 desc2 = DataRetrievalWrapper.getFeature(postId);
-                path = DataRetrievalWrapper.getPath(postId);
+
+              
                 request.setAttribute("person", person);
             } catch (SQLException ex) {
                 Logger.getLogger(RetriveCaseDetailsServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
+        System.out.println(path3 +"path3");
         request.setAttribute("org", org);
         request.setAttribute("type", type);
         request.setAttribute("path", path);
+        request.setAttribute("path3", path3);
+        request.setAttribute("path2", path2);
+        
         request.setAttribute("location", loc);
         request.setAttribute("descri", desc);
         request.setAttribute("feature", desc2);

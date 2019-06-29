@@ -116,7 +116,6 @@
                                 <input type="text" hidden="true" name="action" value="location">
                                 <div class="form-row">
 
-                                    <a href="MissingPersonInfo.jsp" class=" btn btn-info"  >Back</a>
                                     <div class="col text-right">
                                         <button class=" btn btn-primary" type="submit" >Next</button>
                                     </div>

@@ -37,7 +37,7 @@
                         </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Feature Information</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Personal Information</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link " id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Upload photo</a>
@@ -105,7 +105,7 @@
 
                                         <div class="form-group  mb-1">
                                             <label> Physical description:</label>
-                                            <textarea type="text" class="form-control mb-1 " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
+                                            <textarea type="text" class="form-control mb-1 " name="pdesc"  id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
                                         </div>
 
                                         
@@ -113,7 +113,6 @@
                                         <input type="text" hidden="true" name="action" value="info">
                                          <hr>
                                         <div class="form-row mb-1">
-                                            <a href="UnidentifiedPersonDemographics.jsp" class=" btn btn-info"  >Back</a>
 
                                             <div class="col text-right ">
                                                 <button class=" btn btn-primary " type="submit" >Next</button>
@@ -123,20 +122,20 @@
                                 </div>
                             </div>
                                 <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
-                                    <form id="form" action="FileUpload" method="post" enctype="multipart/form-data">
-                                        <div class="row" style=" margin-top: 30px; margin-left: 30px">
-                                            <div class="col-4">
-                                                <input id="uploadImage" type="file" accept="image/*" name="image" />
-                                                <input  type="text"  name="type" value="distinct" hidden />
-                                            </div>
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-primary" >
-                                                    upload photo
-                                                </button>
-                                            </div>
-
+                                    <form id="form1" action="FileUpload" method="post" enctype="multipart/form-data">
+                                    <div class="row" style=" margin-top: 30px; margin-left: 30px">
+                                        <div class="col-4">
+                                            <input id="uploadImage" type="file" accept="image/*" name="image"  required/>
+                                            <input  type="text"  name="type" value="uniden" hidden />
                                         </div>
-                                    </form>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary" >
+                                                upload 
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </form>
                                 </div>
                             </div>
                            
@@ -144,7 +143,7 @@
                      <jsp:include page="Footer.jsp"/>
                     </div>
                 </div>
-                <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+               
                 <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
                 </body>
                 </html>

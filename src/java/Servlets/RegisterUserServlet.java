@@ -18,12 +18,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author justus
  */
 public class RegisterUserServlet extends HttpServlet {
+
+    String url;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,6 +37,7 @@ public class RegisterUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String regtype = request.getParameter("regtype");
         PrintWriter out = response.getWriter();
         switch (regtype) {
@@ -46,7 +50,7 @@ public class RegisterUserServlet extends HttpServlet {
                     ArrayList list;
                     try {
                         list = DataRetrievalWrapper.getOrgs();
-                        request.setAttribute("list", list);
+                        session.setAttribute("list", list);
                     } catch (SQLException ex) {
                         Logger.getLogger(RegisterUserServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -63,55 +67,95 @@ public class RegisterUserServlet extends HttpServlet {
                 } catch (SQLException ex) {
                     Logger.getLogger(RegisterUserServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
-                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
-                out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/Login.jsp");
-                disp.include(request, response);
-                break;
+
             }
+            break;
             case "prof": {
                 try {
                     saveProf(request, response);
                 } catch (SQLException ex) {
                     Logger.getLogger(RegisterUserServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
-                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
-                out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/Login.jsp");
-                disp.include(request, response);
+
                 break;
             }
 
         }
     }
 
-    public void savePersonalInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-
-        String fname = request.getParameter("fname");
-
-        String sname = request.getParameter("sname");
+    public void savePersonalInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
 
         String id = request.getParameter("id");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
+         String email = request.getParameter("email");
+         boolean z = UserDAO.verifyEmail(email);
+        boolean x = UserDAO.verifyId(id);
+        boolean y = UserDAO.verifyExisting(id, "publicuser");
+        PrintWriter out = response.getWriter();
+        if (x == true && y == false && z == false) {
+            String fname = request.getParameter("fname");
 
-        String password = request.getParameter("password");
-        UserDAO.saveUser(fname, sname, id, password, email, phone);
+            String sname = request.getParameter("sname");
+
+           
+            String phone = request.getParameter("phone");
+
+            String password = request.getParameter("password");
+            UserDAO.saveUser(fname, sname, id, password, email, phone);
+            out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
+            out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
+            out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
+
+            url = "/Login.jsp";
+
+        } else if(x == false) {
+            request.setAttribute("usrMsg", "Invalid ID number");
+            url = "/PublicPersonalInformation.jsp";
+
+         }else if(x == true  &&  y == true){
+            request.setAttribute("usrMsg", "User already exists");
+            url = "/ProfPersonalInformation.jsp";
+        }else if(x == true && z == true){
+            request.setAttribute("usrMsg", "Email already in use");
+            url = "/ProfPersonalInformation.jsp";
+        }
+        RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
+        disp.include(request, response);
     }
 
-    public void saveProf(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-
-        String fname = request.getParameter("fname");
-        String sname = request.getParameter("sname");
+    public void saveProf(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String id = request.getParameter("id");
-        String password = request.getParameter("password");
+         String email = request.getParameter("email");
+        boolean z = UserDAO.verifyEmail(email);
+        boolean x = UserDAO.verifyProfId(id);
+        boolean y = UserDAO.verifyExisting(id,"prof");
+        PrintWriter out = response.getWriter();
+        if (x == true && y == false && z == false) {
+            String fname = request.getParameter("fname");
+            String sname = request.getParameter("sname");
 
-        String org = request.getParameter("org");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        UserDAO.saveProf(email, id, fname, sname, phone, password, org);
+            String password = request.getParameter("password");
+
+            String org = request.getParameter("org");
+           
+            String phone = request.getParameter("phone");
+            UserDAO.saveProf(email, id, fname, sname, phone, password, org);
+            out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
+            out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
+            out.print(" <script type='text/javascript' src='resources/js/AlertSuccess.js'></script>");
+            url = "/Login.jsp";
+        } else if(x == false ) {
+            request.setAttribute("usrMsg", "Invalid user ID");
+            url = "/ProfPersonalInformation.jsp";
+
+        }else if(x == true  &&  y == true){
+            request.setAttribute("usrMsg", "User already exists");
+            url = "/ProfPersonalInformation.jsp";
+        }else if( x == true && z == true){
+           request.setAttribute("usrMsg", "Email already in use");
+            url = "/ProfPersonalInformation.jsp"; 
+        } 
+        RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
+        disp.include(request, response);
 
     }
 

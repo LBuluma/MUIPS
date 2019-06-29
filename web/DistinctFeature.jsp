@@ -83,8 +83,7 @@
                                        
 
                                         <hr>
-                                        <div class="form-row " style="margin-top: 30px">
-                                            <a href="LocationInfo.jsp" class=" btn btn-info" >Back</a>
+                                        <div class="form-row " style="margin-top: 5px">
                                             <div class="col text-right">
                                                 <button class=" btn btn-primary" type="submit">Next</button>
                                             </div>
@@ -95,15 +94,15 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
-                                <form id="form" action="FileUpload" method="post" enctype="multipart/form-data">
+                                <form id="form1" action="FileUpload" method="post" enctype="multipart/form-data">
                                     <div class="row" style=" margin-top: 30px; margin-left: 30px">
                                         <div class="col-4">
-                                            <input id="uploadImage" type="file" accept="image/*" name="image" />
+                                            <input id="uploadImage" type="file" accept="image/*" name="image"  required/>
                                             <input  type="text"  name="type" value="distinct" hidden />
                                         </div>
                                         <div class="col">
                                             <button type="submit" class="btn btn-primary" >
-                                                upload photo
+                                                upload 
                                             </button>
                                         </div>
 
@@ -118,7 +117,7 @@
                 </div>
             </div>
 
-            <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+            
             <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
 
     </body>

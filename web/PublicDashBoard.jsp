@@ -79,7 +79,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class=" font-weight-bold text-warning text-uppercase mb-1"><a href="RetrieveCases?type=unidentified">unidentified persons posts</a></div>
+                                                <div class=" font-weight-bold text-warning text-uppercase mb-1"><a href="RetrieveCases?type=unidentified">unidentified persons </a></div>
                                                 <p class=" text-gray-800"> View unidentified person post available in the system by clicking the link above.</p>
 
 

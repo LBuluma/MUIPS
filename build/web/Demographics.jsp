@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,28 +41,36 @@
 
 
                     <div class="card shadow" style="width: 60%;  ">
-                         <div class="card-header py-3" >
-                              <p class="h4  text-center"><strong>Missing Person Details</strong></p>
+                        <div class="card-header py-3" >
+                            <p class="h4  text-center"><strong>Missing Person Details</strong></p>
                         </div>
-                       
+
                         <div class="container-fluid " style="width: 75%; margin-top: 30px">
+                            <c:if test="${requestScope.errOb != null}">
+                                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 300px">
+                                    <strong>${requestScope.errOb}</strong> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
                             <!--Make post form-->
                             <form   action="ReportCase" method="post" >
 
 
                                 <div class="form-row mb-1">
                                     <label for="inputEmail4">First Name:</label>
-                                    <input type="text" name="fname" class="form-control" id="inputFname"  >
+                                    <input type="text" name="fname" class="form-control" pattern="^[A-Za-z]+$" id="inputFname"  required >
                                 </div>
                                 <!--second name-->
                                 <div class="form-row mb-1">
                                     <label for="inputPassword4">Second Name:</label>
-                                    <input type="text" name="sname" class="form-control" id="inputSname" >
+                                    <input type="text" name="sname" class="form-control"  pattern="^[A-Za-z]+$" id="inputSname" required >
                                 </div>
                                 <!--OB-->
                                 <div class="form-row mb-1">
                                     <label for="inputAddress">Police OB number:</label>
-                                    <input type="text" name="ob" class="form-control" id="inputAddress" required>
+                                    <input type="text" name="ob" class="form-control"  id="inputAddress" required>
                                 </div>
                                 <div class=" form-row mb-1">
                                     <label for="inputPassword4">Age:</label>
@@ -80,7 +90,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="inputEthnicity">Ethnicity:</label>
-                                        <select id="inputState" class="form-control" name="ethnic">
+                                        <select id="inputState" class="form-control" name="ethnic" required>
                                             <option selected>Maasai</option>
                                             <option>Kikiyu</option>
                                             <option>Luo</option>
@@ -99,7 +109,7 @@
                                     <!--Tribe-->
                                     <div class="form-group col-md-6">
                                         <label for="inputEthnicity">Fluent language:</label>
-                                        <input type="text" name="language" class="form-control" id="inputZip" >
+                                        <input type="text" name="language" class="form-control" pattern="^[A-Za-z]+$" id="inputZip" required >
 
                                     </div>
                                 </div>
@@ -108,7 +118,7 @@
                                 <div class="form-row mb-1" >
                                     <div class="form-group col-md-6" >
                                         <label for="inputZip">Height:</label>
-                                        <input type="number"name="height" class="form-control" id="inputZip" placeholder="ft" min="1.0" max="10.0" required>
+                                        <input type="number"name="height" class="form-control" id="inputZip" min="1" max="12" placeholder="ft"  required>
                                     </div>
                                     <div class="form-group col-md-6" >
                                         <label for="inputZip">Weight:</label>

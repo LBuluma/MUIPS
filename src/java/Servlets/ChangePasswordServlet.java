@@ -48,23 +48,17 @@ public class ChangePasswordServlet extends HttpServlet {
             status = UserDAO.changePass(username, newpswd, oldpwd);
             System.out.println(status);
             if (!newpswd.equals(confpswd)) {
-                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
-                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
-                out.print(" <script type='text/javascript' src='resources/js/AlertLoginFail.js'></script>");
+               
                 request.setAttribute("errpass", "New password and confirm password do not match.");
                 getServletContext().getRequestDispatcher(path).include(request, response);
             } else if (status == 0) {
-                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
-                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
-                out.print(" <script type='text/javascript' src='resources/js/AlertLoginFail.js'></script>");
+               
                 request.setAttribute("errpass", "Incorrect old password.");
                 getServletContext().getRequestDispatcher(path).include(request, response);
             } else if (newpswd.equals(confpswd) && (status != 0)) {
-                out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");
-                out.print(" <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>\n");
-                out.print(" <script type='text/javascript' src='resources/js/AlertLoginFail.js'></script>");
+                
                 request.setAttribute("errpass", "Password Successfully Changed");
-                getServletContext().getRequestDispatcher("/Logout").include(request, response);
+                getServletContext().getRequestDispatcher(path).include(request, response);
 
             }
 

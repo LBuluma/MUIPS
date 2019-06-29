@@ -40,9 +40,8 @@
                             <div class="form-row mb-1">
                             
                                     <label>Type</label>
-                                    <select id="inputaTransType" class="form-control" name="transtype">
-                                        <option selected disabled>select</option>
-
+                                    <select id="inputaTransType" class="form-control" name="transtype" required>
+                                       
                                         <option>Bicycle</option>
                                         <option>Motorbike</option>
                                         <option>Scooter</option>
@@ -54,7 +53,7 @@
                           
                             <div class="form-row mb-1">
                                     <label>Color:</label>
-                                    <select id="inputTransColor" class="form-control" name="transcolor">
+                                    <select id="inputTransColor" class="form-control" name="transcolor" required>
                                         <option >Brown</option>
                                         <option>Black</option>
                                         <option>Sandy</option>
@@ -88,13 +87,11 @@
                             <label>Description:</label>
                                 <textarea class="form-control  " name="transd" id="exampleFormControlTextarea6" rows="5" placeholder="Vehicle description, bike description etc"></textarea>
                             </div>
-                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-                                upload photo
-                            </button>
+                            
                             <input type="text" hidden="true" name="action" value="trans">
                             <hr>
                             <div class="form-row">
-                                <a href="DistinctFeature.jsp" class=" btn btn-info ">Back</a>
+                       
                                 <div class="col text-right">
                                     <button class=" btn btn-primary" type="submit" >Next</button>
                                 </div>

@@ -21,7 +21,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" >
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -70,13 +70,13 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-circle"></i>
-                    <span>Posts</span>
+                    <span>Station posts</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="RetrieveMyPost">My posts</a>
-                         <a class="collapse-item" href="RetrieveStationPost">Station missing posts</a>
+                        <a class="collapse-item" href="RetrieveMyPost">Unidentified persons</a>
+                        <a class="collapse-item" href="RetrieveStationPost">Missing persons</a>
 
                     </div>
                 </div>
@@ -89,7 +89,7 @@
             <div class="sidebar-heading">
 
             </div>
-            
+
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -136,6 +136,8 @@
 
         </ul>
         <script src="resources/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
         <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->

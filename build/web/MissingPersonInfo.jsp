@@ -12,6 +12,7 @@
         <title> Person Information</title>
         <link href="resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="resources/muips.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
     </head>
     <body id="page-top">
@@ -55,13 +56,11 @@
 
 
 
-                                        <!-- E-mail -->
-                                        <label>Huduma Number:</label>
-                                        <input type="text" name="pid" id="defaultRegisterFormEmail" class="form-control mb-1" required>
+                                        
 
                                         <label>Date of last contact:</label>
+                                        <input type="text" id="datepicker" name="lastContact" class="form-control mb-1" required="">
 
-                                        <input type="date" name="lastContact" id="defaultRegisterFormEmail" class="form-control mb-1" placeholder="Date of Last Contact" required>
 
                                         <div class="form-row mb-1" style="margin-top: 10px">
 
@@ -119,13 +118,12 @@
                                             <textarea type="text" class="form-control " name="pdesc" id="exampleFormControlTextarea6" rows="5" placeholder="Physical description..." required=""></textarea>
                                         </div>
 
-                                      
+
 
 
 
                                         <hr>
                                         <div class="form-row mb-1">
-                                            <a href="Demographics.jsp" class=" btn btn-info"  >Back</a>
 
                                             <div class="col text-right ">
                                                 <button class=" btn btn-primary" type="submit" >Next</button>
@@ -142,36 +140,42 @@
                             </div>
 
                             <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
-                                <form id="form" action="FileUpload" method="post" enctype="multipart/form-data">
-                                    <div class="row" style=" margin-top: 30px; margin-left: 30px">
-                                        <div class="col-4">
-                                            <input id="uploadImage" type="file" accept="image/*" name="image" />
+                                <div class="container border " style="width: 60%; margin-top: 50px; height: 100px"> 
+                                <form id="form1" action="FileUpload" method="post" enctype="multipart/form-data">
+                                    <div class="row" style=" margin-top: 30px; margin-left: 5px">
+                                        <div class="col-7">
+                                            <input id="uploadImage" type="file" accept="image/*" name="image" required/>
                                             <input  type="text"  name="type" value="missing" hidden />
                                         </div>
                                         <div class="col">
                                             <button type="submit" class="btn btn-primary" >
-                                                upload photo
+                                                upload 
                                             </button>
                                         </div>
-                                
+
+                                    </div>
+                                </form>
                             </div>
-                                    </form>
+                            </div>
                         </div>
+
+
+
+
                     </div>
-
-
-
-
+                    <jsp:include page="Footer.jsp"/>
                 </div>
-                <jsp:include page="Footer.jsp"/>
             </div>
         </div>
-    </div>
 
-    <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+                
+        <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#datepicker").datepicker({maxDate: "D", dateFormat: "dd-mm-yy"});
 
-    <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="resources/js/AjaxFileUpload.js"></script>
+            });
+        </script>
 
-</body>
+    </body>
 </html>

@@ -69,7 +69,7 @@
                                         <div class=" form-group col-5">
                                             <div class="form-group col">
                                                 <label for="inputEthnicity">Case type:</label>
-                                                <select id="inputState" class="form-control" name="type">
+                                                <select id="inputState" class="form-control" name="type" required="">
                                                     <option selected>missing</option>
                                                     <option>unidentified</option>
                                                 </select>
@@ -77,16 +77,16 @@
 
                                             <div class="form-group col">
                                                 <label for="inputEmail4">First Name:</label>
-                                                <input type="text" name="fname" class="form-control" id="inputFname"  >
+                                                <input type="text" name="fname" class="form-control" id="inputFname"  required>
                                             </div>
                                             <!--second name-->
                                             <div class="form-group col">
                                                 <label for="inputPassword4">Second Name:</label>
-                                                <input type="text" name="sname" class="form-control" id="inputSname" >
+                                                <input type="text" name="sname" class="form-control" id="inputSname"  required="">
                                             </div>
                                             <div class="form-group col">
                                                 <label for="inputEthnicity">Ethnicity:</label>
-                                                <select id="inputState" class="form-control" name="ethnicity">
+                                                <select id="inputState" class="form-control" name="ethnicity" required="">
                                                     <option selected>Maasai</option>
                                                     <option>Kikuyu</option>
                                                     <option>Luo</option>
@@ -104,7 +104,7 @@
                                             
                                             <div class="form-group col">
                                                 <label>Color:</label>
-                                                <select id="inputState" class="form-control" name="color">
+                                                <select id="inputState" class="form-control" name="color" required="">
 
                                                     <option>white</option>
                                                     <option>Latino</option>
@@ -168,12 +168,12 @@
 
                                                 <div class="form-group col">
                                                     <label for="inputEthnicity">Age from:</label>
-                                                    <input type="number" name="minAge" class="form-control" id="inputZip" >
+                                                    <input type="number" name="minAge" class="form-control" min="1" max="130" id="inputZip" required="" >
 
                                                 </div>
                                                 <div class="form-group col">
                                                     <label for="inputEthnicity">To:</label>
-                                                    <input type="number" name="maxAge" class="form-control" id="inputZip" >
+                                                    <input type="number" name="maxAge" class="form-control" min="2" max="130"  id="inputZip" required="" >
 
                                                 </div>
                                             </div>
@@ -181,12 +181,12 @@
 
                                                 <div class="form-group col">
                                                     <label for="inputEthnicity">Weight from:</label>
-                                                    <input type="number" name="minW" class="form-control" id="inputZip" >
+                                                    <input type="number" name="minW" class="form-control" id="inputZip"  min="1" max="300" required="">
 
                                                 </div>
                                                 <div class="form-group col">
                                                     <label for="inputEthnicity">To:</label>
-                                                    <input type="number" name="maxW" class="form-control" id="inputZip" >
+                                                    <input type="number" name="maxW" class="form-control" id="inputZip" min="1" max="300" required="">
 
                                                 </div>
                                             </div>
@@ -194,12 +194,12 @@
 
                                                 <div class="form-group col">
                                                     <label for="inputEthnicity">Height from:</label>
-                                                    <input type="number" name="minH" class="form-control" id="inputZip" >
+                                                    <input type="number" name="minH" class="form-control" id="inputZip" min="1" max="13" required="" >
 
                                                 </div>
                                                 <div class="form-group col">
                                                     <label for="inputEthnicity">To:</label>
-                                                    <input type="number" name="maxH" class="form-control" id="inputZip" >
+                                                    <input type="number" name="maxH" class="form-control" id="inputZip" min="1" max="13" required="">
 
                                                 </div>
                                             </div>
@@ -214,6 +214,10 @@
                         </div>
                     </div>
                 </div>
+                       <jsp:include page="Footer.jsp"/>
+            </div>
+        </div>
+                    
 
 
 

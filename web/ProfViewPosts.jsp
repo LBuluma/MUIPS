@@ -74,9 +74,7 @@
                                                 <th class="th-sm">Second name</th>
                                                 <th class="th-sm">Gender</th>
                                                 <th class="th-sm">Status</th>
-                                                    <c:if test="${requestScope.type == 'missing'}">
-                                                    <th class="th-sm">ID</th>
-                                                    </c:if>
+                                                    
 
                                                 <th class="th-sm">Date</th>
                                                 <th class="th-sm">Investigating agency</th>
@@ -101,9 +99,7 @@
                                                     <td>${comp.person_sname}</td>
                                                     <td>${comp.gender}</td>
                                                     <td>${comp.case_status}</td>
-                                                    <c:if test="${requestScope.type == 'missing'}">
-                                                        <td>${comp.case_reporter}</td>
-                                                    </c:if>
+                                                    
 
                                                     <td>${comp.dateadded}</td>
                                                     <td>${comp.invest_agency}</td>

@@ -212,12 +212,13 @@ public class DataRetrievalWrapper {
         return list;
     }
 
-    public static String getPath(String id) throws SQLException {
-        query = "select path from file where personid = ?";
+    public static String getPath(String id, String type) throws SQLException {
+        query = "select path from file where personid = ? and type = ?";
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
         String path = null;
         pState.setString(1, id);
+        pState.setString(2, type);
         rSet = pState.executeQuery();
 
         while (rSet.next()) {
@@ -259,7 +260,7 @@ public class DataRetrievalWrapper {
         rSet = pState.executeQuery();
         while (rSet.next()) {
             org = new Organization();
-           
+
             org.setName(rSet.getString("name"));
             list.add(org);
         }
@@ -268,7 +269,6 @@ public class DataRetrievalWrapper {
 
     public static String getOrgId(String caseid) throws SQLException {
 
-      
         query = "select org from cases where personid = ? ";
 
         conn = DatabaseConnection.getConnection();
@@ -277,9 +277,9 @@ public class DataRetrievalWrapper {
         String id = null;
         rSet = pState.executeQuery();
         while (rSet.next()) {
-           id = rSet.getString("org");
+            id = rSet.getString("org");
         }
-        return id ;
+        return id;
     }
 
 }

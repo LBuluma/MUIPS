@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,38 +59,44 @@ public class RetrieveStatisticsServlet extends HttpServlet {
 
     private void serveCons(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String constituency = request.getParameter("constituency");
-        if(constituency.equals("Whole county")){
+        if (constituency.equals("Whole county")) {
             serveCounty(request, response);
-        }else{
-        String start = request.getParameter("startDate");
-        String stop = request.getParameter("stopDate");
-        int openU = CaseDAO.conCases(constituency, "unidentified", "open", start, stop);
-        int resolvedU = CaseDAO.conCases(constituency, "unidentified", "resolved", start, stop);
-        int resolvedM = CaseDAO.conCases(constituency, "missing", "resolved", start, stop);
-        int openM = CaseDAO.conCases(constituency, "missing", "open", start, stop);
-        request.setAttribute("openM", openM);
-        request.setAttribute("openU", openU);
-        request.setAttribute("resolvedU", resolvedU);
-        request.setAttribute("resolvedM", resolvedM);
-        RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewStat.jsp");
+        } else {
+            String start = request.getParameter("startDate");
+            String stop = request.getParameter("stopDate");
+            HttpSession session = request.getSession();
+            session.setAttribute("startDate", start);
+            session.setAttribute("stopDate", stop);
+            int openU = CaseDAO.conCases(constituency, "unidentified", "open", start, stop);
+            int resolvedU = CaseDAO.conCases(constituency, "unidentified", "resolved", start, stop);
+            int resolvedM = CaseDAO.conCases(constituency, "missing", "resolved", start, stop);
+            int openM = CaseDAO.conCases(constituency, "missing", "open", start, stop);
+            request.setAttribute("openM", openM);
+            request.setAttribute("openU", openU);
+            request.setAttribute("resolvedU", resolvedU);
+            request.setAttribute("resolvedM", resolvedM);
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewStat.jsp");
 
-        disp.forward(request, response);
+            disp.forward(request, response);
         }
     }
 
     private void serveCounty(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String start = request.getParameter("startDate");
         String stop = request.getParameter("stopDate");
+        HttpSession session = request.getSession();
+        session.setAttribute("startDate", start);
+        session.setAttribute("stopDate", stop);
         int openU = CaseDAO.countCaseType("unidentified", "open", start, stop);
-        int resolvedU = CaseDAO.countCaseType("unidentified", "resolved",start, stop);
-        int resolvedM = CaseDAO.countCaseType("missing", "resolved",start, stop);
-        int openM = CaseDAO.countCaseType("missing", "open",start, stop);
+        int resolvedU = CaseDAO.countCaseType("unidentified", "resolved", start, stop);
+        int resolvedM = CaseDAO.countCaseType("missing", "resolved", start, stop);
+        int openM = CaseDAO.countCaseType("missing", "open", start, stop);
         request.setAttribute("openM", openM);
         request.setAttribute("openU", openU);
         request.setAttribute("resolvedU", resolvedU);
         request.setAttribute("resolvedM", resolvedM);
         RequestDispatcher disp = getServletContext().getRequestDispatcher("/ViewStat.jsp");
-        disp.forward(request, response);
+        disp.include(request, response);
     }
 
 }

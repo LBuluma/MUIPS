@@ -6,6 +6,7 @@
 package login;
 
 import Case.Case;
+import Case.Description;
 import data.CaseDAO;
 import data.DataRetrievalWrapper;
 import data.UserDAO;
@@ -22,9 +23,10 @@ import user.User;
 public class TestLogin {
 
     public static void main(String[] args) throws SQLException {
-       String name = UserDAO.usrStation("lawrencebuluma@gmail.com");
-       System.out.println(name);
-       
+        String desc = DataRetrievalWrapper.getPath("UP-43A741-19", "unidentified");
+        System.out.println(desc);
+            
+        
 
     }
 

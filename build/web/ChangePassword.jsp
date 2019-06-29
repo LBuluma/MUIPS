@@ -45,11 +45,19 @@
                     <jsp:include page="Navbar.jsp"/>
 
                     <form action='ChangePassword' method="post">
+                        <c:if test="${requestScope.errpass != null}">
+                            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 400px">
+                                <strong>${requestScope.errpass}</strong> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:if>
 
-                        <div class="card1  border p-5" style="margin: auto; width: 40%; height: 430px" >
+                        <div class="card1  border p-5" style="margin: auto; width: 43%; height: 450px; margin-top: 50px" >
                             <div class="form-row mb-1">
                                 <label for="inputEmail4">Old password:</label>
-                                <input type="password" name="oldPass" class="form-control" id="inputFname"  required>
+                                <input type="password" name="oldPass" class="form-control " id="inputFname"  required>
                             </div>
 
                             <div class="form-row mb-1">

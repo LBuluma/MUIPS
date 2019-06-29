@@ -26,7 +26,7 @@ public class UserDAO {
     //Save new public user to the database
     public static void saveUser(String fname, String sname, String id, String pass, String email, String phone) throws SQLException {
         query = "insert into publicuser(email, id, fname, sname, phone,"
-                + "date, password, org, role) values(?, ?, ?, ?, ?, curdate(), ?, ?)";
+                + "date, password, org, role, status) values(?, ?, ?, ?, ?, curdate(), ?, ?, ?,?)";
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
         pState.setString(1, email);
@@ -35,8 +35,10 @@ public class UserDAO {
         pState.setString(4, sname);
         pState.setString(5, phone);
         pState.setString(6, pass);
-        pState.setString(7, "blank");
+        pState.setString(7, "none");
         pState.setString(8, "publicuser");
+        pState.setString(9, "none");
+        
         pState.executeUpdate();
         System.out.println("User successfully inserted");
     }
@@ -135,8 +137,9 @@ public class UserDAO {
         pState.setString(2, "approved");
         rSet = pState.executeQuery();
         ArrayList list = new ArrayList();
-        User usr = new User();
+        User usr;
         while (rSet.next()) {
+            usr = new User();
             usr.setUser_sname(rSet.getString("sname"));
             usr.setUser_fname(rSet.getString("fname"));
             usr.setUser_org(rSet.getString("org"));
@@ -157,8 +160,9 @@ public class UserDAO {
         pState.setString(2, status);
         rSet = pState.executeQuery();
         ArrayList list = new ArrayList();
-        User usr = new User();
+        User usr;
         while (rSet.next()) {
+            usr = new User();
             usr.setUser_sname(rSet.getString("sname"));
             usr.setUser_fname(rSet.getString("fname"));
             usr.setUser_org(rSet.getString("org"));
@@ -196,4 +200,65 @@ public class UserDAO {
         System.out.println("Station gotten");
         return station;
     }
+
+    public static boolean verifyId(String testId) throws SQLException {
+        boolean exists = false;
+        query = "select id from citizen where id = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, testId);
+        rSet = pState.executeQuery();
+
+        if (rSet.next()) {
+            exists = true;
+        }
+        return exists;
+    }
+
+    public static boolean verifyProfId(String testId) throws SQLException {
+        boolean exists = false;
+        query = "select id from professor where id = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, testId);
+        rSet = pState.executeQuery();
+
+        if (rSet.next()) {
+            exists = true;
+        }
+        return exists;
+    }
+
+    public static boolean verifyExisting(String testId, String type) throws SQLException {
+        boolean exists = false;
+
+        query = "select id from publicuser where id = ? and role= ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, testId);
+        pState.setString(2, type);
+        rSet = pState.executeQuery();
+
+        if (rSet.next()) {
+            exists = true;
+        }
+        return exists;
+    }
+
+    public static boolean verifyEmail(String email) throws SQLException {
+        boolean exists = false;
+
+        query = "select id from publicuser where email = ?";
+        conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, email);
+
+        rSet = pState.executeQuery();
+        if (rSet.next()) {
+            exists = true;
+        }
+        return exists;
+    }
+    
+
 }

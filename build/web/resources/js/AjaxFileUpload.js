@@ -1,5 +1,5 @@
 $(document).ready(function (e) {
-                $("#form").submit(function (e) {
+                $("#form1").submit(function (e) {
                     e.preventDefault();
                     $.ajax({
                         url: "FileUpload",

@@ -33,8 +33,8 @@ public class CaseDAO {
 
     //Add a new case into the database
     public static void saveCase(String case_type, String case_status, String personId,
-            String case_reporter, String orgdetails) throws SQLException {
-        query = "insert into cases(type, personId,status, reporter, date, org) values ( ?, ?, ?, ?, curdate(), ?)";
+            String case_reporter, String orgdetails, String ob) throws SQLException {
+        query = "insert into cases(type, personId,status, reporter, date, org, ob) values ( ?, ?, ?, ?, curdate(), ?, ?)";
         conn = DatabaseConnection.getConnection();
         pState = conn.prepareStatement(query);
 
@@ -43,6 +43,7 @@ public class CaseDAO {
         pState.setString(3, case_status);
         pState.setString(4, case_reporter);
         pState.setString(5, orgdetails);
+         pState.setString(6, ob);
         pState.executeUpdate();
         System.out.println("Case Successfully added");
 
@@ -290,7 +291,7 @@ public class CaseDAO {
             c.setCase_id(rSet.getString("personid"));
             c.setCase_status(rSet.getString("status"));
             c.setInvest_agency(rSet.getString("org"));
-            c.setCase_reporter(rSet.getString("idnumber"));
+            //c.setCase_reporter(rSet.getString("idnumber"));
             c.setGender(rSet.getString("gender"));
             c.setDateadded(rSet.getString("lastContact"));
             c.setPerson_fname(rSet.getString("fname"));
@@ -413,7 +414,7 @@ public class CaseDAO {
             c.setCase_id(rSet.getString("personid"));
             c.setCase_status(rSet.getString("status").toUpperCase());
             c.setDateadded(rSet.getString("lastcontact"));
-            c.setCase_reporter(rSet.getString("idnumber"));
+            //c.setCase_reporter(rSet.getString("idnumber"));
             c.setGender(rSet.getString("gender"));
             c.setPerson_fname(rSet.getString("fname"));
             c.setPerson_sname(rSet.getString("sname"));
@@ -423,5 +424,33 @@ public class CaseDAO {
         System.out.println("case gotten successfully");
         return list;
     }
-
+    
+    public static boolean verifyOb(String testOb) throws SQLException{
+        boolean exists = false;
+        query = "select id from obnumbers where id = ?";
+       conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, testOb); 
+        rSet = pState.executeQuery();
+        
+        if(rSet.next()){
+            exists = true;
+        }
+         return exists;
+    }
+    public static boolean verifyObExist(String testOb) throws SQLException{
+        boolean exists = false;
+        query = "select ob from cases where ob = ?";
+       conn = DatabaseConnection.getConnection();
+        pState = conn.prepareStatement(query);
+        pState.setString(1, testOb); 
+        rSet = pState.executeQuery();
+        
+        if(rSet.next()){
+            exists = true;
+        }
+         return exists;
+    }
+    
+ 
 }

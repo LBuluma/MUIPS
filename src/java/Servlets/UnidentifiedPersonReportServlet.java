@@ -82,28 +82,40 @@ public class UnidentifiedPersonReportServlet extends HttpServlet {
         String gender;
         String ethnic;
         String tribe;
+        String url = null;
 
         HttpSession session = request.getSession();
+        String ob = request.getParameter("ob");
+        boolean x = CaseDAO.verifyOb(ob);
+        boolean y = CaseDAO.verifyObExist(ob);
+        if (x == true && y == false) {
 
-        sname = (String) request.getParameter("sname");
-        language = (String) request.getParameter("language");
-        gender = (String) request.getParameter("gender");
-        ethnic = (String) request.getParameter("ethnic");
-        tribe = (String) request.getParameter("tribe");
-        weight = (String) request.getParameter("weight");
-        height = (String) request.getParameter("height");
-        String age = (String) request.getParameter("age");
-        session.setAttribute("age", age);
-        String dateFound = (String) request.getParameter("dateFound");
-        fname = (String) request.getParameter("fname");
-        session.setAttribute("weight", weight);
-        session.setAttribute("height", height);
-        personId = CaseDAO.generateId("unidentified");
-        session.setAttribute("personId", personId);
-        UnidentifiedPersonDAO.saveUnidentifiedPerson(fname.toUpperCase(), sname.toUpperCase(), personId, ethnic.toUpperCase(), gender.toUpperCase(),
-                dateFound, language.toUpperCase());
+            sname = (String) request.getParameter("sname");
+            language = (String) request.getParameter("language");
+            gender = (String) request.getParameter("gender");
+            ethnic = (String) request.getParameter("ethnic");
+            session.setAttribute("id", ob);
+            weight = (String) request.getParameter("weight");
+            height = (String) request.getParameter("height");
+            String age = (String) request.getParameter("age");
+            session.setAttribute("age", age);
+            String dateFound = (String) request.getParameter("dateFound");
+            fname = (String) request.getParameter("fname");
+            session.setAttribute("weight", weight);
+            session.setAttribute("height", height);
+            personId = CaseDAO.generateId("unidentified");
+            session.setAttribute("personId", personId);
+            UnidentifiedPersonDAO.saveUnidentifiedPerson(fname.toUpperCase(), sname.toUpperCase(), personId, ethnic.toUpperCase(), gender.toUpperCase(),
+                    dateFound, language.toUpperCase());
 
-        String url = "/UnidentifiedDescription.jsp";
+            url = "/UnidentifiedDescription.jsp";
+        } else if (x == false) {
+            request.setAttribute("oberr", "Case does not exist");
+            url = "/UnidentifiedPersonDemograhics.jsp";
+        }else if(y == true){
+            request.setAttribute("oberr", "Case already posted");
+            url = "/UnidentifiedPersonDemograhics.jsp";
+        }
         RequestDispatcher disp = getServletContext().getRequestDispatcher(url);
         disp.forward(request, response);
     }
@@ -156,8 +168,9 @@ public class UnidentifiedPersonReportServlet extends HttpServlet {
         String org = (String) session.getAttribute("myOrg");
         personId = (String) session.getAttribute("personId");
         String reporter = (String) session.getAttribute("email");
+        String id = (String) session.getAttribute("id");
         DataInsertionWrapper.addLocation(personId, "NONE", county.toUpperCase(), constituency.toUpperCase(), ward.toUpperCase(), village.toUpperCase());
-        CaseDAO.saveCase("Unidentified", "Open", personId, reporter.toUpperCase(), org);
+        CaseDAO.saveCase("Unidentified", "Open", personId, reporter.toUpperCase(), org, id);
 
         if (distinct == null) {
             out.print(" <script type='text/javascript' src='resources/vendor/jquery/jquery.min.js'></script>");

@@ -38,9 +38,7 @@
                         <div class="container" style="width: 70%;">
                         <!-- Default form register -->
                         <form  action="UnidentifiedPersonReport" method="post">
-                          
-                          
-
+      
                             <div class="form-row mb-1" style="margin-top: 30px">
                                 <label>County:</label>
                                 <select id="inputType" class="form-control" name="county" required="">
@@ -76,13 +74,8 @@
                                 <div class="form-row">
                                     <label>Village:</label>
                                     <!-- Last name -->
-                                    <input type="text" name="village" id="defaultRegisterFormLastName" class="form-control"  required>
+                                    <input type="text" name="village" id="defaultRegisterFormLastName" pattern="^[A-Za-z]+$" class="form-control"  required>
                                 </div>
-
-                           
-                           
-
-
 
                             <!-- Distinct Feature-->
                             <div class="custom-control custom-checkbox custom-control-inline mb-1" style="margin-top: 20px; margin-right: 150px">
@@ -96,7 +89,6 @@
                             <input type="text" hidden="true" name="action" value="location">
                             <div class="form-row">
 
-                                <a href="PersonalInformation.jsp" class=" btn btn-info"  >Back</a>
                                 <div class="col text-right">
                                     <button class=" btn btn-primary" type="submit" >Finish</button>
                                 </div>
